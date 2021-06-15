@@ -4,6 +4,7 @@ import Main from './components/layouts/Main';
 import Home from './components/pages/Home';
 import Stores from './components/pages/Stores';
 import StoresAdd from './components/pages/StoresAdd';
+import StoresEdit from './components/pages/StoresEdit';
 import './App.css';
 
 function App() {
@@ -18,6 +19,14 @@ function App() {
     const newStores = stores.filter(store => store.id !== storeId);
     updateStores([...newStores]);
   }
+  const handleUpdateStore = (storeId, storeData) => {
+    const otherStores = stores.filter(store => store.id !== storeId)
+    const updateStore = {
+      id: storeId,
+      ...storeData
+    }
+    updateStores([...otherStores, updateStore]);
+  }
 
   return (
     <Router>
@@ -29,8 +38,11 @@ function App() {
           <Route path="/stores" exact={true}>
             <Stores stores={stores} handleRemoveStore={handleRemoveStore} />
           </Route>
-          <Route path="/stores/new">
+          <Route path="/stores/new" exact={true}>
             <StoresAdd handleAddStore={handleAddStore} />
+          </Route>
+          <Route path="/stores/:id">
+            <StoresEdit stores={stores} handleUpdateStore={handleUpdateStore} />
           </Route>
         </Switch>
       </Main>
