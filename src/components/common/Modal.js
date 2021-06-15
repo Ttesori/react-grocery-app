@@ -11,8 +11,8 @@ export default function Modal({ handleClose, isOpen, children }) {
     }
   }, [isOpen])
   return (
-    <div className="modal-background" ref={modalEl} onClick={handleClose}>
-      <div className="modal">
+    <div className="modal-background" ref={modalEl}>
+      <div className="modal" onClick={() => { }}>
         <span id="close-btn" onClick={handleClose}>&times;</span>
         {children}
       </div>

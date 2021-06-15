@@ -1,6 +1,6 @@
-export default function Button({ icon, handleOnClick, children, className }) {
-  const handleLocalOnClick = () => {
-    handleOnClick();
+export default function Button({ icon, handleOnClick, children, className, id }) {
+  const handleLocalOnClick = (e) => {
+    handleOnClick(e, id);
   }
 
   return (

@@ -88,19 +88,43 @@ fieldset {
   min-height: 1.5rem;
 }
 
-.draggable-container {
-  padding: 2rem;
+.btn.btn-form {
+  background: #ccc;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+}
+
+.btn.btn-sm {
+  font-size: 0.9rem;
+  padding: 0.35rem 0.5rem;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.draggable-container,
+.list {
+  padding: 1rem;
+  margin-bottom: 1rem;
   background: #eee;
 }
 
-.draggable {
-  padding: 0.5rem;
+.draggable,
+.list li {
+  padding: 0.25rem 0.5rem;
   background: #fff;
-  margin-bottom: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 0.25rem;
+}
+
+.draggable:not(:last-child),
+.list li:not(:last-child) {
+  margin-bottom: 0.5rem;
 }
 
 .draggable > span {
@@ -113,4 +137,19 @@ fieldset {
 
 .draggable .btn:hover {
   color: #444;
+}
+
+.btn.inline {
+}
+
+.is-invalid input {
+  border: 1px solid red;
+}
+.is-invalid label {
+  color: red;
+}
+.is-invalid .invalid-text {
+  color: red;
+  font-style: italic;
+  display: block;
 }

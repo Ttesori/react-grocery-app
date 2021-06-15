@@ -1,7 +1,7 @@
 import { DragDropContext } from 'react-beautiful-dnd';
 import DroppableList from './DroppableList';
 
-export default function DragDropContainer({ items, itemsOrder, onDragEnd, listId }) {
+export default function DragDropContainer({ items, itemsOrder, onDragEnd, listId, isEditable, isRemovable, handleRemove }) {
   const handleOnDragEnd = (result) => {
     const { destination, source } = result;
 
@@ -30,7 +30,7 @@ export default function DragDropContainer({ items, itemsOrder, onDragEnd, listId
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
-      <DroppableList items={items} itemsOrder={itemsOrder} listId={listId} />
+      <DroppableList items={items} itemsOrder={itemsOrder} listId={listId} isEditable={isEditable} isRemovable={isRemovable} handleRemove={handleRemove} />
     </DragDropContext>
   )
 }

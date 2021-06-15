@@ -1,21 +1,27 @@
-import { useState } from 'react';
-import DragDropContainer from '../DragDropContainer';
-import Modal from '../common/Modal';
-import AddStore from '../stores/AddStore';
 
-export default function Stores({ items, itemsOrder, handleOnDragEnd }) {
-  const [modalisOpen, setModalisOpen] = useState(false);
-  const modalContent = (
-    <Modal handleClose={() => setModalisOpen(false)} isOpen={modalisOpen}>
-    </Modal>
-  );
+import ListItem from '../common/ListItem';
 
+import { Link } from 'react-router-dom';
+import Button from '../Button';
+
+export default function Stores({ stores, handleRemoveStore }) {
+
+  const handleRemove = (e, id) => {
+    handleRemoveStore(id);
+  }
   return (
     <>
       <h2>Manage Stores</h2>
-      <DragDropContainer items={items} itemsOrder={itemsOrder} onDragEnd={handleOnDragEnd} listId='list-1' />
+      <Link to="stores/new">Add New</Link>
+      <ul className="list">
+        {stores && stores.map((store, i) => <ListItem key={i} >{store.name}
+          <div className="buttons">
+            <Button label="edit" className="icon" icon="fas fa-edit" handleOnClick={() => console.log('edit clicked')} />
+            <Button label="remove" className="icon" icon="fas fa-times" handleOnClick={handleRemove} id={store.id} />
+          </div>
+        </ListItem>)}
+      </ul>
 
-      <AddStore />
     </>
   )
 }

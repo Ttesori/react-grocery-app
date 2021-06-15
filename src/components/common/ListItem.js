@@ -1,7 +1,7 @@
-export default function ListItem() {
+export default function ListItem({ children, ref }) {
   return (
-    <div>
-
-    </div>
+    <li ref={ref}>
+      {children}
+    </li>
   )
 }

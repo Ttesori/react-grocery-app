@@ -3,8 +3,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import Button from './Button';
 
 
-export default function DraggableListItem({ className, item, index }) {
-
+export default function DraggableListItem({ className, item, index, isEditable, isRemovable, handleRemove }) {
   return (
     <Draggable draggableId={item.id} index={index}>
       {(provided) => (
@@ -14,8 +13,8 @@ export default function DraggableListItem({ className, item, index }) {
           className={className}>
           <span>{item.text}</span>
           <span>
-            <Button label="edit" className="icon" icon="fas fa-edit" handleOnClick={() => console.log('edit clicked')} />
-            <Button label="remove" className="icon" icon="fas fa-times" handleOnClick={() => console.log('remove clicked')} />
+            {isEditable && <Button label="edit" className="icon" icon="fas fa-edit" handleOnClick={() => console.log('edit clicked')} />}
+            {isRemovable && <Button label="remove" className="icon" icon="fas fa-times" handleOnClick={handleRemove} id={item.id} />}
             <span className="btn icon" {...provided.dragHandleProps}> <i className="fas fa-bars"></i> </span>
           </span>
         </li>

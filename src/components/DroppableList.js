@@ -2,7 +2,7 @@
 import DraggableListItem from './DraggableListItem';
 import { Droppable } from 'react-beautiful-dnd';
 
-export default function DroppableList({ items, listId }) {
+export default function DroppableList({ items, listId, isEditable, isRemovable, handleRemove }) {
   return (
     <Droppable droppableId={listId}
     >
@@ -18,6 +18,9 @@ export default function DroppableList({ items, listId }) {
               className='draggable'
               item={item}
               index={i}
+              isEditable={isEditable}
+              isRemovable={isRemovable}
+              handleRemove={handleRemove}
             />
           ))}
           {provided.placeholder}
