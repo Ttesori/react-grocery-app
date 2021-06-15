@@ -1,10 +1,10 @@
 
-import ListItem from './ListItem';
+import DraggableListItem from './DraggableListItem';
 import { Droppable } from 'react-beautiful-dnd';
 
-export default function List({ items }) {
+export default function DroppableList({ items, listId }) {
   return (
-    <Droppable droppableId={'list-1'}
+    <Droppable droppableId={listId}
     >
       {(provided) => (
         <ul
@@ -13,7 +13,7 @@ export default function List({ items }) {
           {...provided.droppableProps}
         >
           {items.map((item, i) => (
-            <ListItem
+            <DraggableListItem
               key={item.id}
               className='draggable'
               item={item}

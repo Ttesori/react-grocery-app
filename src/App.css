@@ -5,13 +5,44 @@ li {
   list-style: none;
 }
 
+.btn {
+  background: none;
+  padding: 0.25rem;
+  border: 0;
+  border-radius: 0.25rem;
+  margin: 0.1rem;
+  cursor: pointer;
+}
+
+.btn.icon {
+  font-size: 1.25rem;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+}
+
 .draggable-container {
-  padding: 2em;
+  padding: 2rem;
   background: #eee;
 }
 
 .draggable {
-  padding: 1em;
+  padding: 0.5rem;
   background: #fff;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.25rem;
+}
+
+.draggable > span {
+}
+
+.draggable .btn {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.draggable:hover .btn {
+  opacity: 1;
 }

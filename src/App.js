@@ -1,46 +1,32 @@
 import { useState } from 'react';
-import { DragDropContext } from 'react-beautiful-dnd';
+
 import './App.css';
-import List from './components/List';
+import DragDropContainer from './components/DragDropContainer';
 import data from './data';
+import data2 from './data2';
 
 function App() {
   const [items, updateItems] = useState(data);
-  const [itemsOrder, updateItemsOrder] = useState(['1', '2', '3', '4']);
+  const [itemsOrder, updateItemsOrder] = useState(data.map(item => item.id));
 
-  const handleOnDragEnd = (result) => {
-    const { destination, source } = result;
+  const [items2, updateItems2] = useState(data2);
+  const [items2Order, updateItems2Order] = useState(data2.map(item => item.id));
 
-    // Dropped outside of frame
-    if (!destination) return;
-    // Dropped in same pos
-    if (destination.droppableId === source.droppableId && destination.index === source.index) return;
-
-    // get copy of order
-    const newOrder = [...itemsOrder];
-    // Remove moved item
-    const oldItem = newOrder.splice(source.index, 1);
-    // Add item back in new position
-    newOrder.splice(destination.index, 0, ...oldItem);
-    // Update state w new order
-    updateItemsOrder(newOrder);
-
-    // Create empty array to hold new items
-    let newItems = [];
-    // Populate items with new order
-    newOrder.forEach(taskId => {
-      newItems.push(items.find(item => item.id === taskId));
-    });
-    // Update items state
+  const handleList1OnDragEnd = (newItems, newItemsOrder) => {
     updateItems(newItems);
+    updateItemsOrder(newItemsOrder);
+  }
+
+  const handleList2OnDragEnd = (newItems, newItemsOrder) => {
+    updateItems2(newItems);
+    updateItems2Order(newItemsOrder);
   }
 
   return (
     <>
       <h1>Hello World</h1>
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        <List items={items} itemsOrder={itemsOrder} />
-      </DragDropContext>
+      <DragDropContainer items={items} itemsOrder={itemsOrder} onDragEnd={handleList1OnDragEnd} listId='list-1' />
+      <DragDropContainer items={items2} itemsOrder={items2Order} onDragEnd={handleList2OnDragEnd} listId='list-2' />
     </>
   );
 }
