@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Main from './components/layouts/Main';
 import Home from './components/pages/Home';
 import Stores from './components/pages/Stores';
 import StoresAdd from './components/pages/StoresAdd';
 import StoresEdit from './components/pages/StoresEdit';
+import Lists from './components/pages/Lists';
 import './App.css';
 
 function App() {
@@ -28,6 +29,16 @@ function App() {
     updateStores([...otherStores, updateStore]);
   }
 
+  useEffect(() => {
+    if (localStorage.getItem('rg-stores')) {
+      updateStores(JSON.parse(localStorage.getItem('rg-stores')));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('rg-stores', JSON.stringify(stores));
+  }, [stores]);
+
   return (
     <Router>
       <Main>
@@ -43,6 +54,9 @@ function App() {
           </Route>
           <Route path="/stores/:id">
             <StoresEdit stores={stores} handleUpdateStore={handleUpdateStore} />
+          </Route>
+          <Route path="/lists" exact={true}>
+            <Lists stores={stores} />
           </Route>
         </Switch>
       </Main>

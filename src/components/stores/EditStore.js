@@ -27,7 +27,6 @@ export default function EditStore({ handleUpdateStore, store }) {
     }
     updateSectionIsValid(true);
     updateSections([...sections, newSection]);
-
     updateSectionsOrder(sections.map(section => section.id))
     updateNewSectionName('');
   }
@@ -63,9 +62,6 @@ export default function EditStore({ handleUpdateStore, store }) {
     updateSectionsOrder(sections.map(section => section.id));
   }, [sections]);
 
-  useEffect(() => {
-
-  })
 
   return (
     <>

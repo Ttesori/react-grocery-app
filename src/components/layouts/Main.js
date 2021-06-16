@@ -7,6 +7,7 @@ export default function Main({ children }) {
         <h1 className="logo">GroceryMapper</h1>
         <nav>
           <Link to="/">Home</Link>
+          <Link to="/lists">Lists</Link>
           <Link to="/stores">Stores</Link>
         </nav>
       </header>
