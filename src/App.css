@@ -105,6 +105,10 @@ fieldset {
   align-items: center;
 }
 
+.flex.flex-start {
+  justify-content: flex-start;
+}
+
 .draggable-container,
 .list {
   padding: 1rem;
