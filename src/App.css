@@ -157,3 +157,13 @@ fieldset {
   font-style: italic;
   display: block;
 }
+
+.edit-text {
+  display: inline-block;
+  min-width: 150px;
+  padding: 0.25rem;
+  transition: all 0.2s;
+}
+.edit-text:hover {
+  background-color: #eee;
+}

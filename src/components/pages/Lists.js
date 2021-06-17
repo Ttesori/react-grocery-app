@@ -1,14 +1,15 @@
 import Button from "../Button";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ListItem from "../common/ListItem";
 
-export default function Lists({ lists, stores }) {
-  const handleRemove = () => {
-
+export default function Lists({ lists, handleRemoveList }) {
+  const history = useHistory();
+  const handleRemove = (e, id) => {
+    handleRemoveList(id);
   }
 
-  const handleUpdateList = () => {
-
+  const handleUpdateList = (id) => {
+    history.push(`/lists/edit/${id}`)
   }
   return (
     <div>

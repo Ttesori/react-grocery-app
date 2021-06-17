@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import InputText from "../form/InputText";
 import SelectList from "../form/SelectList";
 import ListItem from "../common/ListItem";
@@ -18,6 +19,7 @@ export default function AddList({ handleAddList, stores }) {
     store: true,
     items: true
   });
+  const history = useHistory();
   const allStoresMap = stores.map(store => {
     return {
       value: store.id,
@@ -25,36 +27,33 @@ export default function AddList({ handleAddList, stores }) {
     }
   })
 
-
   const handleNameChange = (text) => {
-    console.log('Name changed');
     updateName(text);
   }
   const handleStoreChange = (e) => {
-    console.log('Select changed');
-    console.log(e.target.value);
+    const newStore = stores.find(store => store.id === e.target.value);
+    updateStore(newStore);
   }
   const handleSectionChange = (e) => {
-    console.log('Select changed');
-    console.log(e.target.value);
     updateNewListItem({ ...newListItem, section_id: e.target.value })
   }
   const handleNewItemChange = (text) => {
-    console.log(text);
     updateNewListItem({ ...newListItem, text: text });
   }
   const handleAddItem = (e) => {
     e.preventDefault();
     console.log(newListItem);
-    updateItems([...items, {
+    const newItems = [...items, {
       id: `item-${items.length}`,
       text: newListItem.text,
-      section_id: newListItem.section_id
-    }]);
+      section_id: newListItem.section_id,
+
+    }];
     updateNewListItem({
       text: '',
-      section_id: store?.sections[0]?.id
-    })
+      section_id: newListItem.section_id
+    });
+    updateItems(sortItems(newItems));
   }
   const handleSaveList = (e) => {
     e.preventDefault();
@@ -63,12 +62,35 @@ export default function AddList({ handleAddList, stores }) {
       store_id: store.id,
       items: items
     }
-    handleAddList(newList)
+    handleAddList(newList);
+    history.push('/lists');
   }
   const handleRemove = (e, id) => {
     e.preventDefault();
     const keep = items.filter(item => item.id !== id);
     updateItems([...keep]);
+  }
+  const editedListItem = (e, id) => {
+    const toEdit = items.find(item => item.id === id);
+    toEdit.text = e.target.textContent;
+    const keep = items.filter(item => item.id !== id);
+    updateItems(sortItems([...keep, toEdit]));
+  }
+  const sortItems = (newItems) => {
+    const sortedItems = [...newItems]
+    sortedItems.sort(function (a, b) {
+      if (a.text < b.text) { return -1; }
+      if (a.text > b.text) { return 1; }
+      return 0;
+    });
+    return sortedItems;
+  }
+  const reorganizeItems = () => {
+    const currItems = [...items];
+    // need to map items to new sections using section text
+    const newItems = currItems.map(item => {
+
+    })
   }
   useEffect(() => {
     const newStoreMap = store?.sections?.map(section => {
@@ -78,17 +100,31 @@ export default function AddList({ handleAddList, stores }) {
       }
     });
     updateStoreMap(newStoreMap);
-  }, [store])
+
+  }, [store]);
+
   return (
     <div>
       <h2>Add List</h2>
       <form>
         <InputText label="List Name:" id="" placeholder="Enter List Name..." handleChange={handleNameChange} value={name} isValid={isValid.name} invalidText='Please enter a list name...' />
-        <SelectList items={allStoresMap} onChange={handleStoreChange} value={store} />
+        <SelectList items={allStoresMap} onChange={handleStoreChange} value={store.id} />
         {items && <ul className="list">
-          {items.map((item, i) => <ListItem key={i}>{item.text} - {storeMap.find(section => item.section_id === section.value).text}
-            <Button label="remove" className="icon" icon="fas fa-times" handleOnClick={handleRemove} id={item.id} />
-          </ListItem>)}
+          {store.sections.map(section => {
+            const sectionItems = items.filter(item => item.section_id === section.id);
+            return sectionItems && sectionItems.map((item, i) =>
+              <>
+                {i === 0 ? <h3>{section.text}</h3> : ''}
+                <ListItem key={i}>
+                  <span contentEditable={true}
+                    onBlur={(e) => editedListItem(e, item.id)} className="edit-text"
+                    suppressContentEditableWarning={true}
+                  >{item.text}</span>
+                  <Button label="remove" className="icon" icon="fas fa-times" handleOnClick={handleRemove} id={item.id} />
+                </ListItem>
+              </>
+            )
+          })}
         </ul>}
         <div className="flex flex-start">
           <InputText placeholder="Enter item name" label="Item name:" value={newListItem.text} handleChange={handleNewItemChange} isValid={true} />

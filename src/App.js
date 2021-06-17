@@ -34,8 +34,14 @@ function App() {
   const handleAddList = (list) => {
     updateLists([...lists, { id: `list-${lists.length}`, ...list }])
   }
-  const handleUpdateList = () => {
-    console.log('Updating list...')
+
+  const handleRemoveList = (list_id) => {
+    const toKeep = lists.filter(list => list.id !== list_id);
+    updateLists(toKeep);
+  }
+  const handleUpdateList = (list_id, listData) => {
+    const toKeep = lists.filter(list => list.id !== list_id);
+    updateLists([...toKeep, listData])
   }
 
   useEffect(() => {
@@ -71,7 +77,7 @@ function App() {
             <StoresEdit stores={stores} handleUpdateStore={handleUpdateStore} />
           </Route>
           <Route path="/lists" exact={true}>
-            <Lists stores={stores} lists={lists} />
+            <Lists stores={stores} lists={lists} handleRemoveList={handleRemoveList} />
           </Route>
           <Route path="/lists/new" exact={true}>
             <ListsAdd stores={stores} handleAddList={handleAddList} />
