@@ -14,7 +14,7 @@ import './App.css';
 function App() {
   const [stores, updateStores] = useState([]);
   const [lists, updateLists] = useState([]);
-  const handleAddStore = (newStore) => {
+  const handleAddStore = (storeId = '', newStore) => {
     updateStores([...stores, {
       id: `store-${stores.length}`, ...newStore
     }]);
@@ -31,8 +31,12 @@ function App() {
     }
     updateStores([...otherStores, updateStore]);
   }
-  const handleAddList = (list) => {
-    updateLists([...lists, { id: `list-${lists.length}`, ...list }])
+  const handleAddList = (list_id, listData) => {
+    const newList = {
+      id: `list-${Math.ceil(Math.random() * 999999)}`,
+      ...listData
+    }
+    updateLists([...lists, newList]);
   }
 
   const handleRemoveList = (list_id) => {
@@ -40,8 +44,12 @@ function App() {
     updateLists(toKeep);
   }
   const handleUpdateList = (list_id, listData) => {
+    const updatedList = {
+      id: list_id,
+      ...listData
+    }
     const toKeep = lists.filter(list => list.id !== list_id);
-    updateLists([...toKeep, listData])
+    updateLists([...toKeep, updatedList])
   }
 
   useEffect(() => {

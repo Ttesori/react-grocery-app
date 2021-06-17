@@ -1,6 +1,6 @@
-export default function ListItem({ children, ref }) {
+export default function ListItem({ children, ref, key }) {
   return (
-    <li ref={ref}>
+    <li ref={ref} key={key}>
       {children}
     </li>
   )

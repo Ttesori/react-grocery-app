@@ -1,7 +1,7 @@
 import { DragDropContext } from 'react-beautiful-dnd';
 import DroppableList from './DroppableList';
 
-export default function DragDropContainer({ items, itemsOrder, onDragEnd, listId, isEditable, isRemovable, handleRemove }) {
+export default function DragDropContainer({ items, itemsOrder, onDragEnd, listId, isEditable, isRemovable, handleRemove, handleEdit }) {
   const handleOnDragEnd = (result) => {
     const { destination, source } = result;
 
@@ -12,6 +12,7 @@ export default function DragDropContainer({ items, itemsOrder, onDragEnd, listId
 
     // get copy of order
     const newOrder = [...itemsOrder];
+    console.log(newOrder);
     // Remove moved item
     const oldItem = newOrder.splice(source.index, 1);
     // Add item back in new position
@@ -20,17 +21,18 @@ export default function DragDropContainer({ items, itemsOrder, onDragEnd, listId
     // Create empty array to hold new items
     let newItems = [];
     // Populate items with new order
-    newOrder.forEach(taskId => {
-      newItems.push(items.find(item => item.id === taskId));
+    newOrder.forEach(id => {
+      newItems.push(items.find(item => item.id === id));
     });
     // Update items state
+    console.log(newOrder);
     onDragEnd(newItems, newOrder)
   }
 
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
-      <DroppableList items={items} itemsOrder={itemsOrder} listId={listId} isEditable={isEditable} isRemovable={isRemovable} handleRemove={handleRemove} />
+      <DroppableList items={items} itemsOrder={itemsOrder} listId={listId} isEditable={isEditable} handleEdit={handleEdit} isRemovable={isRemovable} handleRemove={handleRemove} />
     </DragDropContext>
   )
 }

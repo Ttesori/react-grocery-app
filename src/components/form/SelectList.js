@@ -1,7 +1,8 @@
+
 export default function SelectList({ items, id, onChange, label, value }) {
   const localOnChange = (e) => {
-    console.log(e.target.value);
-    onChange(e);
+    const selected = items.find(item => e.target.value === item.value);
+    onChange(e, { value: selected.value, text: selected.text });
   }
   return (
     <fieldset>

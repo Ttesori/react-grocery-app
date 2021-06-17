@@ -34,8 +34,8 @@ export default function AddList({ handleAddList, stores }) {
     const newStore = stores.find(store => store.id === e.target.value);
     updateStore(newStore);
   }
-  const handleSectionChange = (e) => {
-    updateNewListItem({ ...newListItem, section_id: e.target.value })
+  const handleSectionChange = (e, selected) => {
+    updateNewListItem({ ...newListItem, section_id: selected.value, section_text: selected.text })
   }
   const handleNewItemChange = (text) => {
     updateNewListItem({ ...newListItem, text: text });
@@ -47,11 +47,12 @@ export default function AddList({ handleAddList, stores }) {
       id: `item-${items.length}`,
       text: newListItem.text,
       section_id: newListItem.section_id,
-
+      section_text: newListItem.section_text
     }];
     updateNewListItem({
       text: '',
-      section_id: newListItem.section_id
+      section_id: newListItem.section_id,
+      section_text: newListItem.section_text
     });
     updateItems(sortItems(newItems));
   }

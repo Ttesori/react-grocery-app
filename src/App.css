@@ -160,6 +160,7 @@ fieldset {
 
 .edit-text {
   display: inline-block;
+  width: 50%;
   min-width: 150px;
   padding: 0.25rem;
   transition: all 0.2s;

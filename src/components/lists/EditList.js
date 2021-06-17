@@ -56,7 +56,6 @@ export default function EditList({ handleUpdateList, list, stores }) {
   const handleSaveList = (e) => {
     e.preventDefault();
     const newList = {
-      id: list.id,
       name: name || 'New List',
       store_id: store.id,
       items: items
@@ -106,7 +105,7 @@ export default function EditList({ handleUpdateList, list, stores }) {
             return sectionItems && sectionItems.map((item, i) =>
               <>
                 {i === 0 ? <h3>{section.text}</h3> : ''}
-                <ListItem key={item.id}>
+                <ListItem key={i}>
                   <span contentEditable={true}
                     onBlur={(e) => editedListItem(e, item.id)} className="edit-text"
                     suppressContentEditableWarning={true}>{item.text}</span>
