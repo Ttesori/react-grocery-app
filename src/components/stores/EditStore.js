@@ -21,9 +21,10 @@ export default function EditStore({ handleUpdateStore, store, newStore }) {
   }
   const handleAddSection = (e) => {
     e.preventDefault();
+    const text = newSectionName.trim().slice(0, 1).toUpperCase() + newSectionName.trim().slice(1).toLowerCase();
     const newSection = {
       id: `section-${Math.ceil(Math.random() * 999999)}`,
-      text: newSectionName
+      text: text
     }
     const sectionsUpdate = [...sections, newSection];
     updateSectionIsValid(true);
@@ -52,7 +53,7 @@ export default function EditStore({ handleUpdateStore, store, newStore }) {
     console.log(sectionToUpdate, text);
     const sectionIdx = sections.findIndex(section => section.id === sectionToUpdate.id)
     const keepSections = [...sections]
-    sectionToUpdate.text = text;
+    sectionToUpdate.text = text.trim().slice(0, 1).toUpperCase() + text.trim().slice(1).toLowerCase();
     keepSections[sectionIdx] = sectionToUpdate;
     updateSections([...keepSections]);
   }

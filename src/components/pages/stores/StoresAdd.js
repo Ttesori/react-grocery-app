@@ -1,8 +1,8 @@
 
-import EditStore from "../stores/EditStore";
+import EditStore from "../../stores/EditStore";
 
 export default function StoresAdd({ handleAddStore }) {
-  let defaultSections = ['Beverages', 'Bakery', 'Canned Goods', 'Dairy', 'Deli', 'Dry/Baking Goods', 'Frozen Foods', 'Meat/Seafood', 'Produce', 'Cleaning', 'Paper Products', 'Personal Care', 'Other'];
+  let defaultSections = ['Beverages', 'Bakery', 'Canned Goods', 'Dairy', 'Deli', 'Dry/Baking Goods', 'Frozen Foods', 'Meat/Seafood', 'Produce', 'Snacks', 'Household/Cleaning', 'Paper Products', 'Personal Care', 'Other'];
   defaultSections.sort();
   const newSections = defaultSections.map((section, i) => ({
     id: `section-${Math.ceil(Math.random() * 9999999)}`,

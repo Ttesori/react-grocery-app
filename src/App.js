@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Main from './components/layouts/Main';
 import Home from './components/pages/Home';
-import Stores from './components/pages/Stores';
-import StoresAdd from './components/pages/StoresAdd';
-import StoresEdit from './components/pages/StoresEdit';
-import ListsShow from './components/pages/ListsShow';
-import ListsEdit from './components/pages/ListsEdit';
-import ListsAdd from './components/pages/ListsAdd';
-import Lists from './components/pages/Lists';
+import Stores from './components/pages/stores/Stores';
+import StoresAdd from './components/pages/stores/StoresAdd';
+import StoresEdit from './components/pages/stores/StoresEdit';
+import ListsShow from './components/pages/lists/ListsShow';
+import ListsEdit from './components/pages/lists/ListsEdit';
+import ListsAdd from './components/pages/lists/ListsAdd';
+import Lists from './components/pages/lists/Lists';
 import './App.css';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
   const [lists, updateLists] = useState([]);
   const handleAddStore = (storeId = '', newStore) => {
     updateStores([...stores, {
-      id: `store-${stores.length}`, ...newStore
+      id: `store-${getRand()}`, ...newStore
     }]);
   }
   const handleRemoveStore = (storeId) => {
@@ -33,7 +33,7 @@ function App() {
   }
   const handleAddList = (list_id, listData) => {
     const newList = {
-      id: `list-${Math.ceil(Math.random() * 999999)}`,
+      id: `list-${getRand()}`,
       ...listData
     }
     updateLists([...lists, newList]);
@@ -51,6 +51,8 @@ function App() {
     const toKeep = lists.filter(list => list.id !== list_id);
     updateLists([...toKeep, updatedList])
   }
+
+  const getRand = () => Math.ceil(Math.random() * 999999);
 
   useEffect(() => {
     if (localStorage.getItem('rg-stores')) {
