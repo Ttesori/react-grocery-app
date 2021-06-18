@@ -1,6 +1,7 @@
 import Button from "../../Button";
 import { Link, useHistory } from "react-router-dom";
 import ListItem from "../../common/ListItem";
+import Container from '../../common/Container';
 
 export default function Lists({ lists, handleRemoveList }) {
   const history = useHistory();
@@ -15,7 +16,7 @@ export default function Lists({ lists, handleRemoveList }) {
     history.push(`/lists/${id}`)
   }
   return (
-    <div>
+    <Container>
       <h2>Manage Lists</h2>
       <Link to="lists/new">Add New</Link>
       <ul className="list">
@@ -27,6 +28,6 @@ export default function Lists({ lists, handleRemoveList }) {
           </div>
         </ListItem>)}
       </ul>
-    </div>
+    </Container>
   )
 }

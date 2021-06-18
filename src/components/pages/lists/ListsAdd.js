@@ -1,4 +1,5 @@
 import EditList from "../../lists/EditList";
+import Container from '../../common/Container';
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 export default function ListsAdd({ stores, handleAddList }) {
@@ -18,8 +19,8 @@ export default function ListsAdd({ stores, handleAddList }) {
     }
   }, [stores, history])
   return (!isLoading &&
-    <>
+    <Container>
       <EditList stores={stores} handleUpdateList={handleAddList} list={defaultList} />
-    </>
+    </Container>
   )
 }

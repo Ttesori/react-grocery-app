@@ -2,6 +2,7 @@
 import ListItem from '../../common/ListItem';
 import { Link, useHistory } from 'react-router-dom';
 import Button from '../../Button';
+import Container from '../../common/Container';
 
 export default function Stores({ stores, handleUpdateStore, handleRemoveStore }) {
   const history = useHistory();
@@ -14,7 +15,7 @@ export default function Stores({ stores, handleUpdateStore, handleRemoveStore })
   }
 
   return (
-    <>
+    <Container>
       <h2>Manage Stores</h2>
       <Link to="stores/new">Add New</Link>
       <ul className="list">
@@ -26,6 +27,6 @@ export default function Stores({ stores, handleUpdateStore, handleRemoveStore })
         </ListItem>)}
       </ul>
 
-    </>
+    </Container>
   )
 }

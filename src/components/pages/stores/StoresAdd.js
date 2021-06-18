@@ -1,5 +1,6 @@
 
 import EditStore from "../../stores/EditStore";
+import Container from '../../common/Container';
 
 export default function StoresAdd({ handleAddStore }) {
   let defaultSections = ['Beverages', 'Bakery', 'Canned Goods', 'Dairy', 'Deli', 'Dry/Baking Goods', 'Frozen Foods', 'Meat/Seafood', 'Produce', 'Snacks', 'Household/Cleaning', 'Paper Products', 'Personal Care', 'Other'];
@@ -14,8 +15,8 @@ export default function StoresAdd({ handleAddStore }) {
     sections: newSections
   }
   return (
-    <>
+    <Container>
       <EditStore handleUpdateStore={handleAddStore} store={defaultStore} newStore={true} />
-    </>
+    </Container>
   )
 }

@@ -73,6 +73,12 @@ fieldset {
   margin-bottom: 0.5rem;
 }
 
+.container {
+  margin: 1rem auto;
+  width: 95%;
+  max-width: 980px;
+}
+
 .btn {
   background: none;
   padding: 0.25rem;

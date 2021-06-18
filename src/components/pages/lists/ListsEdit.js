@@ -1,6 +1,7 @@
 import { useParams, useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import EditList from "../../lists/EditList";
+import Container from '../../common/Container';
 
 export default function ListsEdit({ stores, lists, handleUpdateList }) {
   const { id } = useParams();
@@ -18,9 +19,9 @@ export default function ListsEdit({ stores, lists, handleUpdateList }) {
     }
   }, [lists, history, id])
   return (!isLoading &&
-    <div>
+    <Container>
       <h2>Edit Lists</h2>
       <EditList list={list} stores={stores} handleUpdateList={handleUpdateList} />
-    </div>
+    </Container>
   )
 }

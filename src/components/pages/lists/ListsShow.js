@@ -1,4 +1,5 @@
 import ShowList from '../../lists/ShowList';
+import Container from '../../common/Container';
 import { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
@@ -22,9 +23,9 @@ export default function ListsShow({ lists, stores }) {
 
   }, [lists, stores, id, history])
   return (!isLoading &&
-    <div>
+    <Container>
       <h2>{list?.name} at {listStore.name}</h2>
       <ShowList list={list} store={listStore} />
-    </div>
+    </Container>
   )
 }
