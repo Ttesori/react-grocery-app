@@ -1,5 +1,6 @@
 export default function Button({ icon, handleOnClick, children, className, id }) {
   const handleLocalOnClick = (e) => {
+    e.preventDefault();
     handleOnClick(e, id);
   }
 

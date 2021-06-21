@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import app from '../../firebase';
 
 export default function Main({ children }) {
   return (
@@ -7,8 +8,15 @@ export default function Main({ children }) {
         <h1 className="logo">GroceryMapper</h1>
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/lists">Lists</Link>
-          <Link to="/stores">Stores</Link>
+
+          {app.auth().currentUser ?
+            <>
+              <Link to="/lists">Lists</Link>
+              <Link to="/stores">Stores</Link>
+              <button onClick={() => app.auth().signOut()}>Sign Out</button>
+            </> : <Link to="/login">Sign In</Link>
+          }
+
         </nav>
       </header>
       <main>
