@@ -7,7 +7,7 @@ import Container from '../../common/Container';
 import Alert from '../../common/Alert';
 import { auth } from '../../../firebase';
 
-export default function Stores({ stores, handleUpdateStore, handleRemoveStore, alert }) {
+export default function Stores({ lists, stores, handleUpdateStore, handleRemoveStore, alert }) {
   const history = useHistory();
   const [isLoading, updateIsLoading] = useState(false);
   const handleRemove = (e, id) => {
@@ -50,7 +50,7 @@ export default function Stores({ stores, handleUpdateStore, handleRemoveStore, a
           {stores && stores.map((store, i) => <ListItem key={i}>{store.name}
             <div className="buttons">
               <Button label="edit" className="icon" icon="fas fa-edit" handleOnClick={() => handleUpdateStore(store.id)} />
-              <Button label="remove" className="icon" icon="fas fa-times" handleOnClick={handleRemove} id={store.id} />
+              {lists.filter(list => list.store_id === store.id).length === 0 && <Button label="remove" className="icon" icon="fas fa-times" handleOnClick={handleRemove} id={store.id} />}
             </div>
           </ListItem>)}
         </ul>

@@ -3,6 +3,7 @@
   margin: 1rem auto;
   border: 1px solid #aaa;
   background-color: #eee;
+  transition: all 0.5s;
 }
 
 .alert.error {

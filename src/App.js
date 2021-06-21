@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { auth, db } from './firebase';
 import Main from './components/layouts/Main';
 import Home from './components/pages/Home';
@@ -15,10 +15,9 @@ import './App.css';
 function App() {
   const [stores, updateStores] = useState([]);
   const [storesAlert, updateStoresAlert] = useState(null);
+  const [listsAlert, updateListsAlert] = useState(null);
   const [lists, updateLists] = useState([]);
   const [userId, setUserId] = useState('');
-
-  const getRand = () => Math.ceil(Math.random() * 999999);
 
   /* Stores */
   // Add Store
@@ -89,36 +88,76 @@ function App() {
   }
 
   /* Lists */
-  const handleAddList = (list_id, listData) => {
-    const newList = {
-      id: `list-${getRand()}`,
-      ...listData
+  // Add List
+  const handleAddList = async (list_id, listData) => {
+    const list = { user_id: userId, ...listData }
+    try {
+      updateListsAlert({ type: 'loading', message: 'Saving list...' });
+      let resp = await db.collection("lists").add(list);
+      if (resp) {
+        updateLists([...lists, { id: resp.id, ...list }]);
+        updateListsAlert({ type: 'success', message: 'List added successfully!' });
+        setTimeout(() => {
+          updateListsAlert(null);
+        }, 3000);
+      }
+    } catch (error) {
+      updateListsAlert({ type: 'error', message: error })
     }
-    updateLists([...lists, newList]);
   }
-
+  // Remove List
   const handleRemoveList = (list_id) => {
     const toKeep = lists.filter(list => list.id !== list_id);
-    updateLists(toKeep);
+    updateListsAlert({ type: 'loading', message: 'Removing list...' });
+    console.log('removing', list_id);
+    removeListFromDB(list_id, toKeep);
   }
+  const removeListFromDB = async (list_id, newLists) => {
+    try {
+      let db_resp = await db.collection("lists").doc(list_id).delete();
+      if (db_resp === undefined) {
+        updateLists([...newLists]);
+        updateListsAlert({ type: 'success', message: 'List removed successfully!' });
+        setTimeout(() => {
+          updateListsAlert(null);
+        }, 3000);
+      }
+    } catch (error) {
+      updateListsAlert({ type: 'error', message: 'Error removing list!' });
+      console.error(error);
+    }
+  }
+
+  // Update List
   const handleUpdateList = (list_id, listData) => {
+    const toKeep = lists.filter(list => list.id !== list_id);
     const updatedList = {
       id: list_id,
       ...listData
     }
-    const toKeep = lists.filter(list => list.id !== list_id);
-    updateLists([...toKeep, updatedList])
+    updateListsAlert({ type: 'loading', message: 'Updating list...' });
+    updateListInDB(list_id, listData, () => updateLists([...toKeep, updatedList]))
   }
-
-  useEffect(() => {
-    if (localStorage.getItem('rg-lists')) {
-      updateLists(JSON.parse(localStorage.getItem('rg-lists')));
+  const updateListInDB = async (list_id, listData, callback) => {
+    try {
+      console.log('updating list', list_id);
+      let db_resp = await db.collection("lists").doc(list_id).set({ user_id: userId, ...listData });
+      if (db_resp === undefined) {
+        callback();
+        updateListsAlert({ type: 'success', message: 'List updated!' });
+        setTimeout(() => {
+          updateListsAlert(null);
+        }, 3000);
+      }
+    } catch (error) {
+      console.error(error);
+      updateListsAlert({ type: 'error', message: 'Error updating list...' });
     }
-  }, []);
+  }
 
   // Set user ID on app start
   useEffect(() => {
-    auth.onAuthStateChanged(async (user) => {
+    auth.onAuthStateChanged((user) => {
       if (user) {
         const uid = user.uid;
         setUserId(uid);
@@ -131,6 +170,7 @@ function App() {
   // Load data from DB on app start
   useEffect(() => {
     const getDataFromDB = async () => {
+      if (!userId) return;
       try {
         let db_resp = await db.collection("stores").where("user_id", "==", userId).get();
         let stores = [];
@@ -142,16 +182,23 @@ function App() {
           stores.push(storeData);
         });
         updateStores(stores);
+
+        let db_resp2 = await db.collection("lists").where("user_id", "==", userId).get();
+        let lists = [];
+        db_resp2.forEach(doc => {
+          const listData = {
+            id: doc.id,
+            ...doc.data()
+          }
+          lists.push(listData);
+        });
+        updateLists(lists);
       } catch (error) {
         console.log(error)
       }
     }
     getDataFromDB();
   }, [userId])
-
-  useEffect(() => {
-    localStorage.setItem('rg-lists', JSON.stringify(lists));
-  }, [lists]);
 
   return (
     <Router>
@@ -161,16 +208,20 @@ function App() {
             <Home />
           </Route>
           <Route path="/stores" exact={true}>
-            <Stores stores={stores} handleRemoveStore={handleRemoveStore} alert={storesAlert} />
+            {!userId && <Redirect to="/" />}
+            <Stores lists={lists} stores={stores} handleRemoveStore={handleRemoveStore} alert={storesAlert} />
           </Route>
           <Route path="/stores/new" exact={true}>
+            {!userId && <Redirect to="/" />}
             <StoresAdd handleAddStore={handleAddStore} />
           </Route>
           <Route path="/stores/:id">
+            {!userId && <Redirect to="/" />}
             <StoresEdit stores={stores} handleUpdateStore={handleUpdateStore} />
           </Route>
           <Route path="/lists" exact={true}>
-            <Lists stores={stores} lists={lists} handleRemoveList={handleRemoveList} />
+            {!userId && <Redirect to="/" />}
+            <Lists stores={stores} lists={lists} handleRemoveList={handleRemoveList} alert={listsAlert} />
           </Route>
           <Route path="/lists/new" exact={true}>
             <ListsAdd stores={stores} handleAddList={handleAddList} />
