@@ -1,3 +1,8 @@
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --font-accent: 'Lato';
   --font-main: 'Open Sans';
@@ -79,7 +84,7 @@ fieldset {
   max-width: 980px;
 }
 
-.btn {
+/* .btn {
   background: none;
   padding: 0.25rem;
   border: 0;
@@ -103,7 +108,7 @@ fieldset {
 .btn.btn-sm {
   font-size: 0.9rem;
   padding: 0.35rem 0.5rem;
-}
+} */
 
 .flex {
   display: flex;

@@ -1,3 +1,4 @@
+import './css/Button.css';
 export default function Button({ icon, handleOnClick, children, className, id }) {
   const handleLocalOnClick = (e) => {
     e.preventDefault();

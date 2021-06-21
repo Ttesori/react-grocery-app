@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import InputText from "../form/InputText";
 import SelectList from "../form/SelectList";
 import ListSection from "./ListSection";
-import Button from "../Button";
+import Button from "../common/Button";
 
 export default function EditList({ handleUpdateList, list, stores }) {
   const [name, updateName] = useState(list.name);

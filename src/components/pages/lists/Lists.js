@@ -1,4 +1,4 @@
-import Button from "../../Button";
+import Button from "../../common/Button";
 import { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import ListItem from "../../common/ListItem";

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../Button";
+import Button from "../common/Button";
 import InputText from "../form/InputText";
 import Alert from "../common/Alert";
 import { auth } from "../../firebase";
@@ -9,7 +9,7 @@ export default function Signup() {
   const [email, updateEmail] = useState('');
   const [password, updatePassword] = useState('');
   const [confirmPassword, updateConfirmPassword] = useState('');
-  const [isSignup, updateIsSignup] = useState(true);
+  const [isSignup, updateIsSignup] = useState(false);
   const [error, setError] = useState();
   const [message, setMessage] = useState();
   const handleSubmit = () => {

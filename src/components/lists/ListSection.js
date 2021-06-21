@@ -1,5 +1,5 @@
 import ListItem from "../common/ListItem";
-import Button from "../Button";
+import Button from "../common/Button";
 
 export default function ListSection({ section, sectionItems, handleEditListItem, handleRemove }) {
   const content = <ul className="list" key={section.id}>

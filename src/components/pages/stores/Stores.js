@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import ListItem from '../../common/ListItem';
 import { Link, useHistory } from 'react-router-dom';
-import Button from '../../Button';
+import Button from '../../common/Button';
 import Container from '../../common/Container';
 import Alert from '../../common/Alert';
 import { auth } from '../../../firebase';

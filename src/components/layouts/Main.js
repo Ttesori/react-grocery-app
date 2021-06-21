@@ -13,7 +13,7 @@ export default function Main({ children }) {
             <>
               <Link to="/lists">Lists</Link>
               <Link to="/stores">Stores</Link>
-              <button onClick={() => app.auth().signOut()}>Sign Out</button>
+              <button onClick={() => app.auth().signOut()} className="btn">Sign Out</button>
             </> : <Link to="/login">Sign In</Link>
           }
 
