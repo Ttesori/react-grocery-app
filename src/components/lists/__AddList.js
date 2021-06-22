@@ -42,7 +42,6 @@ export default function AddList({ handleAddList, stores }) {
   }
   const handleAddItem = (e) => {
     e.preventDefault();
-    console.log(newListItem);
     const newItems = [...items, {
       id: `item-${items.length}`,
       text: newListItem.text,

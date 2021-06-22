@@ -60,7 +60,6 @@ export default function AddStore({ handleAddStore, defaultSections }) {
   }
 
   const handleEdit = (e, sectionToUpdate, text) => {
-    console.log(sectionToUpdate, text);
     const keepSections = sections.filter(section => section.id !== sectionToUpdate.id)
     sectionToUpdate.text = text;
     updateSections(sortItems([...keepSections, sectionToUpdate]));

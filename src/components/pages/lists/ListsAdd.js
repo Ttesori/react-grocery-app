@@ -5,22 +5,25 @@ import { useEffect, useState } from "react";
 export default function ListsAdd({ stores, handleAddList }) {
   const history = useHistory();
   const [isLoading, updateIsLoading] = useState(true);
-  const defaultList = {
-    name: 'New List',
-    store_id: stores[0].id,
-    items: []
-  }
+
   useEffect(() => {
+    if (stores.length > 0) {
+      return updateIsLoading(false);
+    }
     if (stores && stores.length === 0) {
       return history.push('/stores')
-    }
-    if (stores.length > 0) {
-      updateIsLoading(false);
     }
   }, [stores, history])
   return (!isLoading &&
     <Container>
-      <EditList stores={stores} handleUpdateList={handleAddList} list={defaultList} />
+      <EditList
+        stores={stores}
+        handleUpdateList={handleAddList}
+        list={({
+          name: 'New List',
+          store_id: stores[0].id,
+          items: []
+        })} />
     </Container>
   )
 }

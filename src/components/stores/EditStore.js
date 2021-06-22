@@ -2,6 +2,7 @@ import { useState } from 'react';
 import InputText from '../form/InputText';
 import DragDropContainer from '../DragDropContainer';
 import { useHistory } from 'react-router-dom';
+import Button from '../common/Button';
 
 export default function EditStore({ handleUpdateStore, store, newStore }) {
   let history = useHistory();
@@ -50,7 +51,6 @@ export default function EditStore({ handleUpdateStore, store, newStore }) {
 
   }
   const handleEdit = (e, sectionToUpdate, text) => {
-    console.log(sectionToUpdate, text);
     const sectionIdx = sections.findIndex(section => section.id === sectionToUpdate.id)
     const keepSections = [...sections]
     sectionToUpdate.text = text.trim().slice(0, 1).toUpperCase() + text.trim().slice(1).toLowerCase();
@@ -84,7 +84,8 @@ export default function EditStore({ handleUpdateStore, store, newStore }) {
           <InputText placeholder="Enter section name" label="Section Name:" value={newSectionName} handleChange={handleSectionChange} isValid={sectionIsValid} invalidText='Please enter at least one section' />
           <button className="btn btn-form btn-sm" onClick={handleAddSection}>+ Add Section</button>
         </div>
-        <button className="btn btn-form" type="submit" onClick={handleSubmit}>{newStore ? 'Add' : 'Update'} Store</button>
+        <Button className="btn btn-form" handleOnClick={handleSubmit}>{newStore ? 'Add' : 'Update'} Store</Button>
+        <Button className="btn btn-outline error ml-3" icon="fas fa-times" handleOnClick={() => history.push('/stores')}> Cancel</Button>
       </form>
 
     </>

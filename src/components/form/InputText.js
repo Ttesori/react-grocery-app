@@ -1,3 +1,4 @@
+import './css/InputText.css';
 import { useEffect, useRef } from "react";
 export default function InputText({ label, id, placeholder, className, handleChange, value, isValid, invalidText, type, required }) {
   const field = useRef();

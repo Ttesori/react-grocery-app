@@ -12,7 +12,6 @@ export default function DragDropContainer({ items, itemsOrder, onDragEnd, listId
 
     // get copy of order
     const newOrder = [...itemsOrder];
-    console.log(newOrder);
     // Remove moved item
     const oldItem = newOrder.splice(source.index, 1);
     // Add item back in new position
@@ -25,7 +24,6 @@ export default function DragDropContainer({ items, itemsOrder, onDragEnd, listId
       newItems.push(items.find(item => item.id === id));
     });
     // Update items state
-    console.log(newOrder);
     onDragEnd(newItems, newOrder)
   }
 

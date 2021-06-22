@@ -1,0 +1,7 @@
+.form-label {
+  @apply pr-3;
+}
+
+.form-control {
+  @apply py-1 px-3 border border-gray-200 rounded;
+}

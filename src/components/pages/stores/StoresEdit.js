@@ -8,12 +8,6 @@ export default function StoresEdit({ handleUpdateStore, stores }) {
   const [ourStore, updateOurStore] = useState(null);
   const { id } = useParams();
   let history = useHistory();
-  const content =
-    <Container>
-      {ourStore && <EditStore handleUpdateStore={handleUpdateStore} store={ourStore} />}
-    </Container>
-    ;
-  const contentLoading = <Container>Loading...</Container>;
 
   useEffect(() => {
     if (stores.length > 0) {
@@ -24,6 +18,10 @@ export default function StoresEdit({ handleUpdateStore, stores }) {
     }
   }, [stores, history, id]);
 
-  if (isLoading) return contentLoading;
-  if (!isLoading) return content;
+  if (isLoading) return <Container>Loading...</Container>;
+  return (
+    <Container>
+      {ourStore && <EditStore handleUpdateStore={handleUpdateStore} store={ourStore} />}
+    </Container>
+  )
 }

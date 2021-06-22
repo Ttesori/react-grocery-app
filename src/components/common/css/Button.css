@@ -10,3 +10,15 @@
   @apply py-1 px-3 text-sm;
   transform: translateY(-3px);
 }
+
+.btn-outline {
+  @apply border bg-transparent text-gray-700;
+}
+
+.btn.error {
+  @apply text-red-700 border-red-500;
+}
+
+.btn.error:hover {
+  @apply text-white bg-red-500;
+}

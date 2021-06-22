@@ -16,7 +16,7 @@ function App() {
   const [stores, updateStores] = useState([]);
   const [storesAlert, updateStoresAlert] = useState(null);
   const [listsAlert, updateListsAlert] = useState(null);
-  const [lists, updateLists] = useState([]);
+  const [lists, updateLists] = useState(null);
   const [userId, setUserId] = useState('');
 
   /* Stores */
@@ -64,15 +64,13 @@ function App() {
     const otherStores = stores.filter(store => store.id !== storeId)
     const updateStore = {
       id: storeId,
-      user_id: userId,
       ...storeData
     }
     updateStoresAlert({ type: 'loading', message: 'Updating store...' });
-    updateStoreInDB(storeId, storeData, () => updateStores([...otherStores, updateStore]));
+    updateStoreInDB(storeId, { user_id: userId, ...storeData }, () => updateStores([...otherStores, updateStore]));
   }
   const updateStoreInDB = async (store_id, storeData, cb) => {
     try {
-      console.log('updating store', store_id);
       let db_resp = await db.collection("stores").doc(store_id).set(storeData);
       if (db_resp === undefined) {
         cb();
@@ -109,7 +107,6 @@ function App() {
   const handleRemoveList = (list_id) => {
     const toKeep = lists.filter(list => list.id !== list_id);
     updateListsAlert({ type: 'loading', message: 'Removing list...' });
-    console.log('removing', list_id);
     removeListFromDB(list_id, toKeep);
   }
   const removeListFromDB = async (list_id, newLists) => {
@@ -140,7 +137,6 @@ function App() {
   }
   const updateListInDB = async (list_id, listData, callback) => {
     try {
-      console.log('updating list', list_id);
       let db_resp = await db.collection("lists").doc(list_id).set({ user_id: userId, ...listData });
       if (db_resp === undefined) {
         callback();
@@ -194,7 +190,7 @@ function App() {
         });
         updateLists(lists);
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
     getDataFromDB();

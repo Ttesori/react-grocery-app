@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import ListItem from '../../common/ListItem';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Button from '../../common/Button';
 import Container from '../../common/Container';
 import Alert from '../../common/Alert';
@@ -50,7 +50,7 @@ export default function Stores({ lists, stores, handleUpdateStore, handleRemoveS
       </h2>
 
       {alert && <Alert type={alert.type} message={alert.message} />}
-      {!isLoading &&
+      {!isLoading && stores.length > 0 &&
         <ul className="list mt-3">
           {stores && stores.map((store, i) => <ListItem key={i}>{store.name}
             <div className="buttons">

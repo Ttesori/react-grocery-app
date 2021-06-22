@@ -8,7 +8,9 @@ export default function ShowList({ list, store }) {
         <ul>
           {itemsInSection.map((item, i) =>
             <ListItem className="list-check" key={`${item.id}-${i}`}>
-              <input type="checkbox" id={item.id} />{item.text}
+              <input className="mr-2" type="checkbox" id={item.id} />
+              <span className="item-text">{item.text}</span>
+              <span className="ml-2 item-quantity">x {item.quantity}</span>
             </ListItem>
           )}
         </ul>

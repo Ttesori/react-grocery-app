@@ -1,13 +1,13 @@
 import Button from "../../common/Button";
 import { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ListItem from "../../common/ListItem";
 import Container from '../../common/Container';
 import Alert from "../../common/Alert";
 
 export default function Lists({ lists, alert, handleRemoveList }) {
   const history = useHistory();
-  const [isLoading, updateIsLoading] = useState(false);
+  const [isLoading, updateIsLoading] = useState(true);
   const handleRemove = (id) => {
     handleRemoveList(id);
   }
@@ -21,7 +21,7 @@ export default function Lists({ lists, alert, handleRemoveList }) {
 
 
   useEffect(() => {
-    if (lists.length) {
+    if (lists?.length) {
       return updateIsLoading(false);
     }
     updateIsLoading(true);
@@ -39,16 +39,15 @@ export default function Lists({ lists, alert, handleRemoveList }) {
       <h2>Manage Lists <Button handleOnClick={() => history.push('/lists/new')} className="btn-sm ml-3">Add New</Button></h2>
 
       {alert && <Alert type={alert.type} message={alert.message} />}
-      {!isLoading &&
-        <ul className="list mt-3">
-          {lists && lists.map((list, i) => <ListItem key={i} >{list.name}
-            <div className="buttons">
-              <Button label="show" className="icon" icon="fas fa-eye" handleOnClick={() => handleViewList(list.id)} />
-              <Button label="edit" className="icon" icon="fas fa-edit" handleOnClick={() => handleUpdateList(list.id)} />
-              <Button label="remove" className="icon" icon="fas fa-times" handleOnClick={() => handleRemove(list.id)} id={list.id} />
-            </div>
-          </ListItem>)}
-        </ul>}
+      {!isLoading && lists?.length > 0 && <ul className="list mt-3">
+        {lists && lists.map((list, i) => <ListItem key={i} >{list.name}
+          <div className="buttons">
+            <Button label="show" className="icon" icon="fas fa-eye" handleOnClick={() => handleViewList(list.id)} />
+            <Button label="edit" className="icon" icon="fas fa-edit" handleOnClick={() => handleUpdateList(list.id)} />
+            <Button label="remove" className="icon" icon="fas fa-times" handleOnClick={() => handleRemove(list.id)} id={list.id} />
+          </div>
+        </ListItem>)}
+      </ul>}
     </Container>
   )
 }

@@ -12,8 +12,9 @@ export default function EditList({ handleUpdateList, list, stores }) {
   const [storeMap, updateStoreMap] = useState([]);
   const [newListItem, updateNewListItem] = useState({
     text: '',
+    quantity: 1,
     section_id: store?.sections[0]?.id,
-    section_name: store?.sections[0]?.text
+    section_name: store?.sections[0]?.text,
   });
   const allStoresMap = stores.map(store => {
     return {
@@ -37,16 +38,19 @@ export default function EditList({ handleUpdateList, list, stores }) {
   const handleNewItemChange = (text) => {
     updateNewListItem({ ...newListItem, text: text });
   }
+
   const handleAddItem = (e) => {
     e.preventDefault();
     const newItems = [...items, {
-      id: `item-${items.length}`,
+      id: `item-${Math.ceil(Math.random() * 9999999)}`,
       text: newListItem.text,
+      quantity: newListItem.quantity,
       section_id: newListItem.section_id,
       section_name: newListItem.section_name
     }];
     updateNewListItem({
       text: '',
+      quantity: 1,
       section_id: newListItem.section_id,
       section_name: newListItem.section_name
     });
@@ -74,6 +78,13 @@ export default function EditList({ handleUpdateList, list, stores }) {
     updateItems(sortItems([...keep, toEdit]));
   }
 
+  const handleEditListItemQuantity = (id, newQuantity) => {
+    const toEdit = items.find(item => item.id === id);
+    toEdit.quantity = newQuantity;
+    const keep = items.filter(item => item.id !== id);
+    updateItems(sortItems([...keep, toEdit]));
+  }
+
   const sortItems = (newItems) => {
     const sortedItems = [...newItems]
     sortedItems.sort(function (a, b) {
@@ -96,6 +107,7 @@ export default function EditList({ handleUpdateList, list, stores }) {
         return {
           id: item.id,
           text: item.text,
+          quantity: item.quantity,
           section_id: newSection.value,
           section_name: newSection.text
         }
@@ -103,6 +115,7 @@ export default function EditList({ handleUpdateList, list, stores }) {
       return {
         id: item.id,
         text: item.text,
+        quantity: item.quantity,
         section_id: otherSection.value,
         section_name: otherSection.text
       }
@@ -131,14 +144,14 @@ export default function EditList({ handleUpdateList, list, stores }) {
     <div>
       <form>
         <InputText label="List Name:" id="" placeholder="Enter List Name..." handleChange={handleNameChange} value={name} isValid={true} />
-        <SelectList items={allStoresMap} onChange={handleStoreChange} value={store.id} />
+        <SelectList items={allStoresMap} onChange={handleStoreChange} value={store.id} name="store-sections" label="Store: " />
         {items && store.sections.map(section => (
-          <ListSection section={section} sectionItems={items.filter(item => item.section_id === section.id)} handleRemove={handleRemove} handleEditListItem={handleEditListItem} key={section.id}></ListSection>
+          <ListSection section={section} sectionItems={items.filter(item => item.section_id === section.id)} handleRemove={handleRemove} handleEditListItem={handleEditListItem} handleEditListItemQuantity={handleEditListItemQuantity} key={section.id}></ListSection>
         ))}
 
         <div className="flex flex-start">
           <InputText placeholder="Enter item name" label="Item name:" value={newListItem.text} handleChange={handleNewItemChange} isValid={true} />
-          <SelectList items={storeMap} onChange={handleSectionChange} value={newListItem.section_id} />
+          <SelectList items={storeMap} onChange={handleSectionChange} value={newListItem.section_id} name="store-sections-item" sr_only={true} />
           <button className="btn btn-form btn-sm" onClick={handleAddItem}>+ Add Item</button>
         </div>
         <Button handleOnClick={handleSaveList} className="btn btn-form">Save List</Button>
