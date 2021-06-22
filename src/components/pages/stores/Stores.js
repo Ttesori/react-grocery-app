@@ -42,11 +42,16 @@ export default function Stores({ lists, stores, handleUpdateStore, handleRemoveS
 
   return (
     <Container>
-      <h2>Manage Stores</h2>
-      <Link to="stores/new">Add New</Link>
+      <h2>Manage Stores
+        <Button
+          handleOnClick={() => history.push('/stores/new')}
+          className="btn-sm ml-3">
+          Add New</Button>
+      </h2>
+
       {alert && <Alert type={alert.type} message={alert.message} />}
       {!isLoading &&
-        <ul className="list">
+        <ul className="list mt-3">
           {stores && stores.map((store, i) => <ListItem key={i}>{store.name}
             <div className="buttons">
               <Button label="edit" className="icon" icon="fas fa-edit" handleOnClick={() => handleUpdateStore(store.id)} />

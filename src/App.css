@@ -13,6 +13,15 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+a {
+  @apply text-blue-500;
+}
+
+a:hover,
+a:focus {
+  @apply text-green-500;
+}
+
 ul,
 li {
   margin: 0;

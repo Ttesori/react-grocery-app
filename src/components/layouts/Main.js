@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import app from '../../firebase';
+import Button from '../common/Button';
 
 export default function Main({ children }) {
   return (
@@ -13,7 +14,7 @@ export default function Main({ children }) {
             <>
               <Link to="/lists">Lists</Link>
               <Link to="/stores">Stores</Link>
-              <button onClick={() => app.auth().signOut()} className="btn">Sign Out</button>
+              <Button handleOnClick={() => app.auth().signOut()} className="ml-3">Sign Out</Button>
             </> : <Link to="/login">Sign In</Link>
           }
 

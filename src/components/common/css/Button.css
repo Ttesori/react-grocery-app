@@ -1,6 +1,12 @@
 .btn {
-  @apply py-2 px-4 font-semibold rounded-lg shadow-md cursor-pointer bg-blue-500;
+  @apply py-2 px-4 font-semibold rounded-lg cursor-pointer bg-gray-500 hover:bg-green-500 text-white transition-all;
 }
 
-.btn.btn-sm {
+.btn.icon {
+  @apply text-black bg-transparent p-2 hover:text-red-500;
+}
+
+.btn-sm {
+  @apply py-1 px-3 text-sm;
+  transform: translateY(-3px);
 }

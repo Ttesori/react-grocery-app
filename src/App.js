@@ -205,6 +205,7 @@ function App() {
       <Main>
         <Switch>
           <Route path="/" exact={true}>
+            {userId && <Redirect to="/lists" />}
             <Home />
           </Route>
           <Route path="/stores" exact={true}>

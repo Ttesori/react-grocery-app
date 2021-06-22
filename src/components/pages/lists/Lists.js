@@ -36,11 +36,11 @@ export default function Lists({ lists, alert, handleRemoveList }) {
 
   return (
     <Container>
-      <h2>Manage Lists</h2>
-      <Link to="lists/new">Add New</Link>
+      <h2>Manage Lists <Button handleOnClick={() => history.push('/lists/new')} className="btn-sm ml-3">Add New</Button></h2>
+
       {alert && <Alert type={alert.type} message={alert.message} />}
       {!isLoading &&
-        <ul className="list">
+        <ul className="list mt-3">
           {lists && lists.map((list, i) => <ListItem key={i} >{list.name}
             <div className="buttons">
               <Button label="show" className="icon" icon="fas fa-eye" handleOnClick={() => handleViewList(list.id)} />
