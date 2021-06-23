@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import EditList from "../../lists/EditList";
 import Container from '../../common/Container';
 
-export default function ListsEdit({ stores, lists, handleUpdateList }) {
+export default function ListsEdit({ title, stores, lists, handleUpdateList }) {
   const { id } = useParams();
   let history = useHistory();
   const [isLoading, updateIsLoading] = useState(true);
@@ -17,7 +17,12 @@ export default function ListsEdit({ stores, lists, handleUpdateList }) {
       updateList(ourList);
       updateIsLoading(false);
     }
-  }, [lists, history, id])
+  }, [lists, history, id]);
+
+  useEffect(() => {
+    document.title = title;
+  }, [title])
+
   return (!isLoading &&
     <Container>
       <h2>Edit Lists</h2>

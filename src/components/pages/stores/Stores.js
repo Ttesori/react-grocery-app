@@ -7,7 +7,7 @@ import Container from '../../common/Container';
 import Alert from '../../common/Alert';
 import { auth } from '../../../firebase';
 
-export default function Stores({ lists, stores, handleUpdateStore, handleRemoveStore, alert }) {
+export default function Stores({ title, lists, stores, handleUpdateStore, handleRemoveStore, alert }) {
   const history = useHistory();
   const [isLoading, updateIsLoading] = useState(false);
   const handleRemove = (e, id) => {
@@ -38,7 +38,11 @@ export default function Stores({ lists, stores, handleUpdateStore, handleRemoveS
       return updateIsLoading(true);
     }
     updateIsLoading(false);
-  }, [alert])
+  }, [alert]);
+
+  useEffect(() => {
+    document.title = title;
+  }, [title])
 
   return (
     <Container>

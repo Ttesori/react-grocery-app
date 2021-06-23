@@ -2,7 +2,7 @@ import EditList from "../../lists/EditList";
 import Container from '../../common/Container';
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
-export default function ListsAdd({ stores, handleAddList }) {
+export default function ListsAdd({ title, stores, handleAddList }) {
   const history = useHistory();
   const [isLoading, updateIsLoading] = useState(true);
 
@@ -13,7 +13,12 @@ export default function ListsAdd({ stores, handleAddList }) {
     if (stores && stores.length === 0) {
       return history.push('/stores')
     }
-  }, [stores, history])
+  }, [stores, history]);
+
+  useEffect(() => {
+    document.title = title;
+  }, [title])
+
   return (!isLoading &&
     <Container>
       <EditList

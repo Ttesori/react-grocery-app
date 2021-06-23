@@ -18,6 +18,7 @@ function App() {
   const [listsAlert, updateListsAlert] = useState(null);
   const [lists, updateLists] = useState(null);
   const [userId, setUserId] = useState('');
+  const pageTitle = ' | GroceryMapper';
 
   /* Stores */
   // Add Store
@@ -202,32 +203,32 @@ function App() {
         <Switch>
           <Route path="/" exact={true}>
             {userId && <Redirect to="/lists" />}
-            <Home />
+            <Home title={`Home ${pageTitle}`} />
           </Route>
           <Route path="/stores" exact={true}>
             {!userId && <Redirect to="/" />}
-            <Stores lists={lists} stores={stores} handleRemoveStore={handleRemoveStore} alert={storesAlert} />
+            <Stores title={`My Stores ${pageTitle}`} lists={lists} stores={stores} handleRemoveStore={handleRemoveStore} alert={storesAlert} />
           </Route>
           <Route path="/stores/new" exact={true}>
             {!userId && <Redirect to="/" />}
-            <StoresAdd handleAddStore={handleAddStore} />
+            <StoresAdd title={`Add New Store ${pageTitle}`} handleAddStore={handleAddStore} />
           </Route>
           <Route path="/stores/:id">
             {!userId && <Redirect to="/" />}
-            <StoresEdit stores={stores} handleUpdateStore={handleUpdateStore} />
+            <StoresEdit title={`Edit Store ${pageTitle}`} stores={stores} handleUpdateStore={handleUpdateStore} />
           </Route>
           <Route path="/lists" exact={true}>
             {!userId && <Redirect to="/" />}
-            <Lists stores={stores} lists={lists} handleRemoveList={handleRemoveList} alert={listsAlert} />
+            <Lists title={`My Lists ${pageTitle}`} stores={stores} lists={lists} handleRemoveList={handleRemoveList} alert={listsAlert} />
           </Route>
           <Route path="/lists/new" exact={true}>
-            <ListsAdd stores={stores} handleAddList={handleAddList} />
+            <ListsAdd title={`New List ${pageTitle}`} stores={stores} handleAddList={handleAddList} />
           </Route>
           <Route path="/lists/edit/:id">
-            <ListsEdit stores={stores} lists={lists} handleUpdateList={handleUpdateList} />
+            <ListsEdit title={`Edit List ${pageTitle}`} stores={stores} lists={lists} handleUpdateList={handleUpdateList} />
           </Route>
           <Route path="/lists/:id">
-            <ListsShow stores={stores} lists={lists} />
+            <ListsShow title={`View List ${pageTitle}`} stores={stores} lists={lists} />
           </Route>
         </Switch>
       </Main>

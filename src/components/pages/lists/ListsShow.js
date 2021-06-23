@@ -3,7 +3,7 @@ import Container from '../../common/Container';
 import { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
-export default function ListsShow({ lists, stores }) {
+export default function ListsShow({ title, lists, stores }) {
   const { id } = useParams();
   let history = useHistory();
   const [list, updateList] = useState([]);
@@ -20,8 +20,12 @@ export default function ListsShow({ lists, stores }) {
     if (newList?.id) {
       updateIsLoading(false)
     }
-
   }, [lists, stores, id, history])
+
+  useEffect(() => {
+    document.title = title;
+  }, [title])
+
   return (!isLoading &&
     <Container>
       <h2>{list?.name} at {listStore.name}</h2>

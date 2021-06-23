@@ -5,7 +5,7 @@ import ListItem from "../../common/ListItem";
 import Container from '../../common/Container';
 import Alert from "../../common/Alert";
 
-export default function Lists({ lists, alert, handleRemoveList }) {
+export default function Lists({ title, lists, alert, handleRemoveList }) {
   const history = useHistory();
   const [isLoading, updateIsLoading] = useState(true);
   const handleRemove = (id) => {
@@ -32,7 +32,11 @@ export default function Lists({ lists, alert, handleRemoveList }) {
       return updateIsLoading(true);
     }
     updateIsLoading(false);
-  }, [alert])
+  }, [alert]);
+
+  useEffect(() => {
+    document.title = title;
+  }, [title])
 
   return (
     <Container>

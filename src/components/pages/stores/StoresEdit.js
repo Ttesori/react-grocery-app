@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import EditStore from "../../stores/EditStore";
 import Container from '../../common/Container';
 
-export default function StoresEdit({ handleUpdateStore, stores }) {
+export default function StoresEdit({ title, handleUpdateStore, stores }) {
   const [isLoading, updateIsLoading] = useState(true);
   const [ourStore, updateOurStore] = useState(null);
   const { id } = useParams();
@@ -17,6 +17,10 @@ export default function StoresEdit({ handleUpdateStore, stores }) {
       if (!ourStore) return history.push('/stores');
     }
   }, [stores, history, id]);
+
+  useEffect(() => {
+    document.title = title;
+  }, [title])
 
   if (isLoading) return <Container>Loading...</Container>;
   return (

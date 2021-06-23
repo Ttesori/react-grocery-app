@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Signup from "../auth/Signup";
 import Modal from "../common/Modal";
 import Button from "../common/Button";
-export default function Home() {
+
+export default function Home({ title }) {
+
   const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    document.title = title;
+  }, [title])
+
   return (
     <>
       <h2>Grocery Shopping...Revolutionized!</h2>
