@@ -21,6 +21,7 @@ export default function ListsAdd({ title, stores, handleAddList }) {
 
   return (!isLoading &&
     <Container>
+      <h2>Add New List</h2>
       <EditList
         stores={stores}
         handleUpdateList={handleAddList}

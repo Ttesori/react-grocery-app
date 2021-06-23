@@ -22,6 +22,7 @@ export default function StoresAdd({ title, handleAddStore }) {
 
   return (
     <Container>
+      <h2>Add New Store</h2>
       <EditStore handleUpdateStore={handleAddStore} store={defaultStore} newStore={true} />
     </Container>
   )

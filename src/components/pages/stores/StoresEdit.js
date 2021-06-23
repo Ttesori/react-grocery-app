@@ -25,6 +25,7 @@ export default function StoresEdit({ title, handleUpdateStore, stores }) {
   if (isLoading) return <Container>Loading...</Container>;
   return (
     <Container>
+      <h2>Edit Store</h2>
       {ourStore && <EditStore handleUpdateStore={handleUpdateStore} store={ourStore} />}
     </Container>
   )

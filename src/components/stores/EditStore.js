@@ -69,15 +69,9 @@ export default function EditStore({ handleUpdateStore, store, newStore }) {
     updateSectionsOrder(newSections.map(section => section.id))
   }
 
-  // useEffect(() => {
-  //   updateSectionsOrder(sections.map(section => section.id));
-  // }, [sections]);
-
-
   return (
     <>
       <form>
-        <h3>{newStore ? 'Add' : 'Edit'} Store</h3>
         <InputText id={"store_name"} placeholder="Enter store name..." label="Store Name:" handleChange={handleNameChange} value={storeName} isValid={nameIsValid} invalidText='Please enter store name' />
         <DragDropContainer items={sections} itemsOrder={sectionsOrder} onDragEnd={handleOnDragEnd} listId="sections" isEditable={true} handleEdit={handleEdit} isRemovable={true} handleRemove={handleRemoveSection} />
         <div className="flex">
