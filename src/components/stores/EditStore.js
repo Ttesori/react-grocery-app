@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import InputText from '../form/InputText';
-import DragDropContainer from '../DragDropContainer';
+import DragDropContainer from '../common/DragDropContainer';
 import { useHistory } from 'react-router-dom';
 import Button from '../common/Button';
 

@@ -1,6 +1,6 @@
 
 import { Draggable } from 'react-beautiful-dnd';
-import Button from './common/Button';
+import Button from './Button';
 
 
 export default function DraggableListItem({ className, item, index, isEditable, isRemovable, handleRemove, handleEdit }) {
