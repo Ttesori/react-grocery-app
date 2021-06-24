@@ -5,25 +5,23 @@ import Button from '../common/Button';
 export default function Main({ children }) {
   return (
     <>
-      <header>
-        <h1 className="logo">GroceryMapper</h1>
-        <nav>
-          <Link to="/">Home</Link>
-
+      <header className="rg-header">
+        <h1 className="rg-logo">GroceryMapper</h1>
+        <nav className="rg-nav">
           {app.auth().currentUser ?
             <>
               <Link to="/lists">Lists</Link>
               <Link to="/stores">Stores</Link>
               <Button handleOnClick={() => app.auth().signOut()} className="ml-3">Sign Out</Button>
-            </> : <Link to="/login">Sign In</Link>
+            </> : ''
           }
 
         </nav>
       </header>
-      <main>
+      <main className="rg-main">
         {children}
       </main>
-      <footer>
+      <footer className="rg-footer">
         Written by Toni!
       </footer>
     </>

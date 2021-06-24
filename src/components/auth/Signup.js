@@ -56,19 +56,20 @@ export default function Signup() {
     }
   }
   return (
-    <div>
-      <h1>{isSignup ? 'Sign Up' : 'Sign In'}</h1>
+    <>
+      <h3><span>{isSignup ? 'Sign Up' : 'Sign In'}</span></h3>
       {error && <Alert type="error" message={error} />}
       {message && <Alert type="success" message={message} />}
-      <form>
-        <InputText type="email" label="Email Address" placeholder="you@somewhere.com" handleChange={(value) => updateEmail(value)} value={email} isValid={true} required={true} />
-        <InputText type="password" label="Password" placeholder="At least 6 characters" handleChange={(value) => updatePassword(value)} value={password} isValid={true} required={true} />
+      <form className="rg-signin">
+        <InputText id="email" type="email" label="Email Address" placeholder="you@somewhere.com" handleChange={(value) => updateEmail(value)} value={email} isValid={true} required={true} />
+        <InputText id="password" type="password" label="Password" placeholder="At least 6 characters" handleChange={(value) => updatePassword(value)} value={password} isValid={true} required={true} />
         {isSignup && <InputText type="password" label="Confirm Password" placeholder="Must match password above" handleChange={(value) => updateConfirmPassword(value)} value={confirmPassword} isValid={true} required={true} />}
-        <Button className="btn btn-form" handleOnClick={() => handleSubmit()}>{isSignup ? 'Sign Up' : 'Sign In'}</Button>
+        <Button className="btn mt-4" icon="fas fa-sign-in-alt" handleOnClick={() => handleSubmit()}>{isSignup ? 'Sign Up' : 'Sign In'}</Button>
       </form>
-      {isSignup &&
-        <button onClick={() => updateIsSignup(false)}>Have an account? Sign in</button>}
-      {!isSignup && <button onClick={() => updateIsSignup(true)}>Need an account? Sign up</button>}
-    </div>
+
+      <button className="btn-link light" onClick={() => updateIsSignup(!isSignup)}>
+        {isSignup ? 'Have an account? Sign in' : 'Need an account? Sign up!'}
+      </button>
+    </>
   )
 }

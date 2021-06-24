@@ -10,7 +10,7 @@ export default function InputText({ label, id, placeholder, className, handleCha
   }, [value])
 
   return (
-    <fieldset className={`${className} ${!isValid ? 'is-invalid' : ''}`}>
+    <fieldset className={`${className || ''}${!isValid ? 'is-invalid' : ''}`}>
       <label className="form-label" htmlFor={id}>{label}</label>
       <input className="form-control" type={type ? type : 'text'} id={id} placeholder={placeholder} onChange={localHandleChange} value={value} ref={field} required={required || false} />
       {!isValid && <span className="invalid-text">{invalidText}</span>}

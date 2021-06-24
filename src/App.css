@@ -6,20 +6,29 @@
 :root {
   --font-accent: 'Lato';
   --font-main: 'Open Sans';
+  --color-primary: #90e041;
+  --color-secondary: #1dab52;
+  --color-neutral-dk: #072c35;
+  --color-neutral: #0b4f6c;
+  --color-neutral-lt: #f2f6f7;
 }
 
 body {
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--font-main);
+  color: var(--color-dark-neutral);
 }
 
 a {
-  @apply text-blue-500;
+  @apply text-secondary;
+  text-decoration-color: var(--color-primary);
+  text-decoration-thickness: 0.125rem;
+  text-underline-offset: 1.5px;
 }
 
 a:hover,
 a:focus {
-  @apply text-green-500;
+  @apply text-neutral;
 }
 
 ul,
@@ -50,47 +59,11 @@ h3 {
   font-size: 1.3rem;
 }
 
-header {
-  background: #eee;
-  padding: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  font-size: 1.7rem;
-  line-height: 1;
-  font-weight: 900;
-}
-
-header nav a {
-  padding: 0.5rem;
-  text-decoration: none;
-  color: #444;
-}
-
-main {
-  padding: 1.5rem;
-}
-
-footer {
-  background: #eee;
-  padding: 2rem;
-  text-align: center;
-}
-
 fieldset {
   border: 0;
   padding: 0;
   margin: 0;
   margin-bottom: 0.5rem;
-}
-
-.container {
-  margin: 1rem auto;
-  width: 95%;
-  max-width: 980px;
 }
 
 /* .btn {
@@ -118,6 +91,14 @@ fieldset {
   font-size: 0.9rem;
   padding: 0.35rem 0.5rem;
 } */
+
+.rg-logo {
+}
+
+.rg-footer {
+  color: rgba(255, 255, 255, 0.4);
+  @apply text-sm italic;
+}
 
 .flex {
   display: flex;

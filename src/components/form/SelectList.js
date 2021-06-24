@@ -8,7 +8,7 @@ export default function SelectList({ items, id, onChange, label, value, name, sr
     <fieldset>
       <label className={`form-label label-select ${sr_only ? 'sr-only' : ''} ${className || ''}`} htmlFor={name}>{label}</label>
       <div className="form-select">
-        <select data-id={id} onChange={localOnChange} value={value} name={name}>
+        <select data-id={id} id={name} onChange={localOnChange} value={value}>
           {items && items.map((item, i) => (
             <option value={item.value} key={i}>{item.text}</option>
           ))}

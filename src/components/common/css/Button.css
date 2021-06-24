@@ -1,5 +1,8 @@
 .btn {
-  @apply py-2 px-4 font-semibold rounded-lg cursor-pointer bg-gray-500 hover:bg-green-500 text-white transition-all;
+  @apply py-2 px-4 rounded-lg cursor-pointer transition-all bg-primary text-neutral-dark font-bold text-lg;
+}
+.btn:hover {
+  background-color: #9fff40;
 }
 
 .btn.icon {
@@ -9,6 +12,10 @@
 .btn-sm {
   @apply py-1 px-3 text-sm;
   transform: translateY(-3px);
+}
+
+.btn .fas {
+  @apply pr-2;
 }
 
 .btn-outline {
@@ -21,4 +28,21 @@
 
 .btn.error:hover {
   @apply text-white bg-red-500;
+}
+
+.btn-link {
+  @apply m-0 p-0 underline mt-3;
+  text-decoration-thickness: 0.125rem;
+  text-underline-offset: 1.5px;
+  transition: all 0.2s;
+}
+
+.btn-link.light {
+  @apply transform hover:scale-105;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration-color: rgba(255, 255, 255, 0.2);
+}
+.btn-link.light:hover {
+  color: white;
+  text-decoration-color: rgba(255, 255, 255, 0.8);
 }

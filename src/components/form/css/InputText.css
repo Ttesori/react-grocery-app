@@ -3,5 +3,5 @@
 }
 
 .form-control {
-  @apply py-1 px-3 border border-gray-200 rounded;
+  @apply py-1 px-3 border border-gray-200 rounded text-neutral-dark;
 }
