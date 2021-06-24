@@ -1,5 +1,5 @@
 .page-home {
-  @apply bg-neutral-dark text-white text-center;
+  @apply bg-neutral-dark text-white text-center flex items-center justify-center h-screen;
   background: radial-gradient(#0c597b, #0c4760);
 }
 
@@ -12,7 +12,7 @@
 }
 
 .page-home .rg-main {
-  @apply flex flex-col px-12 mb-5;
+  @apply flex flex-col mb-5;
 }
 
 .rg-signin,

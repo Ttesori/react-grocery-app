@@ -14,7 +14,7 @@ export default function Landing({ children }) {
           {children}
         </main>
         <footer className="rg-footer">
-          GroceryMapper written by Toni
+
         </footer>
       </div>
     </div>

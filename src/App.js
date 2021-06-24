@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { auth, db } from './firebase';
 import Main from './components/layouts/Main';
-import Landing from './components/layouts/Landing';
 import Home from './components/pages/Home';
 import Stores from './components/pages/stores/Stores';
 import StoresAdd from './components/pages/stores/StoresAdd';
@@ -201,13 +200,11 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Landing>
+        <Main>
           <Route path="/" exact={true}>
             {userId && <Redirect to="/lists" />}
             <Home title={`Home ${pageTitle}`} />
           </Route>
-        </Landing>
-        <Main>
           <Route path="/stores" exact={true}>
             {!userId && <Redirect to="/" />}
             <Stores title={`My Stores ${pageTitle}`} lists={lists} stores={stores} handleRemoveStore={handleRemoveStore} alert={storesAlert} />
