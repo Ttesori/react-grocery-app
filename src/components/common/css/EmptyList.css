@@ -1,0 +1,4 @@
+.empty-list {
+  @apply italic text-center text-neutral border-2 border-dashed py-10 rounded mt-5 mx-5;
+  border-color: rgba(11, 79, 108, 0.2);
+}

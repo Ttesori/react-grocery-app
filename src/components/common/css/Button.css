@@ -5,8 +5,12 @@
   background-color: #9fff40;
 }
 
+.btn.block {
+  @apply w-full mt-2 mb-1 py-2 rounded text-sm uppercase font-semibold;
+}
+
 .btn.icon {
-  @apply text-black bg-transparent p-2 hover:text-red-500;
+  @apply p-0 pr-1 bg-transparent;
 }
 
 .btn-sm {
@@ -15,7 +19,7 @@
 }
 
 .btn .fas {
-  @apply pr-2;
+  @apply pr-1;
 }
 
 .btn-outline {

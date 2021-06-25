@@ -4,7 +4,7 @@ import Container from '../../common/Container';
 import { useEffect } from "react";
 
 export default function StoresAdd({ title, handleAddStore }) {
-  let defaultSections = ['Beverages', 'Bakery', 'Canned Goods', 'Dairy', 'Deli', 'Dry/Baking Goods', 'Frozen Foods', 'Meat/Seafood', 'Produce', 'Snacks', 'Household/Cleaning', 'Paper Products', 'Personal Care', 'Other'];
+  let defaultSections = ['Beverages', 'Bakery', 'Dairy', 'Deli', 'Frozen Foods', 'Meat/Seafood', 'Pantry', 'Produce', 'Snacks', 'Household/Cleaning', 'Other'];
   defaultSections.sort();
   const newSections = defaultSections.map((section, i) => ({
     id: `section-${Math.ceil(Math.random() * 9999999)}`,

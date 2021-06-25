@@ -219,7 +219,9 @@ function App() {
           </Route>
           <Route path="/lists" exact={true}>
             {!userId && <Redirect to="/" />}
-            <Lists title={`My Lists ${pageTitle}`} stores={stores} lists={lists} handleRemoveList={handleRemoveList} alert={listsAlert} />
+            {stores.length > 0 &&
+              <Lists title={`My Lists ${pageTitle}`} stores={stores} lists={lists} handleRemoveList={handleRemoveList} alert={listsAlert} />
+            }
             <Stores title={`My Stores ${pageTitle}`} lists={lists} stores={stores} handleRemoveStore={handleRemoveStore} alert={storesAlert} />
           </Route>
           <Route path="/lists/new" exact={true}>

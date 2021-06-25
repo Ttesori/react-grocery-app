@@ -1,0 +1,40 @@
+.rg-list-main li {
+  @apply rounded py-1 px-3 items-center justify-between grid place-content-end;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  background: rgba(11, 79, 108, 0.1);
+}
+
+.list-items {
+  @apply text-right;
+}
+
+.list-buttons {
+  @apply flex justify-end;
+}
+
+.list-buttons .fas {
+  padding-right: 0 !important;
+}
+
+.list-buttons button {
+  @apply transition-all;
+  color: rgba(11, 79, 108, 0.5);
+}
+
+.list-buttons button:hover {
+  color: rgba(11, 79, 108, 1);
+}
+
+.list-buttons button:last-child {
+  padding-right: 0 !important;
+}
+
+.list-buttons button i {
+  @apply pl-1;
+}
+
+.list-store,
+.list-items {
+  @apply text-sm text-neutral;
+}

@@ -13,8 +13,12 @@
   background: none;
 }
 
+.page-home .rg-footer::before {
+  display: none;
+}
+
 .page-home .rg-main {
-  @apply flex flex-col mb-5;
+  @apply flex flex-col mb-5 mx-8;
 }
 
 .page-home .rg-signin,

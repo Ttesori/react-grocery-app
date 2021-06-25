@@ -1,8 +1,7 @@
 body {
 }
 
-.rg-header,
-.rg-footer {
+.rg-header {
   background: radial-gradient(#0c597b, #0c4760);
 }
 
@@ -11,10 +10,19 @@ body {
 }
 
 .rg-footer {
-  @apply py-4 mt-3 text-center border-t-2 border-solid border-primary;
+  @apply py-4 text-center text-white text-opacity-50 text-sm italic  bg-secondary relative border-t-2 border-primary;
 }
 
-.rg-main {
+.rg-footer::before {
+  @apply h-1 bg-secondary w-screen absolute inset-0 border-t-2 border-primary;
+  content: '';
+  transform: rotate(-0.5deg);
+  top: -2px;
+  border-top-width: 3px;
+}
+
+.rg-lists,
+.rg-stores {
   @apply py-3 px-8;
 }
 
@@ -25,4 +33,24 @@ body {
 
 .btn-signOut .fas {
   @apply text-primary;
+}
+
+.rg-main h2 {
+  @apply text-neutral text-xl font-bold text-center;
+}
+
+.rg-lists {
+  @apply mb-8;
+}
+
+.rg-stores {
+  @apply pt-7 pb-10;
+}
+
+.rg-lists ~ .rg-stores {
+  @apply bg-neutral text-white;
+}
+
+.rg-lists ~ .rg-stores h2 {
+  @apply text-white;
 }

@@ -9,7 +9,7 @@
   --color-primary: #90e041;
   --color-secondary: #1dab52;
   --color-neutral-dk: #072c35;
-  --color-neutral: #0b4f6c;
+  --color-neutral: rgb(11, 79, 108);
   --color-neutral-lt: #f2f6f7;
 }
 
@@ -49,50 +49,6 @@ fieldset {
   padding: 0;
   margin: 0;
   margin-bottom: 0.5rem;
-}
-
-/* .btn {
-  background: none;
-  padding: 0.25rem;
-  border: 0;
-  border-radius: 0.25rem;
-  margin: 0.1rem;
-  cursor: pointer;
-}
-
-.btn.icon {
-  font-size: 1.25rem;
-  min-width: 1.5rem;
-  min-height: 1.5rem;
-}
-
-.btn.btn-form {
-  background: #ccc;
-  padding: 0.5rem 1rem;
-  font-size: 1.1rem;
-}
-
-.btn.btn-sm {
-  font-size: 0.9rem;
-  padding: 0.35rem 0.5rem;
-} */
-
-.rg-logo {
-}
-
-.rg-footer {
-  color: rgba(255, 255, 255, 0.4);
-  @apply text-sm italic;
-}
-
-.flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.flex.flex-start {
-  justify-content: flex-start;
 }
 
 .draggable-container,

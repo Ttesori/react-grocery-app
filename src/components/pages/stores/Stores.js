@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import ListItem from '../../common/ListItem';
 import { useHistory } from 'react-router-dom';
 import Button from '../../common/Button';
-import Container from '../../common/Container';
 import Alert from '../../common/Alert';
 import { auth } from '../../../firebase';
+import '../css/Stores.css';
 
 export default function Stores({ title, lists, stores, handleUpdateStore, handleRemoveStore, alert }) {
   const history = useHistory();
@@ -46,21 +46,21 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
 
   return (
     <section className="rg-stores">
-      <h2>Manage Stores
-        <Button
-          handleOnClick={() => history.push('/stores/new')}
-          className="btn-sm ml-3">
-          Add New</Button>
-      </h2>
+      <h2>Manage Stores</h2>
+      <Button
+        handleOnClick={() => history.push('/stores/new')}
+        className="block" icon="fas fa-plus">
+        Add New Store</Button>
 
       {alert && <Alert type={alert.type} message={alert.message} />}
       {!isLoading && stores?.length > 0 &&
-        <ul className="list mt-3">
-          {(stores.length > 0) && stores.map((store, i) => <ListItem key={i}>{store.name}
-            <div className="buttons">
-              <Button label="edit" className="icon" icon="fas fa-edit" handleOnClick={() => handleUpdateStore(store.id)} />
+        <ul className="mt-3 rg-store-main">
+          {(stores.length > 0) && stores.map((store, i) => <ListItem key={i}>
+            <span className="store-name">{store.name}</span>
+            <span className="store-buttons">
+              <Button label="edit" className="icon" icon="fas fa-cog" handleOnClick={() => handleUpdateStore(store.id)} />
               {lists && lists.filter(list => list.store_id === store.id).length === 0 && <Button label="remove" className="icon" icon="fas fa-times" handleOnClick={handleRemove} id={store.id} />}
-            </div>
+            </span>
           </ListItem>)}
         </ul>
       }
