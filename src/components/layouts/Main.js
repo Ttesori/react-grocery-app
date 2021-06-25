@@ -2,10 +2,11 @@ import { Link } from 'react-router-dom';
 import app from '../../firebase';
 import Button from '../common/Button';
 import logo from '../../img/logo-stacked.svg';
+import './css/Main.css';
 
 export default function Main({ children }) {
   return (
-    <div className="wrapper">
+    <>
       <header className="rg-header">
         <h1 className="rg-logo">
           <Link to="/">
@@ -15,9 +16,7 @@ export default function Main({ children }) {
         {app.auth().currentUser ?
           <nav className="rg-nav">
             <>
-              <Link to="/lists">Lists</Link>
-              <Link to="/stores">Stores</Link>
-              <Button handleOnClick={() => app.auth().signOut()} className="ml-3">Sign Out</Button>
+              <Button handleOnClick={() => app.auth().signOut()} icon='fas fa-power-off' className="ml-3 btn-signOut">Sign Out</Button>
             </>
           </nav>
           : ''}
@@ -28,6 +27,6 @@ export default function Main({ children }) {
       <footer className="rg-footer">
         GroceryMapper written by Toni
       </footer>
-    </div>
+    </>
   )
 }

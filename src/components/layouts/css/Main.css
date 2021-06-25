@@ -1,0 +1,28 @@
+body {
+}
+
+.rg-header,
+.rg-footer {
+  background: radial-gradient(#0c597b, #0c4760);
+}
+
+.rg-header {
+  @apply pt-8 pb-4 mb-3 flex flex-col justify-center items-center border-b-2 border-solid border-primary;
+}
+
+.rg-footer {
+  @apply py-4 mt-3 text-center border-t-2 border-solid border-primary;
+}
+
+.rg-main {
+  @apply py-3 px-8;
+}
+
+.btn-signOut {
+  @apply mt-2 py-1 px-2 bg-transparent text-white text-sm font-normal border rounded hover:bg-neutral-dark self-end;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-signOut .fas {
+  @apply text-primary;
+}

@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import ListItem from "../../common/ListItem";
 import Container from '../../common/Container';
 import Alert from "../../common/Alert";
+import Stores from '../stores/Stores';
 
 export default function Lists({ title, lists, alert, handleRemoveList }) {
   const history = useHistory();
@@ -36,10 +37,11 @@ export default function Lists({ title, lists, alert, handleRemoveList }) {
 
   useEffect(() => {
     document.title = title;
+    document.body.className = 'page-lists';
   }, [title])
 
   return (
-    <Container>
+    <section className="rg-lists">
       <h2>Manage Lists <Button handleOnClick={() => history.push('/lists/new')} className="btn-sm ml-3">Add New</Button></h2>
 
       {alert && <Alert type={alert.type} message={alert.message} />}
@@ -52,6 +54,8 @@ export default function Lists({ title, lists, alert, handleRemoveList }) {
           </div>
         </ListItem>)}
       </ul>}
-    </Container>
+
+
+    </section>
   )
 }

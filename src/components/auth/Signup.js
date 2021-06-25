@@ -31,7 +31,7 @@ export default function Signup() {
       updatePassword('');
       updateConfirmPassword('');
       updateIsSignup(false);
-      history.push('/stores');
+      history.push('/lists');
     } catch (error) {
       return setError(error.message);
     }
@@ -50,7 +50,7 @@ export default function Signup() {
       updateEmail('');
       updatePassword('');
       updateConfirmPassword('');
-      history.push('/stores');
+      history.push('/lists');
     } catch (error) {
       return setError(error.message);
     }

@@ -21,7 +21,7 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
       if (!user) {
-        history.push('/');
+        //history.push('/');
       }
     });
   }, [history]);
@@ -45,7 +45,7 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
   }, [title])
 
   return (
-    <Container>
+    <section className="rg-stores">
       <h2>Manage Stores
         <Button
           handleOnClick={() => history.push('/stores/new')}
@@ -54,16 +54,16 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
       </h2>
 
       {alert && <Alert type={alert.type} message={alert.message} />}
-      {!isLoading && stores.length > 0 &&
+      {!isLoading && stores?.length > 0 &&
         <ul className="list mt-3">
-          {stores && stores.map((store, i) => <ListItem key={i}>{store.name}
+          {(stores.length > 0) && stores.map((store, i) => <ListItem key={i}>{store.name}
             <div className="buttons">
               <Button label="edit" className="icon" icon="fas fa-edit" handleOnClick={() => handleUpdateStore(store.id)} />
-              {lists.filter(list => list.store_id === store.id).length === 0 && <Button label="remove" className="icon" icon="fas fa-times" handleOnClick={handleRemove} id={store.id} />}
+              {lists && lists.filter(list => list.store_id === store.id).length === 0 && <Button label="remove" className="icon" icon="fas fa-times" handleOnClick={handleRemove} id={store.id} />}
             </div>
           </ListItem>)}
         </ul>
       }
-    </Container>
+    </section>
   )
 }
