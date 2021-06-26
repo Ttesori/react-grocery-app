@@ -3,6 +3,7 @@ import InputText from '../form/InputText';
 import DragDropContainer from '../common/DragDropContainer';
 import { useHistory } from 'react-router-dom';
 import Button from '../common/Button';
+import Modal from '../common/Modal';
 
 export default function EditStore({ handleUpdateStore, store, newStore }) {
   let history = useHistory();
@@ -12,6 +13,7 @@ export default function EditStore({ handleUpdateStore, store, newStore }) {
   const [sectionsOrder, updateSectionsOrder] = useState(store.sections.map(section => section.id));
   const [sectionIsValid, updateSectionIsValid] = useState(true);
   const [nameIsValid, updateNameIsValid] = useState(true);
+  const [modalIsOpen, updateModalisOpen] = useState(false);
 
   const handleNameChange = (current) => {
     updateStoreName(current);
@@ -32,6 +34,7 @@ export default function EditStore({ handleUpdateStore, store, newStore }) {
     updateSections(sectionsUpdate);
     updateSectionsOrder(sectionsUpdate.map(section => section.id))
     updateNewSectionName('');
+    updateModalisOpen(false);
   }
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,7 +49,7 @@ export default function EditStore({ handleUpdateStore, store, newStore }) {
         name: storeName,
         sections: sections
       });
-      history.push('/stores');
+      history.push('/dashboard');
     }
 
   }
@@ -72,14 +75,16 @@ export default function EditStore({ handleUpdateStore, store, newStore }) {
   return (
     <>
       <form>
-        <InputText id={"store_name"} placeholder="Enter store name..." label="Store Name:" handleChange={handleNameChange} value={storeName} isValid={nameIsValid} invalidText='Please enter store name' />
+        <InputText id={"store_name"} placeholder="Enter store name..." label="Store Name" handleChange={handleNameChange} value={storeName} isValid={nameIsValid} invalidText='Please enter store name' />
+        <h4 className="border-t-2 border-neutral-light mt-6 pt-4 text-neutral text-lg font-bold text-center">Store Sections</h4>
         <DragDropContainer items={sections} itemsOrder={sectionsOrder} onDragEnd={handleOnDragEnd} listId="sections" isEditable={true} handleEdit={handleEdit} isRemovable={true} handleRemove={handleRemoveSection} />
-        <div className="flex">
+        <Button icon="fas fa-plus" className="btn-outline mt-2 mb-3 w-full" handleOnClick={() => updateModalisOpen(true)}>Add New Section</Button>
+        <Modal isOpen={modalIsOpen} handleClose={() => updateModalisOpen(false)}>
           <InputText placeholder="Enter section name" label="Section Name:" value={newSectionName} handleChange={handleSectionChange} isValid={sectionIsValid} invalidText='Please enter at least one section' />
-          <button className="btn btn-form btn-sm" onClick={handleAddSection}>+ Add Section</button>
-        </div>
-        <Button className="btn btn-form" handleOnClick={handleSubmit}>{newStore ? 'Add' : 'Update'} Store</Button>
-        <Button className="btn btn-outline error ml-3" icon="fas fa-times" handleOnClick={() => history.push('/stores')}> Cancel</Button>
+          <Button className="btn-block" handleOnClick={handleAddSection}>Add Section</Button>
+        </Modal>
+        <Button icon="fas fa-download" className="btn-block" handleOnClick={handleSubmit}>Save Store</Button>
+        <Button className="w-full btn-link text-sm error" icon="fas fa-times" handleOnClick={() => history.push('/dashboard')}> Cancel</Button>
       </form>
 
     </>

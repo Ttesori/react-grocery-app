@@ -10,6 +10,7 @@ import ListsShow from './components/pages/lists/ListsShow';
 import ListsEdit from './components/pages/lists/ListsEdit';
 import ListsAdd from './components/pages/lists/ListsAdd';
 import Lists from './components/pages/lists/Lists';
+import NewUserMessage from './components/common/NewUserMessage';
 import './App.css';
 
 function App() {
@@ -202,7 +203,7 @@ function App() {
       <Switch>
         <Main>
           <Route path="/" exact={true}>
-            {userId && <Redirect to="/lists" />}
+            {userId && <Redirect to="/dashboard" />}
             <Home title={`Home ${pageTitle}`} />
           </Route>
           <Route path="/stores" exact={true}>
@@ -217,12 +218,13 @@ function App() {
             {!userId && <Redirect to="/" />}
             <StoresEdit title={`Edit Store ${pageTitle}`} stores={stores} handleUpdateStore={handleUpdateStore} />
           </Route>
-          <Route path="/lists" exact={true}>
+          <Route path="/dashboard" exact={true}>
             {!userId && <Redirect to="/" />}
-            {stores.length > 0 &&
-              <Lists title={`My Lists ${pageTitle}`} stores={stores} lists={lists} handleRemoveList={handleRemoveList} alert={listsAlert} />
+            {stores.length > 0 ?
+              <Lists stores={stores} lists={lists} handleRemoveList={handleRemoveList} alert={listsAlert} />
+              : <NewUserMessage />
             }
-            <Stores title={`My Stores ${pageTitle}`} lists={lists} stores={stores} handleRemoveStore={handleRemoveStore} alert={storesAlert} />
+            <Stores title={`User Dashboard ${pageTitle}`} lists={lists} stores={stores} handleRemoveStore={handleRemoveStore} alert={storesAlert} />
           </Route>
           <Route path="/lists/new" exact={true}>
             <ListsAdd title={`New List ${pageTitle}`} stores={stores} handleAddList={handleAddList} />

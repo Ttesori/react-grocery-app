@@ -1,7 +1,6 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import EditStore from "../../stores/EditStore";
-import Container from '../../common/Container';
 
 export default function StoresEdit({ title, handleUpdateStore, stores }) {
   const [isLoading, updateIsLoading] = useState(true);
@@ -10,23 +9,24 @@ export default function StoresEdit({ title, handleUpdateStore, stores }) {
   let history = useHistory();
 
   useEffect(() => {
-    if (stores.length > 0) {
+    if (stores.length) {
       const ourStore = stores.find(store => store.id === id);
       updateOurStore(ourStore);
       if (ourStore?.id) return updateIsLoading(false);
-      if (!ourStore) return history.push('/stores');
+      if (!ourStore) return history.push('/dashboard');
     }
   }, [stores, history, id]);
 
   useEffect(() => {
     document.title = title;
+    document.body.className = 'page-add-store';
   }, [title])
 
-  if (isLoading) return <Container>Loading...</Container>;
-  return (
-    <Container>
+  if (isLoading) return <></>;
+  return !isLoading &&
+    <section className="rg-add-store my-5 mx-3">
       <h2>Edit Store</h2>
       {ourStore && <EditStore handleUpdateStore={handleUpdateStore} store={ourStore} />}
-    </Container>
-  )
+    </section>
+
 }

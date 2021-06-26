@@ -1,16 +1,16 @@
 .btn {
-  @apply py-2 px-4 rounded-lg cursor-pointer transition-all bg-primary text-neutral-dark font-bold text-lg;
+  @apply py-2 px-4 rounded-lg cursor-pointer transition-all bg-primary text-neutral-dark font-bold text-base;
 }
 .btn:hover {
   background-color: #9fff40;
 }
 
-.btn.block {
-  @apply w-full mt-2 mb-1 py-2 rounded text-sm uppercase font-semibold;
+.btn-block {
+  @apply w-full mt-2 mb-1 py-2 rounded uppercase font-bold;
 }
 
 .btn.icon {
-  @apply p-0 pr-1 bg-transparent;
+  @apply text-xl bg-transparent;
 }
 
 .btn-sm {
@@ -18,12 +18,17 @@
   transform: translateY(-3px);
 }
 
-.btn .fas {
+.btn-outline {
+  @apply border border-secondary bg-white normal-case text-secondary font-bold hover:bg-secondary hover:text-white text-sm;
+}
+
+.btn .fas,
+.btn-link .fas {
   @apply pr-1;
 }
 
-.btn-outline {
-  @apply border bg-transparent text-gray-700;
+.btn-block .fas {
+  @apply pr-2;
 }
 
 .btn.error {
@@ -35,7 +40,7 @@
 }
 
 .btn-link {
-  @apply m-0 p-0 underline mt-3;
+  @apply m-0 p-0 underline mt-3 bg-transparent normal-case;
   text-decoration-thickness: 0.125rem;
   text-underline-offset: 1.5px;
   transition: all 0.2s;
@@ -49,4 +54,9 @@
 .btn-link.light:hover {
   color: white;
   text-decoration-color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-link.error {
+  @apply hover:bg-transparent hover:text-red-600;
+  text-decoration-color: #fca5a5;
 }

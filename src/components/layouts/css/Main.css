@@ -1,12 +1,20 @@
 body {
 }
 
+p {
+  @apply leading-6;
+}
+
+p strong {
+  @apply text-neutral;
+}
+
 .rg-header {
   background: radial-gradient(#0c597b, #0c4760);
 }
 
 .rg-header {
-  @apply pt-8 pb-4 mb-3 flex flex-col justify-center items-center border-b-2 border-solid border-primary;
+  @apply pt-8 pb-4 flex flex-col justify-center items-center border-b-2 border-solid border-primary;
 }
 
 .rg-footer {
@@ -39,18 +47,22 @@ body {
   @apply text-neutral text-xl font-bold text-center;
 }
 
-.rg-lists {
-  @apply mb-8;
-}
-
 .rg-stores {
-  @apply pt-7 pb-10;
+  @apply w-full;
 }
 
 .rg-lists ~ .rg-stores {
-  @apply bg-neutral text-white;
+  @apply bg-neutral text-white py-5 pb-12;
 }
 
 .rg-lists ~ .rg-stores h2 {
   @apply text-white;
+}
+
+.rg-stores {
+  @apply bg-white;
+}
+
+.rg-new-user {
+  @apply p-5 pb-7 bg-neutral-light text-center;
 }

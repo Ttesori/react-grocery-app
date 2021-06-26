@@ -31,7 +31,7 @@ export default function Signup() {
       updatePassword('');
       updateConfirmPassword('');
       updateIsSignup(false);
-      history.push('/lists');
+      history.push('/dashboard');
     } catch (error) {
       return setError(error.message);
     }
@@ -46,11 +46,9 @@ export default function Signup() {
     setError('');
     try {
       let resp = await auth.signInWithEmailAndPassword(email, password);
-      setMessage(`User logged in: ${resp.user.email}`);
-      updateEmail('');
-      updatePassword('');
-      updateConfirmPassword('');
-      history.push('/lists');
+      if (resp.user.email) {
+        history.push('/dashboard');
+      }
     } catch (error) {
       return setError(error.message);
     }

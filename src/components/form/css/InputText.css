@@ -1,7 +1,11 @@
+.fieldset {
+  @apply mt-3 flex flex-col;
+}
+
 .form-label {
-  @apply pr-3;
+  @apply pr-3 pb-1 text-neutral text-center font-semibold;
 }
 
 .form-control {
-  @apply py-1 px-3 border border-gray-200 rounded text-neutral-dark;
+  @apply py-1 px-3 border border-gray-200 text-center rounded text-neutral;
 }

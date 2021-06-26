@@ -35,19 +35,15 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
     updateIsLoading(false);
   }, [alert]);
 
-  useEffect(() => {
-    document.title = title;
-    document.body.className = 'page-lists';
-  }, [title])
-
   return (
-    <section className="rg-lists">
+    <section className="rg-lists mb-5 mt-3">
       <h2>Manage Lists </h2>
-      {stores?.length > 0 ?
-        <Button handleOnClick={() => history.push('/lists/new')}
-          className="block" icon="fas fa-plus">
-          Add New List</Button>
-        : <EmptyList>Add a store to create lists</EmptyList>}
+      <Button handleOnClick={() => history.push('/lists/new')}
+        className="btn-block" icon="fas fa-plus">
+        Add New List</Button>
+      {lists?.length === 0 &&
+        <EmptyList>Once you add a list, your list...of...lists will appear here.</EmptyList>
+      }
 
       {alert && <Alert type={alert.type} message={alert.message} />}
       {!isLoading && lists?.length > 0 && <ul className="rg-list-main mt-3">

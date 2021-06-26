@@ -1,0 +1,17 @@
+.draggable-container {
+  @apply m-1;
+}
+
+.draggable {
+  @apply bg-neutral-light py-1.5 px-2 flex justify-between items-center rounded;
+}
+
+.draggable:not(:last-child),
+.list li:not(:last-child) {
+  @apply mb-1;
+}
+
+.draggable .btn {
+  @apply hover:text-neutral;
+  color: var(--color-neutral-50);
+}

@@ -10,7 +10,9 @@
   --color-secondary: #1dab52;
   --color-neutral-dk: #072c35;
   --color-neutral: rgb(11, 79, 108);
-  --color-neutral-lt: #f2f6f7;
+  --color-neutral-lt: rgba(11, 79, 108, 0.1);
+  --color-neutral-50: rgba(11, 79, 108, 0.5);
+  min-height: --webkit-fill-available;
 }
 
 body {
@@ -18,11 +20,13 @@ body {
   font-family: var(--font-main);
   color: var(--color-dark-neutral);
   min-height: 100vh;
-  min-height: -webkit-fill-available;
+  min-height: --webkit-fill-available;
 }
 
-html {
-  height: -webkit-fill-available;
+#root {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 a {
@@ -39,53 +43,11 @@ a:focus {
 
 ul,
 li {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  @apply m-0 p-0 list-none;
 }
 
 fieldset {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  margin-bottom: 0.5rem;
-}
-
-.draggable-container,
-.list {
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background: #eee;
-}
-
-.draggable,
-.list li {
-  padding: 0.1rem 0.5rem;
-  background: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 0.25rem;
-}
-
-.draggable:not(:last-child),
-.list li:not(:last-child) {
-  margin-bottom: 0.5rem;
-}
-
-.draggable > span {
-}
-
-.draggable .btn {
-  color: #ccc;
-  transition: color 0.2s;
-}
-
-.draggable .btn:hover {
-  color: #444;
-}
-
-.btn.inline {
+  @apply border-0 p-0 m-0 mb-1;
 }
 
 .is-invalid input {
@@ -101,12 +63,5 @@ fieldset {
 }
 
 .edit-text {
-  display: inline-block;
-  width: 50%;
-  min-width: 150px;
-  padding: 0.25rem;
-  transition: all 0.2s;
-}
-.edit-text:hover {
-  background-color: #eee;
+  @apply inline-block flex-grow mr-3 py-1 px-2 transition-all bg-white bg-opacity-75 border border-gray-300  rounded-sm text-sm;
 }

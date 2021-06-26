@@ -6,6 +6,7 @@ import Button from '../../common/Button';
 import Alert from '../../common/Alert';
 import { auth } from '../../../firebase';
 import '../css/Stores.css';
+import EmptyList from '../../common/EmptyList';
 
 export default function Stores({ title, lists, stores, handleUpdateStore, handleRemoveStore, alert }) {
   const history = useHistory();
@@ -42,6 +43,7 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
 
   useEffect(() => {
     document.title = title;
+    document.body.className = 'page-dashboard';
   }, [title])
 
   return (
@@ -49,8 +51,8 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
       <h2>Manage Stores</h2>
       <Button
         handleOnClick={() => history.push('/stores/new')}
-        className="block" icon="fas fa-plus">
-        Add New Store</Button>
+        className="btn-block" icon="fas fa-plus">
+        Create New Store</Button>
 
       {alert && <Alert type={alert.type} message={alert.message} />}
       {!isLoading && stores?.length > 0 &&
@@ -58,11 +60,16 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
           {(stores.length > 0) && stores.map((store, i) => <ListItem key={i}>
             <span className="store-name">{store.name}</span>
             <span className="store-buttons">
-              <Button label="edit" className="icon" icon="fas fa-cog" handleOnClick={() => handleUpdateStore(store.id)} />
-              {lists && lists.filter(list => list.store_id === store.id).length === 0 && <Button label="remove" className="icon" icon="fas fa-times" handleOnClick={handleRemove} id={store.id} />}
+              <Button label="edit" className="icon p-0 pr-1" icon="fas fa-cog" handleOnClick={() => handleUpdateStore(store.id)} />
+              {lists && lists.filter(list => list.store_id === store.id).length === 0 && <Button label="remove" className="icon p-0" icon="fas fa-times" handleOnClick={handleRemove} id={store.id} />}
             </span>
           </ListItem>)}
         </ul>
+      }
+      {stores?.length === 0 &&
+        <EmptyList>
+          Once you create a store, you'll see a list of all of your stores here.
+        </EmptyList>
       }
     </section>
   )
