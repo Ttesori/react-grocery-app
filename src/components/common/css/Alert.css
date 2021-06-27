@@ -1,5 +1,5 @@
 .alert {
-  @apply p-3 my-3 mx-auto bg-gray-50 transition-all border border-gray-200 rounded text-sm;
+  @apply p-3 my-3 mx-auto bg-gray-50 transition-all border border-gray-200 rounded text-neutral text-sm;
 }
 
 .alert.error {
@@ -7,9 +7,9 @@
 }
 
 .alert.success {
-  @apply border-green-500 bg-green-50;
+  @apply border-green-500 bg-green-50 text-green-800;
 }
 
 .alert.loading {
-  @apply border-yellow-500 bg-yellow-50;
+  @apply border-yellow-500 bg-yellow-50 text-yellow-900;
 }

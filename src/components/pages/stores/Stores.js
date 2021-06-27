@@ -20,14 +20,6 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
   }
 
   useEffect(() => {
-    auth.onAuthStateChanged(async (user) => {
-      if (!user) {
-        //history.push('/');
-      }
-    });
-  }, [history]);
-
-  useEffect(() => {
     if (stores.length > 0) {
       return updateIsLoading(false);
     }

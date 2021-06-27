@@ -16,8 +16,8 @@ export default function DraggableListItem({ className, item, index, isEditable, 
           className={className}>
           <span contentEditable={isEditable} onBlur={handleLocalEdit} suppressContentEditableWarning={true} className='edit-text'>{item.text}</span>
           <span>
-            {isRemovable && <Button label="remove" className="icon" icon="fas fa-times" handleOnClick={handleRemove} id={item.id} />}
-            <span className="btn icon" {...provided.dragHandleProps}> <i className="fas fa-bars"></i> </span>
+            {isRemovable && <Button label="remove" className="icon p-0 mr-1" icon="fas fa-times" handleOnClick={handleRemove} id={item.id} />}
+            <span className="btn icon p-0" {...provided.dragHandleProps}> <i className="fas fa-bars"></i> </span>
           </span>
         </li>
       )}

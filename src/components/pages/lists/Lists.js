@@ -42,7 +42,7 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
         className="btn-block" icon="fas fa-plus">
         Add New List</Button>
       {lists?.length === 0 &&
-        <EmptyList>Once you add a list, your list...of...lists will appear here.</EmptyList>
+        <EmptyList>Once you add a list, your lists will appear here.</EmptyList>
       }
 
       {alert && <Alert type={alert.type} message={alert.message} />}
