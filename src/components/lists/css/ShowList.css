@@ -22,5 +22,6 @@ input[type='checkbox']:before {
 
 input[type='checkbox']:checked::before {
   content: '\f00c';
-  font-family: 'FontAwesome';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
 }
