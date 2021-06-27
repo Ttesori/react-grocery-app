@@ -11,9 +11,9 @@ export default function ShowList({ list, store }) {
         <ul>
           {itemsInSection.map((item, i) =>
             <ListItem className="list-check bg-neutral-light py-1 px-2 rounded mb-1 flex justify-between items-center" key={`${item.id}-${i}`}>
-              <label class="checkbox">
-                <input type="checkbox" class="checkbox-check" />
-                <span class="checkbox-label">{item.text}</span>
+              <label className="checkbox">
+                <input type="checkbox" className="checkbox-check" />
+                <span className="checkbox-label">{item.text}</span>
               </label>
               <span className="ml-2 item-quantity text-sm font-semibold text-neutral">x {item.quantity}</span>
             </ListItem>
