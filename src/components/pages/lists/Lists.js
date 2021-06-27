@@ -37,7 +37,7 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
 
   return (
     <section className="rg-lists mb-5 mt-4">
-      <h2>📝 Manage Lists </h2>
+      <h2 className="mb-1">📝 Manage Lists </h2>
       <Button handleOnClick={() => history.push('/lists/new')}
         className="btn-block" icon="fas fa-plus">
         Add New List</Button>

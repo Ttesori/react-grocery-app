@@ -6,7 +6,7 @@
 }
 
 .btn-block {
-  @apply w-full mt-2 mb-1 py-2 rounded uppercase font-bold;
+  @apply w-full mt-2 mb-1 py-2 rounded font-bold;
 }
 
 .btn-block .fas {

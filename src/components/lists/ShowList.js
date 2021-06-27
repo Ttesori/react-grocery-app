@@ -10,8 +10,8 @@ export default function ShowList({ list, store }) {
         <h3 className="mb-1 mt-2">{section.text}</h3>
         <ul>
           {itemsInSection.map((item, i) =>
-            <ListItem className="list-check bg-neutral-light py-1 px-2 rounded mb-1 flex justify-between items-center" key={`${item.id}-${i}`}>
-              <label className="checkbox">
+            <ListItem className="list-check bg-neutral-light p-1.5 px-2 rounded mb-1 flex justify-between items-center" key={`${item.id}-${i}`}>
+              <label className="checkbox flex-1">
                 <input type="checkbox" className="checkbox-check" />
                 <span className="checkbox-label">{item.text}</span>
               </label>
