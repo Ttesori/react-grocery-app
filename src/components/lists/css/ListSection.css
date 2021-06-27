@@ -1,0 +1,3 @@
+.rg-list-items li {
+  @apply flex justify-between items-center;
+}

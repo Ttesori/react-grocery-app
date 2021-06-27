@@ -3,13 +3,17 @@
   background: radial-gradient(#0c597b, #0c4760);
 }
 
+.page-home #root {
+  min-height: auto;
+}
+
 .page-home .rg-logo a {
   @apply flex place-content-center transform scale-105;
 }
 
 .page-home .rg-header,
 .page-home .rg-footer {
-  @apply border-0 py-1 my-2;
+  @apply border-0 py-1 my-2 relative;
   background: none;
 }
 
@@ -43,7 +47,7 @@
 }
 
 .page-home .rg-signin .form-label {
-  @apply text-primary font-bold mb-2 text-lg;
+  @apply text-primary font-bold mb-1 text-lg;
   font-family: var(--font-accent);
   text-shadow: 0px 0px 0.5rem rgba(0, 0, 0, 0.3);
 }

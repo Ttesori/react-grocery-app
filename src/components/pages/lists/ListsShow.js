@@ -1,7 +1,7 @@
 import ShowList from '../../lists/ShowList';
-import Container from '../../common/Container';
 import { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import Button from '../../common/Button';
 
 export default function ListsShow({ title, lists, stores }) {
   const { id } = useParams();
@@ -27,9 +27,10 @@ export default function ListsShow({ title, lists, stores }) {
   }, [title])
 
   return (!isLoading &&
-    <Container>
+    <section className="p-5">
       <h2>{list?.name} at {listStore.name}</h2>
       <ShowList list={list} store={listStore} />
-    </Container>
+      <Button className="w-full btn-link text-sm error mt-5" icon="fas fa-arrow-left" handleOnClick={() => history.push('/dashboard')}> Back to Dashboard</Button>
+    </section>
   )
 }

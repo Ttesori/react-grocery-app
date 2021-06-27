@@ -7,10 +7,10 @@ export default function QuantityTool({ value, onQuantityChange, id }) {
     }
   }
   return (
-    <>
-      <Button handleOnClick={() => localHandleQuantityChange(value - 1)}>-</Button>
-      <span>{value}</span>
-      <Button handleOnClick={() => localHandleQuantityChange(value + 1)}>+</Button>
-    </>
+    <span className="flex items-center">
+      <Button icon="fas fa-minus" className="btn-quantity hover:bg-red-500 hover:text-white" handleOnClick={() => localHandleQuantityChange(value - 1)} />
+      <span className="px-2 text-sm font-semibold rounded">{value}</span>
+      <Button icon="fas fa-plus" className="btn-quantity  hover:bg-secondary hover:text-white" handleOnClick={() => localHandleQuantityChange(value + 1)} />
+    </span>
   )
 }

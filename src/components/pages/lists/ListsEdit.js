@@ -24,9 +24,9 @@ export default function ListsEdit({ title, stores, lists, handleUpdateList }) {
   }, [title])
 
   return (!isLoading &&
-    <Container>
+    <section className="p-5">
       <h2>Edit Lists</h2>
       <EditList list={list} stores={stores} handleUpdateList={handleUpdateList} />
-    </Container>
+    </section>
   )
 }

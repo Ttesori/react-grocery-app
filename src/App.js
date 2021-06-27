@@ -200,8 +200,9 @@ function App() {
 
   return (
     <Router>
-      <Switch>
-        <Main>
+
+      <Main>
+        <Switch>
           <Route path="/" exact={true}>
             {userId && <Redirect to="/dashboard" />}
             <Home title={`Home ${pageTitle}`} />
@@ -226,7 +227,7 @@ function App() {
             }
             <Stores title={`User Dashboard ${pageTitle}`} lists={lists} stores={stores} handleRemoveStore={handleRemoveStore} alert={storesAlert} />
           </Route>
-          <Route path="/lists/new" exact={true}>
+          <Route path="/lists/new">
             <ListsAdd title={`New List ${pageTitle}`} stores={stores} handleAddList={handleAddList} />
           </Route>
           <Route path="/lists/edit/:id">
@@ -235,9 +236,8 @@ function App() {
           <Route path="/lists/:id">
             <ListsShow title={`View List ${pageTitle}`} stores={stores} lists={lists} />
           </Route>
-        </Main>
-
-      </Switch>
+        </Switch>
+      </Main>
     </Router>
   );
 }

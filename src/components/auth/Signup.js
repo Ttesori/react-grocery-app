@@ -62,7 +62,7 @@ export default function Signup() {
         <InputText id="email" type="email" label="Email Address" placeholder="you@somewhere.com" handleChange={(value) => updateEmail(value)} value={email} isValid={true} required={true} />
         <InputText id="password" type="password" label="Password" placeholder="At least 6 characters" handleChange={(value) => updatePassword(value)} value={password} isValid={true} required={true} />
         {isSignup && <InputText type="password" label="Confirm Password" placeholder="Must match password above" handleChange={(value) => updateConfirmPassword(value)} value={confirmPassword} isValid={true} required={true} />}
-        <Button className="btn mt-4" icon="fas fa-sign-in-alt" handleOnClick={() => handleSubmit()}>{isSignup ? 'Sign Up' : 'Sign In'}</Button>
+        <Button className="btn-block mt-4" icon="fas fa-sign-in-alt" handleOnClick={() => handleSubmit()}>{isSignup ? 'Sign Up' : 'Sign In'}</Button>
       </form>
 
       <button className="btn-link light" onClick={() => updateIsSignup(!isSignup)}>

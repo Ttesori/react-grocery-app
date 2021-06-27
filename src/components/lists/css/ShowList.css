@@ -1,0 +1,26 @@
+.checkbox {
+  position: relative;
+  padding-left: 35px;
+}
+
+.checkbox-check {
+  appearance: none;
+}
+
+.checkbox-label {
+  @apply font-semibold text-neutral;
+}
+
+input[type='checkbox']:before {
+  @apply text-xl bg-white place-content-center absolute inset-0 flex rounded-full text-secondary border;
+  content: '';
+  width: 25px;
+  height: 25px;
+  border-color: rgba(11, 79, 108, 0.3);
+  line-height: 1.2;
+}
+
+input[type='checkbox']:checked::before {
+  content: '\f00c';
+  font-family: 'FontAwesome';
+}

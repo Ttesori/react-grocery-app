@@ -1,6 +1,6 @@
 import Button from "../../common/Button";
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import ListItem from "../../common/ListItem";
 import Alert from "../../common/Alert";
 import EmptyList from "../../common/EmptyList";
@@ -36,8 +36,8 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
   }, [alert]);
 
   return (
-    <section className="rg-lists mb-5 mt-3">
-      <h2>Manage Lists </h2>
+    <section className="rg-lists mb-5 mt-4">
+      <h2>📝 Manage Lists </h2>
       <Button handleOnClick={() => history.push('/lists/new')}
         className="btn-block" icon="fas fa-plus">
         Add New List</Button>
@@ -48,11 +48,15 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
       {alert && <Alert type={alert.type} message={alert.message} />}
       {!isLoading && lists?.length > 0 && <ul className="rg-list-main mt-3">
         {lists?.length > 0 && lists.map((list, i) => <ListItem key={i}>
-          <span className="list-name">{list.name}</span>
+          <span className="list-name font-semibold">
+            <Link to={`/lists/edit/${list.id}`}>
+              {list.name}
+            </Link>
+          </span>
           <span className="list-buttons">
-            <Button label="show" className="icon" icon="fas fa-share" handleOnClick={() => handleViewList(list.id)} />
-            <Button label="edit" className="icon" icon="fas fa-cog" handleOnClick={() => handleUpdateList(list.id)} />
-            <Button label="remove" className="icon pr-0" icon="fas fa-times" handleOnClick={() => handleRemove(list.id)} id={list.id} />
+            <Button label="show" className="btn-icon" icon="fas fa-share" handleOnClick={() => handleViewList(list.id)} />
+            <Button label="edit" className="btn-icon ml-2" icon="fas fa-cog" handleOnClick={() => handleUpdateList(list.id)} />
+            <Button label="remove" className="btn-icon ml-2 pr-0" icon="fas fa-times" handleOnClick={() => handleRemove(list.id)} id={list.id} />
           </span>
           <span className="list-store">
             {stores.find(store => store.id === list.store_id).name}</span>

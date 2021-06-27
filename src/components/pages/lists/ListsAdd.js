@@ -11,7 +11,7 @@ export default function ListsAdd({ title, stores, handleAddList }) {
       return updateIsLoading(false);
     }
     if (stores && stores.length === 0) {
-      return history.push('/stores')
+      return history.push('/dashboard')
     }
   }, [stores, history]);
 
@@ -20,7 +20,7 @@ export default function ListsAdd({ title, stores, handleAddList }) {
   }, [title])
 
   return (!isLoading &&
-    <Container>
+    <section className="p-5">
       <h2>Add New List</h2>
       <EditList
         stores={stores}
@@ -30,6 +30,6 @@ export default function ListsAdd({ title, stores, handleAddList }) {
           store_id: stores[0].id,
           items: []
         })} />
-    </Container>
+    </section>
   )
 }

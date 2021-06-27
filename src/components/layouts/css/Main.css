@@ -40,11 +40,19 @@ p strong {
 }
 
 .btn-signOut .fas {
-  @apply text-primary;
+  @apply text-primary pr-1;
 }
 
 .rg-main h2 {
   @apply text-neutral text-xl font-bold text-center;
+}
+
+.rg-main h3 {
+  @apply text-neutral text-lg font-bold text-center;
+}
+
+.rg-main h4 {
+  @apply text-neutral text-base font-bold text-center;
 }
 
 .rg-stores {

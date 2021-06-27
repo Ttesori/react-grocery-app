@@ -9,7 +9,7 @@ select {
   font-size: inherit;
   cursor: inherit;
   line-height: inherit;
-  outline:none;
+  outline: none;
 }
 
 select::-ms-expand {
@@ -27,12 +27,12 @@ select::-ms-expand {
   background-color: #fff;
   background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
   display: grid;
-  grid-template-areas: "select";
+  grid-template-areas: 'select';
   align-items: center;
 }
 
 .form-select::after {
-  content: "";
+  content: '';
   width: 0.7rem;
   height: 0.4rem;
   background-color: #aaa;
@@ -40,6 +40,11 @@ select::-ms-expand {
   justify-self: end;
 }
 
-select, .form-select::after {
+select,
+.form-select::after {
   grid-area: select;
+}
+
+.form-label {
+  @apply pr-3 pb-1 text-neutral text-center font-semibold block;
 }
