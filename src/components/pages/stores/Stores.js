@@ -49,7 +49,7 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
       {alert && <Alert type={alert.type} message={alert.message} />}
       {!isLoading && stores?.length > 0 &&
         <ul className="mt-3 rg-store-main">
-          {(stores.length > 0) && stores.map((store, i) => <ListItem key={i}>
+          {(stores.length > 0) && stores.map((store, i) => <ListItem key={i} className="mb-1.5">
             <span className="store-name">{store.name}</span>
             <span className="store-buttons">
               <Button label="edit" className="icon p-0 pr-1" icon="fas fa-cog" handleOnClick={() => handleUpdateStore(store.id)} />

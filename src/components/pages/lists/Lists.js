@@ -47,7 +47,7 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
 
       {alert && <Alert type={alert.type} message={alert.message} />}
       {!isLoading && lists?.length > 0 && <ul className="rg-list-main mt-3">
-        {lists?.length > 0 && lists.map((list, i) => <ListItem key={i}>
+        {lists?.length > 0 && lists.map((list, i) => <ListItem key={i} className="mb-1.5">
           <span className="list-name font-semibold">
             <Link to={`/lists/edit/${list.id}`}>
               {list.name}
