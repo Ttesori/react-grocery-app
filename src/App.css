@@ -14,15 +14,21 @@
   --color-neutral: rgb(11, 79, 108);
   --color-neutral-lt: rgba(11, 79, 108, 0.1);
   --color-neutral-50: rgba(11, 79, 108, 0.5);
-  min-height: -webkit-fill-available;
+}
+
+html {
+  height: 100vh;
+  height: -webkit-fill-available;
+  height: fill-available;
 }
 
 body {
   margin: 0;
   font-family: var(--font-main);
   color: var(--color-dark-neutral);
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  height: 100vh;
+  height: -webkit-fill-available;
+  height: fill-available;
 }
 h2,
 h3,
