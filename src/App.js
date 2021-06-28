@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { auth, db } from './firebase';
 import Main from './components/layouts/Main';
 import Home from './components/pages/Home';
+import Loader from './components/common/Loader';
 import Stores from './components/pages/stores/Stores';
 import StoresAdd from './components/pages/stores/StoresAdd';
 import StoresEdit from './components/pages/stores/StoresEdit';
@@ -14,11 +15,12 @@ import NewUserMessage from './components/common/NewUserMessage';
 import './App.css';
 
 function App() {
-  const [stores, updateStores] = useState([]);
+  const [stores, updateStores] = useState(null);
   const [storesAlert, updateStoresAlert] = useState(null);
   const [listsAlert, updateListsAlert] = useState(null);
   const [lists, updateLists] = useState(null);
   const [userId, setUserId] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const pageTitle = ' | GroceryMapper';
 
   /* Stores */
@@ -197,46 +199,52 @@ function App() {
     }
     getDataFromDB();
   }, [userId])
+  useEffect(() => {
+    if (isLoading && stores?.length && lists?.length) {
+      setIsLoading(false);
+    }
+  }, [stores, lists, isLoading])
 
   return (
     <Router>
-
       <Main>
-        <Switch>
-          <Route path="/" exact={true}>
-            {userId && <Redirect to="/dashboard" />}
-            <Home title={`Home ${pageTitle}`} />
-          </Route>
-          <Route path="/stores" exact={true}>
-            {!userId && <Redirect to="/" />}
-            <Stores title={`My Stores ${pageTitle}`} lists={lists} stores={stores} handleRemoveStore={handleRemoveStore} alert={storesAlert} />
-          </Route>
-          <Route path="/stores/new" exact={true}>
-            {!userId && <Redirect to="/" />}
-            <StoresAdd title={`Add New Store ${pageTitle}`} handleAddStore={handleAddStore} />
-          </Route>
-          <Route path="/stores/:id">
-            {!userId && <Redirect to="/" />}
-            <StoresEdit title={`Edit Store ${pageTitle}`} stores={stores} handleUpdateStore={handleUpdateStore} />
-          </Route>
-          <Route path="/dashboard" exact={true}>
-            {!userId && <Redirect to="/" />}
-            {stores.length > 0 ?
-              <Lists stores={stores} lists={lists} handleRemoveList={handleRemoveList} alert={listsAlert} />
-              : <NewUserMessage />
-            }
-            <Stores title={`User Dashboard ${pageTitle}`} lists={lists} stores={stores} handleRemoveStore={handleRemoveStore} alert={storesAlert} />
-          </Route>
-          <Route path="/lists/new">
-            <ListsAdd title={`New List ${pageTitle}`} stores={stores} handleAddList={handleAddList} />
-          </Route>
-          <Route path="/lists/edit/:id">
-            <ListsEdit title={`Edit List ${pageTitle}`} stores={stores} lists={lists} handleUpdateList={handleUpdateList} />
-          </Route>
-          <Route path="/lists/:id">
-            <ListsShow title={`View List ${pageTitle}`} stores={stores} lists={lists} />
-          </Route>
-        </Switch>
+        {isLoading && <Loader />}
+        {!isLoading &&
+          <Switch>
+            <Route path="/" exact={true}>
+              {userId && <Redirect to="/dashboard" />}
+              <Home title={`Home ${pageTitle}`} />
+            </Route>
+            <Route path="/stores" exact={true}>
+              {!userId && <Redirect to="/" />}
+              <Stores title={`My Stores ${pageTitle}`} lists={lists} stores={stores} handleRemoveStore={handleRemoveStore} alert={storesAlert} />
+            </Route>
+            <Route path="/stores/new" exact={true}>
+              {!userId && <Redirect to="/" />}
+              <StoresAdd title={`Add New Store ${pageTitle}`} handleAddStore={handleAddStore} />
+            </Route>
+            <Route path="/stores/:id">
+              {!userId && <Redirect to="/" />}
+              <StoresEdit title={`Edit Store ${pageTitle}`} stores={stores} handleUpdateStore={handleUpdateStore} />
+            </Route>
+            <Route path="/dashboard" exact={true}>
+              {!userId && <Redirect to="/" />}
+              {stores.length > 0 ?
+                <Lists stores={stores} lists={lists} handleRemoveList={handleRemoveList} alert={listsAlert} />
+                : <NewUserMessage />
+              }
+              <Stores title={`User Dashboard ${pageTitle}`} lists={lists} stores={stores} handleRemoveStore={handleRemoveStore} alert={storesAlert} />
+            </Route>
+            <Route path="/lists/new">
+              <ListsAdd title={`New List ${pageTitle}`} stores={stores} handleAddList={handleAddList} />
+            </Route>
+            <Route path="/lists/edit/:id">
+              <ListsEdit title={`Edit List ${pageTitle}`} stores={stores} lists={lists} handleUpdateList={handleUpdateList} />
+            </Route>
+            <Route path="/lists/:id">
+              <ListsShow title={`View List ${pageTitle}`} stores={stores} lists={lists} />
+            </Route>
+          </Switch>}
       </Main>
     </Router>
   );

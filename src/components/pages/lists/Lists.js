@@ -8,7 +8,7 @@ import '../css/Lists.css';
 
 export default function Lists({ title, stores, lists, alert, handleRemoveList }) {
   const history = useHistory();
-  const [isLoading, updateIsLoading] = useState(true);
+  const [isLoading, updateIsLoading] = useState(false);
   const handleRemove = (id) => {
     handleRemoveList(id);
   }
@@ -20,14 +20,6 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
     history.push(`/lists/${id}`)
   }
 
-
-  useEffect(() => {
-    if (lists?.length) {
-      return updateIsLoading(false);
-    }
-    updateIsLoading(true);
-  }, [lists])
-
   useEffect(() => {
     if (alert?.type === 'loading') {
       return updateIsLoading(true);
@@ -37,12 +29,14 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
 
   return (
     <section className="rg-lists mb-5 mt-4">
-      <h2 className="mb-1">📝 Manage Lists </h2>
+      <h2 className="mb-1">📝 &nbsp;Manage Lists </h2>
       <Button handleOnClick={() => history.push('/lists/new')}
         className="btn-block" icon="fas fa-plus">
         Add New List</Button>
       {lists?.length === 0 &&
-        <EmptyList>Once you add a list, your lists will appear here.</EmptyList>
+        <EmptyList>
+          Once you add a list, your lists will appear here.
+        </EmptyList>
       }
 
       {alert && <Alert type={alert.type} message={alert.message} />}
@@ -65,8 +59,6 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
           </span>
         </ListItem>)}
       </ul>}
-
-
     </section>
   )
 }

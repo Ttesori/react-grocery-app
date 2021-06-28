@@ -4,7 +4,6 @@ import ListItem from '../../common/ListItem';
 import { useHistory } from 'react-router-dom';
 import Button from '../../common/Button';
 import Alert from '../../common/Alert';
-import { auth } from '../../../firebase';
 import '../css/Stores.css';
 import EmptyList from '../../common/EmptyList';
 
@@ -20,13 +19,6 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
   }
 
   useEffect(() => {
-    if (stores.length > 0) {
-      return updateIsLoading(false);
-    }
-    updateIsLoading(true);
-  }, [stores])
-
-  useEffect(() => {
     if (alert?.type === 'loading') {
       return updateIsLoading(true);
     }
@@ -40,7 +32,7 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
 
   return (
     <section className="rg-stores">
-      <h2 className="mb-1">🏪 Manage Stores</h2>
+      <h2 className="mb-1">🏪 &nbsp;Manage Stores</h2>
       <Button
         handleOnClick={() => history.push('/stores/new')}
         className="btn-block" icon="fas fa-plus">

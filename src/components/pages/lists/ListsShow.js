@@ -7,7 +7,6 @@ export default function ListsShow({ title, lists, stores }) {
   const { id } = useParams();
   let history = useHistory();
   const [list, updateList] = useState([]);
-  const [isLoading, updateIsLoading] = useState(true);
   const [listStore, updateListStore] = useState([]);
 
   useEffect(() => {
@@ -17,16 +16,13 @@ export default function ListsShow({ title, lists, stores }) {
       return history.push('/lists');
     }
     updateListStore(stores.find(store => store.id === newList.store_id));
-    if (newList?.id) {
-      updateIsLoading(false)
-    }
   }, [lists, stores, id, history])
 
   useEffect(() => {
     document.title = title;
   }, [title])
 
-  return (!isLoading &&
+  return (
     <section className="p-5">
       <h2>{list?.name} at {listStore.name}</h2>
       <ShowList list={list} store={listStore} />
