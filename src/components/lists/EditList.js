@@ -62,7 +62,7 @@ export default function EditList({ handleUpdateList, list, stores }) {
     updateItems(sortItems(newItems));
     updateModalAlerts({ type: 'success', msg: 'Item added successfully!' });
     setTimeout(() => {
-      updateModalAlerts(undefined);
+      updateModalAlerts(null);
     }, 3000);
   }
   const handleSaveList = (e) => {
@@ -110,7 +110,7 @@ export default function EditList({ handleUpdateList, list, stores }) {
     const remapItems = [...items];
     // loop through items for each new store section
     const newItems = remapItems.map(item => {
-      const newSection = newStoreMap.find(section => item.section_name === section.text);
+      const newSection = newStoreMap.find(section => section.text.toLowerCase().includes(item.section_name.toLowerCase()));
       const otherSection = newStoreMap.find(section => section.text === 'Other');
       if (newSection) {
         return {
@@ -163,20 +163,22 @@ export default function EditList({ handleUpdateList, list, stores }) {
           <EmptyList>Once you add list items, they'll appear here.</EmptyList>
         }
         <Button icon="fas fa-plus" className="btn-outline mt-2 mb-3 w-full" handleOnClick={() => updateModalIsOpen(true)}>Add New Items</Button>
-        <Modal isOpen={modalIsOpen} handleClose={() => { updateModalIsOpen(false) }}>
-          <h4>Add Items to List</h4>
-          {modalAlerts &&
-            <Alert type={modalAlerts.type} message={modalAlerts.msg} />
-          }
-          <InputText placeholder="Enter item name" label="Item Name" value={newListItem.text} handleChange={handleNewItemChange} isValid={true} />
-          <SelectList label="Item Section" items={storeMap} onChange={handleSectionChange} value={newListItem.section_id} id="store-sections-item" />
-          <Button icon="fas fa-plus" className="btn-block" handleOnClick={handleAddItem}>Add Item</Button>
-          <Button className="w-full btn-link text-sm error" icon="fas fa-times" handleOnClick={() => updateModalIsOpen(false)}> Close</Button>
-        </Modal>
 
         <Button handleOnClick={handleSaveList} className="btn-block" icon="fas fa-download">Save List</Button>
         <Button className="w-full btn-link text-sm error" icon="fas fa-times" handleOnClick={() => history.push('/dashboard')}> Cancel</Button>
       </form>
+      <Modal isOpen={modalIsOpen} handleClose={() => { updateModalIsOpen(false) }}>
+        <h4>Add Items to Your List</h4>
+        {modalAlerts &&
+          <Alert type={modalAlerts.type} message={modalAlerts.msg} />
+        }
+        <form onSubmit={handleAddItem}>
+          <InputText placeholder="Enter item name" label="Item Name" value={newListItem.text} handleChange={handleNewItemChange} isValid={true} id="item-name" />
+          <SelectList label="Item Section" items={storeMap} onChange={handleSectionChange} value={newListItem.section_id} id="store-sections-item" />
+          <Button icon="fas fa-plus" className="btn-block" handleOnClick={handleAddItem}>Add Item</Button>
+        </form>
+        <Button className="w-full btn-link text-sm error" icon="fas fa-times" handleOnClick={() => updateModalIsOpen(false)}> Close</Button>
+      </Modal>
     </>
   )
 }

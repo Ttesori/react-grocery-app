@@ -200,7 +200,7 @@ function App() {
     getDataFromDB();
   }, [userId])
   useEffect(() => {
-    if (isLoading && stores?.length && lists?.length) {
+    if (isLoading && stores?.length > -1 && lists?.length > -1) {
       setIsLoading(false);
     }
   }, [stores, lists, isLoading])

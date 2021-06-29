@@ -5,7 +5,7 @@ export default function ListsAdd({ title, stores, handleAddList }) {
   const history = useHistory();
 
   useEffect(() => {
-    if (stores && stores.length === 0) {
+    if (stores.length === 0) {
       return history.push('/dashboard')
     }
   }, [stores, history]);
