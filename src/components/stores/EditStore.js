@@ -24,6 +24,7 @@ export default function EditStore({ handleUpdateStore, store, newStore }) {
   }
   const handleAddSection = (e) => {
     e.preventDefault();
+    if (newSectionName.length === 0) return false;
     const text = newSectionName.trim().slice(0, 1).toUpperCase() + newSectionName.trim().slice(1).toLowerCase();
     const newSection = {
       id: `section-${Math.ceil(Math.random() * 999999)}`,
@@ -67,9 +68,13 @@ export default function EditStore({ handleUpdateStore, store, newStore }) {
 
   const handleRemoveSection = (e, sectionId) => {
     e.preventDefault();
-    const newSections = sections.filter(section => section.id !== sectionId);
-    updateSections([...newSections]);
-    updateSectionsOrder(newSections.map(section => section.id))
+    const el = e.target.parentElement.parentElement;
+    el.classList.add('animate-fade');
+    setTimeout(() => {
+      const newSections = sections.filter(section => section.id !== sectionId);
+      updateSections([...newSections]);
+      updateSectionsOrder(newSections.map(section => section.id))
+    }, 300);
   }
 
   return (
@@ -81,8 +86,10 @@ export default function EditStore({ handleUpdateStore, store, newStore }) {
         <DragDropContainer items={sections} itemsOrder={sectionsOrder} onDragEnd={handleOnDragEnd} listId="sections" isEditable={true} handleEdit={handleEdit} isRemovable={true} handleRemove={handleRemoveSection} />
         <Button icon="fas fa-plus" className="btn-outline mt-2 mb-3 w-full" handleOnClick={() => updateModalisOpen(true)}>Add New Section</Button>
         <Modal isOpen={modalIsOpen} handleClose={() => updateModalisOpen(false)}>
-          <InputText placeholder="Enter section name" label="Section Name:" value={newSectionName} handleChange={handleSectionChange} isValid={sectionIsValid} invalidText='Please enter at least one section' />
+          <h4>Add New Section</h4>
+          <InputText placeholder="Enter section name" label="Section Name" value={newSectionName} handleChange={handleSectionChange} isValid={sectionIsValid} invalidText='Please enter at least one section' />
           <Button className="btn-block" handleOnClick={handleAddSection}>Add Section</Button>
+          <Button className="w-full btn-link text-sm error" icon="fas fa-times" handleOnClick={() => updateModalisOpen(false)}> Close</Button>
         </Modal>
         <Button icon="fas fa-download" className="btn-block" handleOnClick={handleSubmit}>Save Store</Button>
         <Button className="w-full btn-link text-sm error" icon="fas fa-times" handleOnClick={() => history.push('/dashboard')}> Cancel</Button>

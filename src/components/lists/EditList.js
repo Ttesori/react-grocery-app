@@ -87,8 +87,13 @@ export default function EditList({ handleUpdateList, list, stores }) {
   }
   const handleRemove = (e, id) => {
     e.preventDefault();
-    const keep = items.filter(item => item.id !== id);
-    updateItems([...keep]);
+    let el = e.target.parentElement.parentElement;
+    el.classList.add('animate-fade');
+    setTimeout(() => {
+      const keep = items.filter(item => item.id !== id);
+      updateItems([...keep]);
+    }, 300);
+
   }
   const handleEditListItem = (e, id) => {
     const toEdit = items.find(item => item.id === id);
@@ -180,7 +185,7 @@ export default function EditList({ handleUpdateList, list, stores }) {
   return (
     <>
       <form>
-        <InputText label="List Name" id="list-name" placeholder="Enter List Name..." handleChange={handleNameChange} value={name} isValid={true} className="p-2 bg-neutral-light rounded mb-2" />
+        <InputText label="List Name" id="list-name" placeholder="Enter List Name..." handleChange={handleNameChange} value={name} isValid={true} className="p-2 bg-neutral-light rounded mb-2" focused={true} />
 
         <SelectList className="p-2 bg-neutral-light rounded" items={allStoresMap} onChange={handleStoreChange} value={store.id} name="store-sections" label="Store" />
         <h3 className="mt-3">List Items</h3>
@@ -211,7 +216,7 @@ export default function EditList({ handleUpdateList, list, stores }) {
             <SelectList label="Item Section" items={storeMap} onChange={handleSectionChange} value={newListItem.section_id} id="store-sections-item" />
             <Button icon="fas fa-plus" className="btn-block" handleOnClick={handleAddItem}>Add Item</Button>
           </form>}
-        <Button className="w-full btn-link text-sm error" icon="fas fa-times" handleOnClick={() => updateModalIsOpen(false)}> Close</Button>
+        <Button className="w-full btn-link text-sm error" icon="fas fa-times" handleOnClick={() => updateModalIsOpen(false)}> {items.length > 0 ? 'Done Adding Items' : 'Close'}</Button>
 
 
       </Modal>

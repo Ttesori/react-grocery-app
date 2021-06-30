@@ -9,8 +9,8 @@ import '../css/Lists.css';
 export default function Lists({ title, stores, lists, alert, handleRemoveList }) {
   const history = useHistory();
   const [isLoading, updateIsLoading] = useState(false);
-  const handleRemove = (id) => {
-    handleRemoveList(id);
+  const handleRemove = (e, id) => {
+    handleRemoveList(e, id);
   }
 
   const handleUpdateList = (id) => {
@@ -53,7 +53,7 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
           <span className="list-buttons">
             <Button label="show" className="btn-icon" icon="fas fa-share" handleOnClick={() => handleViewList(list.id)} />
             <Button label="edit" className="btn-icon ml-2" icon="fas fa-cog" handleOnClick={() => handleUpdateList(list.id)} />
-            <Button label="remove" className="btn-icon ml-2 pr-0" icon="fas fa-times" handleOnClick={() => handleRemove(list.id)} id={list.id} />
+            <Button label="remove" className="btn-icon ml-2 pr-0" icon="fas fa-times" handleOnClick={(e) => handleRemove(e, list.id)} id={list.id} />
           </span>
           <span className="list-store">
             {stores.find(store => store.id === list.store_id).name}</span>

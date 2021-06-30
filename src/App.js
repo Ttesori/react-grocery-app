@@ -35,27 +35,30 @@ function App() {
         updateStoresAlert({ type: 'success', message: 'Store added successfully!' });
         setTimeout(() => {
           updateStoresAlert(null);
-        }, 3000);
+        }, 2200);
       }
     } catch (error) {
       updateStoresAlert({ type: 'error', message: error })
     }
   }
   // Remove Store
-  const handleRemoveStore = (storeId) => {
+  const handleRemoveStore = (e, storeId) => {
+    const el = e.target.parentElement.parentElement;
     const newStores = stores.filter(store => store.id !== storeId);
     updateStoresAlert({ type: 'loading', message: 'Removing store...' });
-    removeStoreFromDB(storeId, newStores);
+    removeStoreFromDB(storeId, newStores, el);
   }
-  const removeStoreFromDB = async (store_id, newStores) => {
+  const removeStoreFromDB = async (store_id, newStores, el) => {
     try {
       let db_resp = await db.collection("stores").doc(store_id).delete();
       if (db_resp === undefined) {
-        updateStores([...newStores]);
+
+        console.log(el);
         updateStoresAlert({ type: 'success', message: 'Store removed successfully!' });
+        updateStores([...newStores]);
         setTimeout(() => {
           updateStoresAlert(null);
-        }, 3000);
+        }, 2400);
       }
     } catch (error) {
       updateStoresAlert({ type: 'error', message: 'Error removing store!' });
@@ -81,7 +84,7 @@ function App() {
         updateStoresAlert({ type: 'success', message: 'Store updated!' });
         setTimeout(() => {
           updateStoresAlert(null);
-        }, 3000);
+        }, 2200);
       }
     } catch (error) {
       console.error(error);
@@ -101,27 +104,30 @@ function App() {
         updateListsAlert({ type: 'success', message: 'List added successfully!' });
         setTimeout(() => {
           updateListsAlert(null);
-        }, 3000);
+        }, 2400);
       }
     } catch (error) {
       updateListsAlert({ type: 'error', message: error })
     }
   }
   // Remove List
-  const handleRemoveList = (list_id) => {
+  const handleRemoveList = (e, list_id) => {
+    const el = e.target.parentElement.parentElement;
     const toKeep = lists.filter(list => list.id !== list_id);
     updateListsAlert({ type: 'loading', message: 'Removing list...' });
-    removeListFromDB(list_id, toKeep);
+    removeListFromDB(list_id, toKeep, el);
   }
-  const removeListFromDB = async (list_id, newLists) => {
+  const removeListFromDB = async (list_id, newLists, el) => {
     try {
       let db_resp = await db.collection("lists").doc(list_id).delete();
       if (db_resp === undefined) {
-        updateLists([...newLists]);
         updateListsAlert({ type: 'success', message: 'List removed successfully!' });
+        console.log(el);
+        updateLists([...newLists]);
+
         setTimeout(() => {
           updateListsAlert(null);
-        }, 3000);
+        }, 2400);
       }
     } catch (error) {
       updateListsAlert({ type: 'error', message: 'Error removing list!' });
@@ -147,7 +153,7 @@ function App() {
         updateListsAlert({ type: 'success', message: 'List updated!' });
         setTimeout(() => {
           updateListsAlert(null);
-        }, 3000);
+        }, 2400);
       }
     } catch (error) {
       console.error(error);

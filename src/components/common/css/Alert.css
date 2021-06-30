@@ -1,32 +1,35 @@
 .alert {
-  @apply p-3 my-3 mx-auto bg-gray-50 transition-all border border-gray-200 rounded text-neutral text-sm absolute top-2 left-2 right-2 shadow-lg transform scale-0;
+  @apply p-3 my-3 mx-auto bg-gray-50 transition-all border border-gray-200 rounded text-neutral text-sm absolute top-1 left-4 right-4 shadow-md text-center;
   animation-duration: 1.5s;
-  animation-name: fadeIn;
+  animation-name: fadeInAlert;
   animation-direction: alternate;
   animation-iteration-count: 2;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInAlert {
   from {
-    transform: scaleY(0);
+    opacity: 0;
+    transform: translateY(0);
   }
 
   10% {
-    transform: scaleY(1);
+    opacity: 1;
+    transform: translateY(1);
   }
   100% {
-    transform: scaleY(1);
+    opacity: 1;
+    transform: translateY(1);
   }
 }
 
 .alert.error {
-  @apply border-red-500 bg-red-50 text-red-800;
+  @apply border-red-500 bg-red-50 text-red-800 bg-opacity-95;
 }
 
 .alert.success {
-  @apply border-green-500 bg-green-50 text-green-800;
+  @apply border-green-500 bg-green-50 text-green-800 bg-opacity-95;
 }
 
 .alert.loading {
-  @apply border-yellow-500 bg-yellow-50 text-yellow-900;
+  @apply border-yellow-500 bg-yellow-50 text-yellow-900 bg-opacity-95;
 }

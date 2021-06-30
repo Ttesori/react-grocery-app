@@ -11,7 +11,7 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
   const history = useHistory();
   const [isLoading, updateIsLoading] = useState(false);
   const handleRemove = (e, id) => {
-    handleRemoveStore(id);
+    handleRemoveStore(e, id);
   }
 
   handleUpdateStore = (id) => {

@@ -84,3 +84,40 @@ button:focus {
 .edit-text {
   @apply inline-block flex-grow mr-3 py-1 px-2 transition-all bg-white bg-opacity-75 border border-gray-300  rounded-sm text-sm;
 }
+
+.animate-fade {
+  animation-duration: 0.2s;
+  animation-name: fadeOut;
+}
+
+.animate-fadeIn {
+  animation-duration: 0.2s;
+  animation-name: fadeIn;
+}
+
+.animate-fadeOutLonger {
+  animation-duration: 1s;
+  animation-name: fadeOut;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(1);
+  }
+}
