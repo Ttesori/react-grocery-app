@@ -20,7 +20,9 @@ export default function Main({ children }) {
             </>
           </nav>
           : ''}
+        <span className="rg-decorations"><span className="inner-dec"></span></span>
       </header>
+
       <main className="rg-main">
         {children}
       </main>

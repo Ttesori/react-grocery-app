@@ -34,6 +34,13 @@ export default function EditList({ handleUpdateList, list, stores }) {
   }
   const handleStoreChange = (e) => {
     const newStore = stores.find(store => store.id === e.target.value);
+    // Update new list item
+    updateNewListItem({
+      text: '',
+      quantity: 1,
+      section_id: newStore?.sections[0]?.id,
+      section_name: newStore?.sections[0]?.text,
+    })
     updateStore(newStore);
   }
   const handleSectionChange = (e) => {
@@ -46,13 +53,15 @@ export default function EditList({ handleUpdateList, list, stores }) {
 
   const handleAddItem = (e) => {
     e.preventDefault();
+    if (newListItem.text.length === 0) return false;
     const newItems = [...items, {
-      id: `item-${Math.ceil(Math.random() * 9999999)}`,
+      id: `item-${Math.ceil(Math.random() * 99999999)}`,
       text: newListItem.text,
       quantity: newListItem.quantity,
       section_id: newListItem.section_id,
       section_name: newListItem.section_name
     }];
+    console.log('adding new item', newListItem);
     updateNewListItem({
       text: '',
       quantity: 1,
@@ -67,6 +76,7 @@ export default function EditList({ handleUpdateList, list, stores }) {
   }
   const handleSaveList = (e) => {
     e.preventDefault();
+    if (items.length === 0) return false;
     const newList = {
       name: name || 'New List',
       store_id: store.id,
@@ -104,30 +114,46 @@ export default function EditList({ handleUpdateList, list, stores }) {
     return sortedItems;
   }
 
+  const getNewSection = (item, newSection, originalSection) => {
+    return {
+      id: item.id,
+      text: item.text,
+      quantity: item.quantity,
+      section_id: newSection.value,
+      section_name: newSection.text,
+      original_section: originalSection ? originalSection : undefined
+    }
+  }
+
   const reorderItems = (newStoreMap) => {
     if (items.length === 0) return;
     // make copy of current items
     const remapItems = [...items];
     // loop through items for each new store section
     const newItems = remapItems.map(item => {
-      const newSection = newStoreMap.find(section => section.text.toLowerCase().includes(item.section_name.toLowerCase()));
-      const otherSection = newStoreMap.find(section => section.text === 'Other');
-      if (newSection) {
-        return {
-          id: item.id,
-          text: item.text,
-          quantity: item.quantity,
-          section_id: newSection.value,
-          section_name: newSection.text
+      console.log('remapping', item);
+
+      // if it has an original section, check for that first
+      // Check for original section if present
+      console.log('original_section', item.original_section);
+      if (item.original_section) {
+        let originalSection = newStoreMap.find(section => section.text.toLowerCase().includes(item.original_section.toLowerCase()));
+        if (originalSection) {
+          return getNewSection(item, originalSection);
         }
       }
-      return {
-        id: item.id,
-        text: item.text,
-        quantity: item.quantity,
-        section_id: otherSection.value,
-        section_name: otherSection.text
+
+      // otherwise, continue with remapping
+      let newSection = newStoreMap.find(section => section.text.toLowerCase().includes(item.section_name.toLowerCase()));
+      console.log('newSection', newSection);
+      if (newSection) {
+        return getNewSection(item, newSection);
       }
+
+      // Else add item to other section
+      const otherSection = newStoreMap.find(section => section.text.toLowerCase().includes('other'));
+      console.log('othersection', otherSection, item.section_name);
+      return getNewSection(item, otherSection, item.section_name)
     });
     updateItems(newItems)
   }
@@ -139,20 +165,22 @@ export default function EditList({ handleUpdateList, list, stores }) {
         text: section.text
       }
     });
-    const otherSection = newStoreMap.find(section => section.text.toLowerCase() === 'other');
+    console.log('newStoreMap', newStoreMap)
+    let otherSection = newStoreMap.find(section => section.text.toLowerCase().includes('other'));
     if (!otherSection) {
-      newStoreMap.push({
-        value: `section-xxxxx`,
+      otherSection = {
+        value: 'section-xxxxx',
         text: 'Other'
-      })
+      }
+      newStoreMap.push(otherSection);
     }
     updateStoreMap(newStoreMap);
-    reorderItems(newStoreMap)
+    reorderItems(newStoreMap);
   }, [store]);
   return (
     <>
       <form>
-        <InputText label="List Name" id="" placeholder="Enter List Name..." handleChange={handleNameChange} value={name} isValid={true} className="p-2 bg-neutral-light rounded mb-2" />
+        <InputText label="List Name" id="list-name" placeholder="Enter List Name..." handleChange={handleNameChange} value={name} isValid={true} className="p-2 bg-neutral-light rounded mb-2" />
 
         <SelectList className="p-2 bg-neutral-light rounded" items={allStoresMap} onChange={handleStoreChange} value={store.id} name="store-sections" label="Store" />
         <h3 className="mt-3">List Items</h3>
@@ -162,22 +190,30 @@ export default function EditList({ handleUpdateList, list, stores }) {
         {items.length === 0 &&
           <EmptyList>Once you add list items, they'll appear here.</EmptyList>
         }
-        <Button icon="fas fa-plus" className="btn-outline mt-2 mb-3 w-full" handleOnClick={() => updateModalIsOpen(true)}>Add New Items</Button>
+        <Button icon="fas fa-plus" className="btn-outline mt-2 mb-3 w-full" handleOnClick={() => {
+          updateModalIsOpen(true);
+
+        }}>Add New Items</Button>
 
         <Button handleOnClick={handleSaveList} className="btn-block" icon="fas fa-download">Save List</Button>
         <Button className="w-full btn-link text-sm error" icon="fas fa-times" handleOnClick={() => history.push('/dashboard')}> Cancel</Button>
       </form>
+
       <Modal isOpen={modalIsOpen} handleClose={() => { updateModalIsOpen(false) }}>
+
         <h4>Add Items to Your List</h4>
         {modalAlerts &&
           <Alert type={modalAlerts.type} message={modalAlerts.msg} />
         }
-        <form onSubmit={handleAddItem}>
-          <InputText placeholder="Enter item name" label="Item Name" value={newListItem.text} handleChange={handleNewItemChange} isValid={true} id="item-name" />
-          <SelectList label="Item Section" items={storeMap} onChange={handleSectionChange} value={newListItem.section_id} id="store-sections-item" />
-          <Button icon="fas fa-plus" className="btn-block" handleOnClick={handleAddItem}>Add Item</Button>
-        </form>
+        {modalIsOpen &&
+          <form onSubmit={handleAddItem} autoFocus>
+            <InputText placeholder="Enter item name" label="Item Name" value={newListItem.text} handleChange={handleNewItemChange} isValid={true} id="item-name" focused={true} />
+            <SelectList label="Item Section" items={storeMap} onChange={handleSectionChange} value={newListItem.section_id} id="store-sections-item" />
+            <Button icon="fas fa-plus" className="btn-block" handleOnClick={handleAddItem}>Add Item</Button>
+          </form>}
         <Button className="w-full btn-link text-sm error" icon="fas fa-times" handleOnClick={() => updateModalIsOpen(false)}> Close</Button>
+
+
       </Modal>
     </>
   )

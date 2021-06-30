@@ -27,20 +27,23 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
     updateIsLoading(false);
   }, [alert]);
 
-  return (
-    <section className="rg-lists mb-5 mt-4">
+  return lists && stores && (
+
+    <section className="rg-lists mb-5 mt-4 relative">
       <h2 className="mb-1">📝 &nbsp;Manage Lists </h2>
       <Button handleOnClick={() => history.push('/lists/new')}
-        className="btn-block" icon="fas fa-plus">
+        className="btn-block mb-3" icon="fas fa-plus">
         Add New List</Button>
+      {alert && <Alert type={alert.type} message={alert.message} />}
+      {isLoading && lists?.length > 0 &&
+        lists.map((list, i) => <div key={i} className="h-16 bg-neutral-light mb-1.5"></div>)
+      }
       {lists?.length === 0 &&
         <EmptyList>
           Once you add a list, your lists will appear here.
         </EmptyList>
       }
-
-      {alert && <Alert type={alert.type} message={alert.message} />}
-      {!isLoading && lists?.length > 0 && <ul className="rg-list-main mt-3">
+      {!isLoading && lists?.length > 0 && <ul className="rg-list-main">
         {lists?.length > 0 && lists.map((list, i) => <ListItem key={i} className="mb-1.5">
           <span className="list-name font-semibold">
             <Link to={`/lists/edit/${list.id}`}>

@@ -31,16 +31,19 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
   }, [title])
 
   return (
-    <section className="rg-stores">
+    <section className="rg-stores relative">
       <h2 className="mb-1">🏪 &nbsp;Manage Stores</h2>
       <Button
         handleOnClick={() => history.push('/stores/new')}
-        className="btn-block" icon="fas fa-plus">
+        className="btn-block mb-3" icon="fas fa-plus">
         Create New Store</Button>
 
       {alert && <Alert type={alert.type} message={alert.message} />}
+      {isLoading && stores?.length > 0 &&
+        stores.map((store, i) => <div key={i} className="h-9 bg-white bg-opacity-10 mb-1.5"></div>)
+      }
       {!isLoading && stores?.length > 0 &&
-        <ul className="mt-3 rg-store-main">
+        <ul className="rg-store-main">
           {(stores.length > 0) && stores.map((store, i) => <ListItem key={i} className="mb-1.5">
             <span className="store-name">{store.name}</span>
             <span className="store-buttons">

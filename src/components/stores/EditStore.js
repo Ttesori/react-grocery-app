@@ -77,6 +77,7 @@ export default function EditStore({ handleUpdateStore, store, newStore }) {
       <form>
         <InputText id={"store_name"} placeholder="Enter store name..." label="Store Name" handleChange={handleNameChange} value={storeName} isValid={nameIsValid} invalidText='Please enter store name' className="p-2 bg-neutral-light rounded" />
         <h4 className="border-t-2 border-neutral-light mt-6 pt-4 text-neutral text-lg font-bold text-center">Store Sections</h4>
+        <p>Drag and drop the sections below to match how you typically shop. Remove any sections you don't use and edit the names to fit your store.</p>
         <DragDropContainer items={sections} itemsOrder={sectionsOrder} onDragEnd={handleOnDragEnd} listId="sections" isEditable={true} handleEdit={handleEdit} isRemovable={true} handleRemove={handleRemoveSection} />
         <Button icon="fas fa-plus" className="btn-outline mt-2 mb-3 w-full" handleOnClick={() => updateModalisOpen(true)}>Add New Section</Button>
         <Modal isOpen={modalIsOpen} handleClose={() => updateModalisOpen(false)}>

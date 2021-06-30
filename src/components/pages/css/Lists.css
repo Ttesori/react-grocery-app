@@ -5,7 +5,7 @@
   @apply rounded pb-1 pt-2 px-3 items-center justify-between grid place-content-end;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 1fr;
-  background: rgba(11, 79, 108, 0.1);
+  background: #e6edf0;
 }
 
 .list-name a {

@@ -12,14 +12,14 @@
   --color-secondary: #1dab52;
   --color-neutral-dk: #072c35;
   --color-neutral: rgb(11, 79, 108);
-  --color-neutral-lt: rgba(11, 79, 108, 0.1);
+  --color-neutral-lt: #e6edf0;
   --color-neutral-50: rgba(11, 79, 108, 0.5);
 }
 
 html {
   height: 100vh;
   height: -webkit-fill-available;
-  height: fill-available;
+  height: stretch;
 }
 
 body {
@@ -28,7 +28,7 @@ body {
   color: var(--color-dark-neutral);
   height: 100vh;
   height: -webkit-fill-available;
-  height: fill-available;
+  height: stretch;
 }
 h2,
 h3,
@@ -61,6 +61,12 @@ li {
 
 fieldset {
   @apply border-0 p-0 m-0 mb-1;
+}
+
+input:focus-visible,
+button:focus {
+  outline: none !important;
+  box-shadow: 0px 0px 0px 2px var(--color-secondary);
 }
 
 .is-invalid input {

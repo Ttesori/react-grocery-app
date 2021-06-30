@@ -1,13 +1,22 @@
 import './css/InputText.css';
 import { useEffect, useRef } from "react";
-export default function InputText({ label, id, placeholder, className, handleChange, value, isValid, invalidText, type, required }) {
+export default function InputText({ label, id, placeholder, className, handleChange, value, isValid, invalidText, type, required, focused }) {
   const field = useRef();
   const localHandleChange = (e) => {
     handleChange(field.current.value);
   }
   useEffect(() => {
     field.current.value = value;
-  }, [value])
+  }, [value]);
+
+  useEffect(() => {
+    console.log('component mounted');
+    if (focused) {
+      setTimeout(() => {
+        field.current.focus();
+      }, 50);
+    }
+  }, [focused])
 
   return (
     <fieldset className={`fieldset ${className || ''}${!isValid ? 'is-invalid' : ''}`}>
