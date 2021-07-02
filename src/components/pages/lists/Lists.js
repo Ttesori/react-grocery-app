@@ -17,7 +17,7 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
     history.push(`/lists/edit/${id}`)
   }
   const handleViewList = (id) => {
-    history.push(`/lists/${id}`)
+    history.push(`/lists/view/${id}`)
   }
 
   useEffect(() => {

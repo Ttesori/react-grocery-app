@@ -16,6 +16,9 @@
   @apply border-0 py-1 my-2 relative;
   background: none;
 }
+.page-home .rg-decorations {
+  @apply hidden;
+}
 
 .page-home .rg-footer::before {
   display: none;

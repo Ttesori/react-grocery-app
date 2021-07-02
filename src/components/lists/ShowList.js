@@ -1,4 +1,3 @@
-import { useHistory } from 'react-router-dom';
 import './css/ShowList.css';
 import ListItem from "../common/ListItem";
 

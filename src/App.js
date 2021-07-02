@@ -19,7 +19,7 @@ function App() {
   const [storesAlert, updateStoresAlert] = useState(null);
   const [listsAlert, updateListsAlert] = useState(null);
   const [lists, updateLists] = useState(null);
-  const [userId, setUserId] = useState('');
+  const [userId, setUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const pageTitle = ' | GroceryMapper';
 
@@ -168,7 +168,7 @@ function App() {
         const uid = user.uid;
         setUserId(uid);
       } else {
-        setUserId('');
+        setIsLoading(false);
       }
     });
   }, []);
@@ -176,7 +176,6 @@ function App() {
   // Load data from DB on app start
   useEffect(() => {
     const getDataFromDB = async () => {
-      if (!userId) return;
       try {
         let db_resp = await db.collection("stores").where("user_id", "==", userId).get();
         let stores = [];
@@ -203,8 +202,10 @@ function App() {
         console.error(error)
       }
     }
+    if (!userId) return;
     getDataFromDB();
   }, [userId])
+
   useEffect(() => {
     if (isLoading && stores?.length > -1 && lists?.length > -1) {
       setIsLoading(false);
@@ -221,6 +222,9 @@ function App() {
               {userId && <Redirect to="/dashboard" />}
               <Home title={`Home ${pageTitle}`} />
             </Route>
+            <Route path="/lists/view/:id">
+              <ListsShow title={`View List ${pageTitle}`} />
+            </Route>
             <Route path="/stores" exact={true}>
               {!userId && <Redirect to="/" />}
               <Stores title={`My Stores ${pageTitle}`} lists={lists} stores={stores} handleRemoveStore={handleRemoveStore} alert={storesAlert} />
@@ -235,7 +239,7 @@ function App() {
             </Route>
             <Route path="/dashboard" exact={true}>
               {!userId && <Redirect to="/" />}
-              {stores.length > 0 ?
+              {stores?.length > 0 ?
                 <Lists stores={stores} lists={lists} handleRemoveList={handleRemoveList} alert={listsAlert} />
                 : <NewUserMessage />
               }
@@ -244,11 +248,9 @@ function App() {
             <Route path="/lists/new">
               <ListsAdd title={`New List ${pageTitle}`} stores={stores} handleAddList={handleAddList} />
             </Route>
+
             <Route path="/lists/edit/:id">
               <ListsEdit title={`Edit List ${pageTitle}`} stores={stores} lists={lists} handleUpdateList={handleUpdateList} />
-            </Route>
-            <Route path="/lists/:id">
-              <ListsShow title={`View List ${pageTitle}`} stores={stores} lists={lists} />
             </Route>
           </Switch>}
       </Main>
