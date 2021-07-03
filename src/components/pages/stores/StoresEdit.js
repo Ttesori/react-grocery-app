@@ -21,7 +21,7 @@ export default function StoresEdit({ newStore, title, handleUpdateStore, stores 
   }, [title])
 
   return (
-    <section className="rg-add-store my-5 mx-3">
+    <section className="rg-add-store my-5 mx-auto max-w-screen-sm">
       <h2>🛒 Edit Store</h2>
       {ourStore && <EditStore handleUpdateStore={handleUpdateStore} store={ourStore} />}
     </section>

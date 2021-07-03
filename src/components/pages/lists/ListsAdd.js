@@ -15,7 +15,7 @@ export default function ListsAdd({ title, stores, handleAddList }) {
   }, [title])
 
   return (
-    <section className="p-5">
+    <section className="p-5 max-w-screen-sm mx-auto">
       <h2>Add New List</h2>
       <EditList
         stores={stores}

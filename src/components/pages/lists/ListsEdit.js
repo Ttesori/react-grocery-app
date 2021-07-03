@@ -25,7 +25,7 @@ export default function ListsEdit({ title, stores, lists, handleUpdateList }) {
 
   if (isLoading) return <Loader />
   return (
-    <section className="p-5">
+    <section className="p-5 max-w-screen-sm mx-auto">
       <h2>Edit Lists</h2>
       <EditList list={list} stores={stores} handleUpdateList={handleUpdateList} />
     </section>

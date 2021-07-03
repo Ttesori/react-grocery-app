@@ -62,7 +62,7 @@ export default function ListsShow({ title }) {
 
   if (isLoading) return <Loader />
   return (
-    <section className="p-5 mt-5">
+    <section className="mx-auto p-5 mt-5 max-w-screen-sm">
       <h2 className="pb-3">{list?.name}  <br />{listStore.name}</h2>
       <ShowList list={list} store={listStore} />
       {auth.currentUser &&

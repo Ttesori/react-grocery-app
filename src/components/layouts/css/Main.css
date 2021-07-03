@@ -97,10 +97,6 @@ p strong {
   @apply text-neutral-dark py-2 px-1 text-sm text-center italic mb-2;
 }
 
-.rg-stores {
-  @apply w-full;
-}
-
 .rg-lists ~ .rg-stores {
   @apply bg-neutral text-white py-5 pb-12;
 }

@@ -1,5 +1,5 @@
 .alert {
-  @apply p-3 my-3 mx-auto bg-gray-50 transition-all border border-gray-200 rounded text-neutral text-sm absolute top-1 left-4 right-4 shadow-md text-center;
+  @apply p-3 my-3 mx-auto bg-gray-50 transition-all border border-gray-200 rounded text-neutral text-sm absolute top-1 left-4 right-4 shadow-md text-center max-w-screen-sm;
   animation-duration: 1.5s;
   animation-name: fadeInAlert;
   animation-direction: alternate;

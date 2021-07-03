@@ -21,7 +21,7 @@ export default function StoresAdd({ title, handleAddStore }) {
   }, [title])
 
   return (
-    <section className="rg-add-store my-5 mx-3">
+    <section className="rg-add-store mx-auto max-w-screen-sm my-5">
       <h2>Create New Store</h2>
       <EditStore handleUpdateStore={handleAddStore} store={defaultStore} newStore={true} />
     </section>
