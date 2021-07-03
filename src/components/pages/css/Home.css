@@ -16,8 +16,16 @@
   @apply border-0 py-1 my-2 relative;
   background: none;
 }
+
+.page-home .rg-header {
+  @apply mt-7;
+}
 .page-home .rg-decorations {
   @apply hidden;
+}
+
+.page-home .rg-footer a {
+  @apply font-normal text-opacity-20 transition-all;
 }
 
 .page-home .rg-footer::before {
@@ -43,7 +51,7 @@
   transform: rotate(-0.5deg);
 }
 .page-home .rg-main .btn-link {
-  @apply mt-2 mb-3;
+  @apply mt-3 mb-3;
 }
 
 .page-home .rg-main h3::before {
@@ -53,11 +61,11 @@
 }
 
 .page-home .rg-signin .form-label {
-  @apply text-primary font-bold mb-1 text-lg mr-0 pr-0;
+  @apply text-primary font-bold mb-1 text-base mr-0 pr-0;
   font-family: var(--font-accent);
   text-shadow: 0px 0px 0.5rem rgba(0, 0, 0, 0.3);
 }
 
 .page-home .rg-signin input {
-  @apply text-center py-1;
+  @apply text-center py-1.5 text-sm;
 }

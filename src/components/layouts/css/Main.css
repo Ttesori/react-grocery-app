@@ -56,7 +56,17 @@ p strong {
 }
 
 .rg-footer {
-  @apply py-4 text-center text-white text-opacity-50 text-sm italic  bg-secondary relative border-t-2 border-primary;
+  @apply py-4 text-center text-white text-opacity-50 text-sm   bg-secondary relative border-t-2 border-primary;
+}
+
+.rg-footer a {
+  @apply text-opacity-50 text-white;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: rgba(255, 255, 255, 0.2);
+}
+.rg-footer a:hover {
+  color: var(--color-primary);
 }
 
 .rg-footer::before {

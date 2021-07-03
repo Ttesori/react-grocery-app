@@ -27,7 +27,7 @@ export default function Main({ children }) {
         {children}
       </main>
       <footer className="rg-footer">
-        GroceryMapper written by Toni
+        <a href="https://github.com/Ttesori"><i className="fab fa-github text-3xl"></i></a>
       </footer>
     </>
   )
