@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import Button from '../../common/Button';
 import Loader from '../../common/Loader';
+import Alert from '../../common/Alert';
 import { db, auth } from '../../../firebase';
 import emailjs from 'emailjs-com';
 import SendList from '../../lists/SendList';
@@ -13,19 +14,21 @@ export default function ListsShow({ title }) {
   const [list, updateList] = useState(null);
   const [listStore, updateListStore] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [emailAlert, setEmailAlert] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
-  const [emailLoading, setEmailLoading] = useState(false);
-
-
 
   const sendEmail = async function (e) {
     e.preventDefault();
-    setEmailLoading(true);
+    setEmailAlert({ type: 'loading', msg: 'Sending email...' })
     try {
       let result = await emailjs.sendForm(process.env.REACT_APP_EMAILJS_SERVICEID, process.env.REACT_APP_EMAILJS_TEMPLATEID, e.target, process.env.REACT_APP_EMAILJS_USERID);
+
       if (result.text === 'OK') {
+        setEmailAlert({ type: 'success', msg: 'Email sent successfully!' });
         setEmailSent(true);
-        setEmailLoading(false);
+        setTimeout(() => {
+          setEmailAlert(false);
+        }, 2300);
       }
 
     } catch (error) {
@@ -62,14 +65,13 @@ export default function ListsShow({ title }) {
 
   if (isLoading) return <Loader />
   return (
-    <section className="mx-auto p-5 mt-5 max-w-screen-sm">
+    <section className="mx-auto p-5 my-5 max-w-screen-sm relative">
       <h2 className="pb-3">{list?.name}  <br />{listStore.name}</h2>
       <ShowList list={list} store={listStore} />
       {auth.currentUser &&
         <>
           {!emailSent && <SendList action={sendEmail} list_id={list?.id} />}
-          {!emailSent && emailLoading && <Loader />}
-          {emailSent && 'Email sent!'}
+          {emailAlert && <Alert type={emailAlert.type} message={emailAlert.msg} />}
           <Button className="w-full btn-link text-sm error mt-5" icon="fas fa-arrow-left" handleOnClick={() => history.push('/dashboard')}> Back to Dashboard</Button>
         </>
 

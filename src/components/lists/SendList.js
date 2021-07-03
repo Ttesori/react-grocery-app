@@ -2,7 +2,7 @@ import '../form/css/InputText.css';
 
 export default function SendList({ action, list_id }) {
   return (
-    <form className="contact-form mt-8 border-t-2 pt-5" onSubmit={action}>
+    <form className="contact-form mt-8 border-t-2 pt-5 relative" onSubmit={action}>
       <h4 className="mb-2">📬 Send List To Someone (Or Yourself!)</h4>
       <input type="hidden" name="link" value={`${process.env.REACT_APP_BASEURL}/lists/view/${list_id}`} />
 
