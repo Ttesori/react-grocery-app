@@ -82,10 +82,8 @@ export default function Signup() {
   }
   return (
     <>
-      <h3><span>{isSignup ? 'Sign Up' : 'Sign In'}</span>
-
-      </h3>
-      <button className="btn-link light text-sm" onClick={() => updateIsSignup(!isSignup)}>
+      <h3><span>{isSignup ? 'Sign Up' : 'Sign In'}</span></h3>
+      <button className="btn-link light text-sm mb-5" onClick={() => updateIsSignup(!isSignup)}>
         {isSignup ? 'Have an account? Sign in' : 'Create an Account'}
       </button>
 
@@ -95,7 +93,7 @@ export default function Signup() {
         <InputText id="email" type="email" label="Email Address" placeholder="you@somewhere.com" handleChange={(value) => updateEmail(value)} value={email} isValid={true} required={true} />
         <InputText id="password" type="password" label="Password" placeholder="At least 6 characters" handleChange={(value) => updatePassword(value)} value={password} isValid={true} required={true} />
         {isSignup && <InputText type="password" label="Confirm Password" placeholder="Must match password above" handleChange={(value) => updateConfirmPassword(value)} value={confirmPassword} isValid={true} required={true} />}
-        <Button className="btn-block mt-4" icon="fas fa-sign-in-alt" handleOnClick={() => handleSubmit()}>{isSignup ? 'Sign Up' : 'Sign In'}</Button>
+        <Button className="btn-block mt-3 hover:shadow-md" icon="fas fa-sign-in-alt" handleOnClick={() => handleSubmit()}>{isSignup ? 'Sign Up' : 'Sign In'}</Button>
       </form>
       {!isSignup &&
         <>
