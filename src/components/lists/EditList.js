@@ -64,7 +64,7 @@ export default function EditList({ handleUpdateList, list, stores }) {
       original_section: '',
       checked: false
     }];
-    console.log('adding new item', newListItem);
+
     updateNewListItem({
       text: '',
       quantity: 1,
@@ -129,7 +129,8 @@ export default function EditList({ handleUpdateList, list, stores }) {
       quantity: item.quantity,
       section_id: newSection.value,
       section_name: newSection.text,
-      original_section: originalSection ? originalSection : ''
+      original_section: originalSection ? originalSection : '',
+      checked: item.checked
     }
   }
 
@@ -139,11 +140,8 @@ export default function EditList({ handleUpdateList, list, stores }) {
     const remapItems = [...items];
     // loop through items for each new store section
     const newItems = remapItems.map(item => {
-      console.log('remapping', item);
-
       // if it has an original section, check for that first
       // Check for original section if present
-      console.log('original_section', item.original_section);
       if (item.original_section) {
         let originalSection = newStoreMap.find(section => section.text.toLowerCase().includes(item.original_section.toLowerCase()));
         if (originalSection) {
@@ -153,14 +151,12 @@ export default function EditList({ handleUpdateList, list, stores }) {
 
       // otherwise, continue with remapping
       let newSection = newStoreMap.find(section => section.text.toLowerCase().includes(item.section_name.toLowerCase()));
-      console.log('newSection', newSection);
       if (newSection) {
         return getNewSection(item, newSection);
       }
 
       // Else add item to other section
       const otherSection = newStoreMap.find(section => section.text.toLowerCase().includes('other'));
-      console.log('othersection', otherSection, item.section_name);
       return getNewSection(item, otherSection, item.section_name)
     });
     updateItems(newItems)
@@ -173,7 +169,6 @@ export default function EditList({ handleUpdateList, list, stores }) {
         text: section.text
       }
     });
-    console.log('newStoreMap', newStoreMap)
     let otherSection = newStoreMap.find(section => section.text.toLowerCase().includes('other'));
     if (!otherSection) {
       otherSection = {

@@ -35,7 +35,7 @@ function App() {
         updateStoresAlert({ type: 'success', message: 'Store added successfully!' });
         setTimeout(() => {
           updateStoresAlert(null);
-        }, 2200);
+        }, 2700);
       }
     } catch (error) {
       updateStoresAlert({ type: 'error', message: error })
@@ -52,13 +52,11 @@ function App() {
     try {
       let db_resp = await db.collection("stores").doc(store_id).delete();
       if (db_resp === undefined) {
-
-        console.log(el);
         updateStoresAlert({ type: 'success', message: 'Store removed successfully!' });
         updateStores([...newStores]);
         setTimeout(() => {
           updateStoresAlert(null);
-        }, 2400);
+        }, 2700);
       }
     } catch (error) {
       updateStoresAlert({ type: 'error', message: 'Error removing store!' });
@@ -84,7 +82,7 @@ function App() {
         updateStoresAlert({ type: 'success', message: 'Store updated!' });
         setTimeout(() => {
           updateStoresAlert(null);
-        }, 2200);
+        }, 2700);
       }
     } catch (error) {
       console.error(error);
@@ -104,7 +102,7 @@ function App() {
         updateListsAlert({ type: 'success', message: 'List added successfully!' });
         setTimeout(() => {
           updateListsAlert(null);
-        }, 2400);
+        }, 2700);
       }
     } catch (error) {
       updateListsAlert({ type: 'error', message: error })
@@ -122,12 +120,11 @@ function App() {
       let db_resp = await db.collection("lists").doc(list_id).delete();
       if (db_resp === undefined) {
         updateListsAlert({ type: 'success', message: 'List removed successfully!' });
-        console.log(el);
         updateLists([...newLists]);
 
         setTimeout(() => {
           updateListsAlert(null);
-        }, 2400);
+        }, 2700);
       }
     } catch (error) {
       updateListsAlert({ type: 'error', message: 'Error removing list!' });
@@ -143,20 +140,32 @@ function App() {
       ...listData
     }
     updateListsAlert({ type: 'loading', message: 'Updating list...' });
-    updateListInDB(list_id, listData, () => updateLists([...toKeep, updatedList]))
-  }
-  const updateListInDB = async (list_id, listData, callback) => {
-    try {
-      console.log(list_id, listData, userId);
-      let list = { user_id: userId, ...listData };
-      console.log(list)
-      let db_resp = await db.collection("lists").doc(list_id).set(list);
-      if (db_resp === undefined) {
-        callback();
+    if (auth.currentUser) {
+      updateListInDB(list_id, listData, () => {
+        updateLists([...toKeep, updatedList])
         updateListsAlert({ type: 'success', message: 'List updated!' });
         setTimeout(() => {
           updateListsAlert(null);
-        }, 2400);
+        }, 2700);
+      });
+    }
+  }
+  const handleUpdateListShow = (list_id, listData) => {
+    const toKeep = lists.filter(list => list.id !== list_id);
+    const updatedList = {
+      id: list_id,
+      ...listData
+    }
+    if (auth.currentUser) {
+      updateListInDB(list_id, listData, () => updateLists([...toKeep, updatedList]))
+    }
+  }
+  const updateListInDB = async (list_id, listData, callback) => {
+    try {
+      let list = { user_id: userId, ...listData };
+      let db_resp = await db.collection("lists").doc(list_id).set(list);
+      if (db_resp === undefined) {
+        callback();
       }
     } catch (error) {
       console.error(error);
@@ -227,7 +236,7 @@ function App() {
               <Home title={`Home ${pageTitle}`} />
             </Route>
             <Route path="/lists/view/:id">
-              <ListsShow title={`View List ${pageTitle}`} />
+              <ListsShow title={`View List ${pageTitle}`} handleUpdateList={handleUpdateListShow} />
             </Route>
             <Route path="/stores" exact={true}>
               {!userId && <Redirect to="/" />}

@@ -29,7 +29,7 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
 
   return lists && stores && (
 
-    <section className="mx-auto rg-lists mb-5 mt-4 relative max-w-screen-sm">
+    <section className="mx-auto rg-lists mb-8 mt-4 relative max-w-screen-sm">
       <h2 className="mb-1">📝 &nbsp;Manage Lists </h2>
       <Button handleOnClick={() => history.push('/lists/new')}
         className="btn-block mb-3" icon="fas fa-plus">

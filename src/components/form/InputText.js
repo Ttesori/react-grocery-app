@@ -10,7 +10,6 @@ export default function InputText({ label, id, placeholder, className, handleCha
   }, [value]);
 
   useEffect(() => {
-    console.log('component mounted');
     if (focused) {
       setTimeout(() => {
         field.current.focus();

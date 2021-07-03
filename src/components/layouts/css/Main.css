@@ -98,7 +98,7 @@ p strong {
 }
 
 .rg-lists ~ .rg-stores {
-  @apply bg-neutral text-white py-5 pb-12;
+  @apply bg-neutral text-white pt-8 pb-12;
 }
 
 .rg-lists ~ .rg-stores h2 {
