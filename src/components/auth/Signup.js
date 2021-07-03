@@ -1,3 +1,4 @@
+import firebase from "firebase/app"
 import { useState } from "react";
 import Button from "../common/Button";
 import InputText from "../form/InputText";
@@ -36,6 +37,32 @@ export default function Signup() {
       return setError(error.message);
     }
   }
+  const handleGoogleLogin = async () => {
+    let provider = new firebase.auth.GoogleAuthProvider();
+
+    try {
+      let result = await firebase.auth().signInWithPopup(provider);
+      console.log(result)
+      if (result.user.email) {
+        history.push('/dashboard');
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  const handleTwitterLogin = async () => {
+    let provider = new firebase.auth.TwitterAuthProvider();
+    try {
+      let result = await firebase.auth().signInWithPopup(provider);
+      console.log(result)
+      if (result.user.email) {
+        history.push('/dashboard');
+      }
+    } catch (error) {
+      console.error(error)
+    }
+
+  }
   const signInUser = async () => {
     if (!email) {
       return setError('Enter a valid email');
@@ -64,10 +91,20 @@ export default function Signup() {
         {isSignup && <InputText type="password" label="Confirm Password" placeholder="Must match password above" handleChange={(value) => updateConfirmPassword(value)} value={confirmPassword} isValid={true} required={true} />}
         <Button className="btn-block mt-4" icon="fas fa-sign-in-alt" handleOnClick={() => handleSubmit()}>{isSignup ? 'Sign Up' : 'Sign In'}</Button>
       </form>
+      {!isSignup &&
+        <>
+          <div className="relative flex justify-center mt-4 text-sm text-white text-opacity-70 mb-1">Or, Sign In With:</div>
+          <div className="flex justify-between items-center mt-1">
+            <Button icon="fab fa-google" icon_color="text-primary" className="mr-1 flex-grow btn-outline bg-transparent border-white border-opacity-25 text-white text-opacity-70" handleOnClick={handleGoogleLogin}>Google</Button>
+            <Button icon="fab fa-twitter" icon_color="text-primary" className="ml-1 flex-grow btn-outline bg-transparent border-white border-opacity-25 text-white text-opacity-70" handleOnClick={handleTwitterLogin}>Twitter</Button>
+          </div>
 
+        </>
+      }
       <button className="btn-link light" onClick={() => updateIsSignup(!isSignup)}>
-        {isSignup ? 'Have an account? Sign in' : 'Need an account? Sign up!'}
+        {isSignup ? 'Have an account? Sign in' : 'Create an Account'}
       </button>
+
     </>
   )
 }

@@ -235,6 +235,10 @@ function App() {
               {userId && <Redirect to="/dashboard" />}
               <Home title={`Home ${pageTitle}`} />
             </Route>
+            <Route path="/reset-password" exact={true}>
+              {userId && <Redirect to="/dashboard" />}
+              <Home title={`Home ${pageTitle}`} />
+            </Route>
             <Route path="/lists/view/:id">
               <ListsShow title={`View List ${pageTitle}`} handleUpdateList={handleUpdateListShow} />
             </Route>

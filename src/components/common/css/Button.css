@@ -32,7 +32,8 @@
 }
 
 .btn-block .fas,
-.btn-outline .fas {
+.btn-outline .fas,
+.btn-outline .fab {
   @apply pr-2;
 }
 

@@ -94,7 +94,7 @@ p strong {
 }
 
 .rg-main p {
-  @apply text-neutral-dark py-2 px-1 text-sm text-center italic mb-2;
+  @apply text-neutral-dark py-2 px-1 text-base text-center mb-2;
 }
 
 .rg-lists ~ .rg-stores {
@@ -110,5 +110,5 @@ p strong {
 }
 
 .rg-new-user {
-  @apply p-5 pb-7 bg-neutral-light text-center;
+  @apply p-5 pb-5 bg-neutral-light text-center text-base;
 }

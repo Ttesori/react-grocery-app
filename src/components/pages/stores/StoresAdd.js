@@ -3,8 +3,7 @@ import EditStore from "../../stores/EditStore";
 import { useEffect } from "react";
 
 export default function StoresAdd({ title, handleAddStore }) {
-  let defaultSections = ['Beverages', 'Bakery', 'Dairy', 'Deli', 'Frozen Foods', 'Meat/Seafood', 'Pantry', 'Produce', 'Snacks', 'Household', 'Other'];
-  defaultSections.sort();
+  let defaultSections = ['Produce', 'Bakery', 'Deli', 'Meat/Seafood', 'Pantry', 'Snacks', 'Beverages', 'Frozen Foods', 'Dairy', 'Household', 'Other'];
   const newSections = defaultSections.map((section, i) => ({
     id: `section-${Math.ceil(Math.random() * 9999999)}`,
     text: section

@@ -25,7 +25,7 @@
 }
 
 .page-home .rg-main {
-  @apply flex flex-col mb-5 mx-8;
+  @apply flex flex-col mb-2 mx-8;
 }
 
 .page-home .rg-signin,

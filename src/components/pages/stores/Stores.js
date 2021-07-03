@@ -31,7 +31,7 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
   }, [title])
 
   return (
-    <section className="rg-stores relative">
+    <section className="rg-stores relative pb-10">
       <div className="mx-auto max-w-screen-sm">
         <h2 className="mb-1">🏪 &nbsp;Manage Stores</h2>
         <Button
