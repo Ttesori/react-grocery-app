@@ -34,13 +34,16 @@
 }
 
 .page-home .rg-main h3 {
-  @apply w-64 self-center relative z-10 h-11 overflow-visible mt-2 mb-4;
+  @apply w-64 self-center relative z-10 h-11 overflow-visible mt-2 mb-0;
   transform: rotate(0.5deg);
 }
 
 .page-home .rg-main h3 span {
   @apply absolute bg-primary text-neutral-dark inset-0 p-2 font-bold text-xl;
   transform: rotate(-0.5deg);
+}
+.page-home .rg-main .btn-link {
+  @apply mt-2 mb-3;
 }
 
 .page-home .rg-main h3::before {
@@ -50,7 +53,7 @@
 }
 
 .page-home .rg-signin .form-label {
-  @apply text-primary font-bold mb-1 text-lg;
+  @apply text-primary font-bold mb-1 text-lg mr-0 pr-0;
   font-family: var(--font-accent);
   text-shadow: 0px 0px 0.5rem rgba(0, 0, 0, 0.3);
 }

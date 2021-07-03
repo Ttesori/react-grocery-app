@@ -82,7 +82,13 @@ export default function Signup() {
   }
   return (
     <>
-      <h3><span>{isSignup ? 'Sign Up' : 'Sign In'}</span></h3>
+      <h3><span>{isSignup ? 'Sign Up' : 'Sign In'}</span>
+
+      </h3>
+      <button className="btn-link light text-sm" onClick={() => updateIsSignup(!isSignup)}>
+        {isSignup ? 'Have an account? Sign in' : 'Create an Account'}
+      </button>
+
       {error && <Alert type="error" message={error} />}
       {message && <Alert type="success" message={message} />}
       <form className="rg-signin">
@@ -101,9 +107,7 @@ export default function Signup() {
 
         </>
       }
-      <button className="btn-link light" onClick={() => updateIsSignup(!isSignup)}>
-        {isSignup ? 'Have an account? Sign in' : 'Create an Account'}
-      </button>
+
 
     </>
   )
