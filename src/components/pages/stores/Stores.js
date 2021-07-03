@@ -32,7 +32,7 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
 
   return (
     <section className="rg-stores relative">
-      <div className="mx-auto max-w-screen-sm px-5">
+      <div className="mx-auto max-w-screen-sm">
         <h2 className="mb-1">🏪 &nbsp;Manage Stores</h2>
         <Button
           handleOnClick={() => history.push('/stores/new')}
@@ -48,7 +48,7 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
             {(stores.length > 0) && stores.map((store, i) => <ListItem key={i} className="mb-1.5">
               <span className="store-name">{store.name}</span>
               <span className="store-buttons">
-                <Button label="edit" className="icon p-0 pr-1" icon="fas fa-cog" handleOnClick={() => handleUpdateStore(store.id)} />
+                <Button label="edit" className="icon p-0 pr-3" icon="fas fa-cog" handleOnClick={() => handleUpdateStore(store.id)} />
                 {lists && lists.filter(list => list.store_id === store.id).length === 0 && <Button label="remove" className="icon p-0" icon="fas fa-times" handleOnClick={handleRemove} id={store.id} />}
               </span>
             </ListItem>)}

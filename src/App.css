@@ -16,20 +16,18 @@
   --color-neutral-50: rgba(11, 79, 108, 0.5);
 }
 
-html {
-  height: 100vh;
-  height: -webkit-fill-available;
-  height: stretch;
-}
-
 body {
   margin: 0;
   font-family: var(--font-main);
   color: var(--color-dark-neutral);
-  height: 100vh;
-  height: -webkit-fill-available;
-  height: stretch;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
+
+html {
+  height: -webkit-fill-available;
+}
+
 h2,
 h3,
 h4 {
@@ -37,7 +35,7 @@ h4 {
   font-weight: 900 !important;
 }
 #root {
-  min-height: 100vh;
+  min-height: 86vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
 }

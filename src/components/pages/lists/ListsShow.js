@@ -36,6 +36,10 @@ export default function ListsShow({ title }) {
     }
   }
 
+  // TODO: Add functionality to toggle checked item
+
+  // TODO: Put email form in a modal
+
 
   useEffect(() => {
     const getListFromDB = async () => {

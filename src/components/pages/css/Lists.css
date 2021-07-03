@@ -1,8 +1,5 @@
-.rg-list-main {
-  min-height: 15vh;
-}
 .rg-list-main li {
-  @apply rounded pb-1 pt-2 px-3 items-center justify-between grid place-content-end;
+  @apply rounded py-2 px-3 items-center justify-between grid place-content-end;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 1fr;
   background: #e6edf0;
