@@ -19,7 +19,7 @@ function App() {
   const [storesAlert, updateStoresAlert] = useState(null);
   const [listsAlert, updateListsAlert] = useState(null);
   const [lists, updateLists] = useState(null);
-  const [userId, setUserId] = useState(null);
+  const [userId, setUserId] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const pageTitle = ' | GroceryMapper';
 
@@ -147,7 +147,10 @@ function App() {
   }
   const updateListInDB = async (list_id, listData, callback) => {
     try {
-      let db_resp = await db.collection("lists").doc(list_id).set({ user_id: userId, ...listData });
+      console.log(list_id, listData, userId);
+      let list = { user_id: userId, ...listData };
+      console.log(list)
+      let db_resp = await db.collection("lists").doc(list_id).set(list);
       if (db_resp === undefined) {
         callback();
         updateListsAlert({ type: 'success', message: 'List updated!' });
@@ -168,7 +171,8 @@ function App() {
         const uid = user.uid;
         setUserId(uid);
       } else {
-        setIsLoading(false);
+        setUserId('');
+        //setIsLoading(false);
       }
     });
   }, []);

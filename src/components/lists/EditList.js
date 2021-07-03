@@ -15,12 +15,13 @@ export default function EditList({ handleUpdateList, list, stores }) {
   const [modalIsOpen, updateModalIsOpen] = useState(false);
   const [storeMap, updateStoreMap] = useState([]);
   const [modalAlerts, updateModalAlerts] = useState()
-  const [newListItem, updateNewListItem] = useState({
+  const DEFAULT_ITEM = {
     text: '',
     quantity: 1,
     section_id: store?.sections[0]?.id,
     section_name: store?.sections[0]?.text,
-  });
+  };
+  const [newListItem, updateNewListItem] = useState(DEFAULT_ITEM);
   const allStoresMap = stores.map(store => {
     return {
       value: store.id,
@@ -59,7 +60,9 @@ export default function EditList({ handleUpdateList, list, stores }) {
       text: newListItem.text,
       quantity: newListItem.quantity,
       section_id: newListItem.section_id,
-      section_name: newListItem.section_name
+      section_name: newListItem.section_name,
+      original_section: '',
+      checked: false
     }];
     console.log('adding new item', newListItem);
     updateNewListItem({
@@ -126,7 +129,7 @@ export default function EditList({ handleUpdateList, list, stores }) {
       quantity: item.quantity,
       section_id: newSection.value,
       section_name: newSection.text,
-      original_section: originalSection ? originalSection : undefined
+      original_section: originalSection ? originalSection : ''
     }
   }
 
