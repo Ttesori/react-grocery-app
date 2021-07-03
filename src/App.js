@@ -172,7 +172,7 @@ function App() {
         setUserId(uid);
       } else {
         setUserId('');
-        //setIsLoading(false);
+        setIsLoading(false);
       }
     });
   }, []);
