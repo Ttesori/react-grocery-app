@@ -54,7 +54,6 @@ export default function Signup() {
     let provider = new firebase.auth.TwitterAuthProvider();
     try {
       let result = await firebase.auth().signInWithPopup(provider);
-      console.log(result)
       if (result.user.email) {
         history.push('/dashboard');
       }

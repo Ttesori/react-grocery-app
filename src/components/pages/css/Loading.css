@@ -1,0 +1,3 @@
+.rg-loading {
+  @apply absolute inset-0 bg-neutral;
+}

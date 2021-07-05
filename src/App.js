@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { auth, db } from './firebase';
 import Main from './components/layouts/Main';
 import Home from './components/pages/Home';
-import Loader from './components/common/Loader';
+import Loading from './components/pages/Loading';
 import Stores from './components/pages/stores/Stores';
 import StoresAdd from './components/pages/stores/StoresAdd';
 import StoresEdit from './components/pages/stores/StoresEdit';
@@ -225,11 +225,12 @@ function App() {
     }
   }, [stores, lists, isLoading])
 
+  if (isLoading) return <Loading />
+
   return (
     <Router>
-      <Main>
-        {isLoading && <Loader />}
-        {!isLoading &&
+      {!isLoading &&
+        <Main>
           <Switch>
             <Route path="/" exact={true}>
               {userId && <Redirect to="/dashboard" />}
@@ -269,8 +270,8 @@ function App() {
             <Route path="/lists/edit/:id">
               <ListsEdit title={`Edit List ${pageTitle}`} stores={stores} lists={lists} handleUpdateList={handleUpdateList} />
             </Route>
-          </Switch>}
-      </Main>
+          </Switch>
+        </Main>}
     </Router>
   );
 }
