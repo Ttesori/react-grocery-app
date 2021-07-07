@@ -1,3 +1,7 @@
+.rg-lists {
+  @apply py-3 px-8 lg:w-2/3 lg:px-0 lg:pr-8 lg:py-8;
+}
+
 .rg-list-main li {
   @apply rounded py-2 px-3 items-center justify-between grid place-content-end;
   grid-template-columns: 2fr 1fr;

@@ -13,7 +13,9 @@ module.exports = {
         neutral: {
           light: 'var(--color-neutral-lt)',
           DEFAULT: 'var(--color-neutral)',
-          dark: 'var(--color-neutral-dk)'
+          dark: 'var(--color-neutral-dk)',
+          five: 'var(--color-neutral-05)',
+          fifty: 'var(--color-neutral-50)'
         },
       }
     }

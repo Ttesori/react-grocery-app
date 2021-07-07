@@ -10,9 +10,17 @@ p strong {
 }
 
 .rg-header {
-  @apply pt-8 pb-5 px-9 flex flex-col justify-center items-center  relative z-30 lg:flex-row lg:justify-between;
+  @apply pt-8 pb-5 px-9 relative z-30 lg:pt-6;
   overflow: visible;
   background: radial-gradient(#0c597b, #0c4760);
+}
+
+.rg-header .container {
+  @apply flex flex-col justify-center items-center lg:flex-row lg:justify-between lg:max-w-screen-lg mx-auto;
+}
+
+.rg-logo {
+  @apply lg:mb-3;
 }
 
 .rg-nav {
@@ -51,7 +59,7 @@ p strong {
 }
 
 .rg-footer {
-  @apply py-4 text-center text-white text-opacity-50 text-sm   bg-secondary relative border-t-2 border-primary;
+  @apply py-4 text-center text-white text-opacity-50 text-sm   bg-secondary relative;
 }
 
 .rg-footer a {
@@ -65,25 +73,19 @@ p strong {
 }
 
 .rg-footer::before {
-  @apply h-1 bg-secondary w-screen absolute inset-0 border-t-2 border-primary;
+  @apply h-2 bg-primary absolute inset-0 z-10;
   content: '';
-  transform: rotate(-0.5deg);
-  top: -2px;
-  border-top-width: 3px;
-}
-
-.rg-lists,
-.rg-stores {
-  @apply py-3 px-8;
+  top: -0.5rem;
+  clip-path: polygon(0 75%, 100% 0, 100% 100%, 0% 100%);
 }
 
 .btn-signOut {
-  @apply mt-3 py-1 px-2 bg-transparent text-white text-sm font-normal border rounded hover:bg-neutral-dark;
+  @apply mt-3 py-1 px-2 bg-transparent text-white text-sm font-normal border rounded hover:bg-neutral-dark lg:mt-0 lg:text-base lg:py-1.5 lg:px-4;
   border-color: rgba(255, 255, 255, 0.3);
 }
 
 .btn-signOut .fas {
-  @apply text-primary pr-1;
+  @apply text-primary pr-1 lg:pr-2;
 }
 
 .rg-main h2 {
@@ -100,22 +102,6 @@ p strong {
 
 .rg-main p {
   @apply text-neutral-dark py-2 px-1 text-base text-center mb-2;
-}
-
-.rg-lists {
-  @apply lg:w-2/3 lg:px-0 lg:pr-8;
-}
-
-.rg-lists ~ .rg-stores {
-  @apply sm:bg-neutral text-white pt-8 pb-12 lg:bg-neutral-light lg:text-neutral-dark;
-}
-
-.rg-lists ~ .rg-stores h2 {
-  @apply text-white lg:text-neutral;
-}
-
-.rg-stores {
-  @apply bg-white lg:w-1/3;
 }
 
 .rg-new-user {

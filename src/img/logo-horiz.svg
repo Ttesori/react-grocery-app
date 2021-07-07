@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="341.947" height="52.034" viewBox="0 0 341.947 52.034">
+  <g id="Group_4" data-name="Group 4" transform="translate(-130.094 -12.986)">
+    <g id="Component_1_2" data-name="Component 1 – 2" transform="translate(157.321 12.986)">
+      <g id="Group_2" data-name="Group 2">
+        <path id="Path_1" data-name="Path 1" d="M119.407,532.665H89.488c-2.947,0-2.973,4.52-.033,4.52h27.082q-.689,3.061-1.377,6.115H98.235c-2.947,0-2.973,4.787-.032,4.787h15.88q-.659,2.921-1.317,5.85H85.672c-2.436-10.132-4.872-20.175-7.308-30.318a2.2,2.2,0,0,0-2.189-1.59H64.767c-2.947,0-2.973,4.52-.033,4.52h9.642l7.314,30.461a2.3,2.3,0,0,0,2.188,1.712h30.68A2.32,2.32,0,0,0,116.775,557q2.409-10.732,4.817-21.448A2.308,2.308,0,0,0,119.407,532.665Z" transform="translate(-62.542 -522.029)" fill="#90e041"/>
+        <path id="Path_2" data-name="Path 2" d="M121.879,574.173a5.879,5.879,0,1,0,5.832,5.878A5.856,5.856,0,0,0,121.879,574.173Z" transform="translate(-75.046 -533.896)" fill="#90e041"/>
+        <path id="Path_3" data-name="Path 3" d="M97.56,574.173a5.879,5.879,0,1,0,5.831,5.878A5.856,5.856,0,0,0,97.56,574.173Z" transform="translate(-69.363 -533.896)" fill="#90e041"/>
+      </g>
+      <text id="GroceryMapper" transform="translate(73.72 33.812)" fill="#fff" font-size="33" font-family="Lato-Black, Lato" font-weight="800"><tspan x="0" y="0">GroceryMapper</tspan></text>
+    </g>
+    <g id="Group_3" data-name="Group 3" transform="translate(131.594 28.005)" opacity="0.744">
+      <line id="Line_1" data-name="Line 1" x1="25.727" transform="translate(0 9.433)" fill="none" stroke="#45778c" stroke-linecap="round" stroke-width="3"/>
+      <line id="Line_2" data-name="Line 2" x1="12.863" transform="translate(10.291 0)" fill="none" stroke="#45778c" stroke-linecap="round" stroke-width="3"/>
+      <line id="Line_3" data-name="Line 3" x1="15.436" transform="translate(10.291 18.009)" fill="none" stroke="#45778c" stroke-linecap="round" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

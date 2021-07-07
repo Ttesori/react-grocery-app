@@ -1,9 +1,21 @@
+.rg-lists ~ .rg-stores {
+  @apply sm:bg-neutral text-white pt-8 pb-12 lg:bg-neutral-five lg:text-neutral-dark lg:py-12;
+}
+
+.rg-lists ~ .rg-stores h2 {
+  @apply text-white lg:text-neutral;
+}
+
+.rg-stores {
+  @apply py-3 px-8 bg-white lg:w-1/3;
+}
+
 .rg-store-main li {
-  @apply bg-white bg-opacity-10 text-white py-2 px-3 rounded flex justify-between items-center;
+  @apply bg-white bg-opacity-10 text-white py-2 px-3 rounded flex justify-between items-center lg:bg-neutral-five lg:text-neutral;
 }
 
 .rg-store-main .store-buttons button {
-  @apply text-white text-opacity-50 hover:text-primary hover:text-opacity-100 transition-all;
+  @apply text-white text-opacity-50 hover:text-primary hover:text-opacity-100 transition-all lg:text-neutral-fifty lg:text-opacity-100;
 }
 .rg-store-main .store-buttons button:last-child {
   padding-right: 0 !important;
