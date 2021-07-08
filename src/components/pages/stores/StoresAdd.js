@@ -10,7 +10,7 @@ export default function StoresAdd({ title, handleAddStore }) {
   }))
   let defaultStore = {
     id: 'store-x',
-    name: 'New Store',
+    name: '',
     sections: newSections
   }
 
