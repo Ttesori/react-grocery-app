@@ -29,11 +29,14 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
 
   return lists && stores && (
 
-    <section className="mx-auto rg-lists mb-8 mt-4 relative max-w-screen-sm">
-      <h2 className="mb-1">📝 &nbsp;Manage Lists </h2>
-      <Button handleOnClick={() => history.push('/lists/new')}
-        className="btn-block mb-3" icon="fas fa-plus">
-        Add New List</Button>
+    <section className="mx-auto rg-lists mb-8 mt-4">
+      <div className="rg-lists-header">
+        <h2 className="mb-1">📝 &nbsp;Manage Lists </h2>
+        <Button handleOnClick={() => history.push('/lists/new')}
+          className="btn-block mb-3" icon="fas fa-plus">
+          Add New List</Button>
+      </div>
+
       {alert && <Alert type={alert.type} message={alert.message} />}
       {isLoading && lists?.length > 0 &&
         lists.map((list, i) => <div key={i} className="h-16 bg-neutral-light mb-1.5"></div>)
@@ -44,7 +47,7 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
         </EmptyList>
       }
       {!isLoading && lists?.length > 0 && <ul className="rg-list-main">
-        {lists?.length > 0 && lists.map((list, i) => <ListItem key={i} className="mb-1.5">
+        {lists?.length > 0 && lists.map((list, i) => <ListItem key={i} className={`rg-list-li mb-1.5 bg-${stores.find(store => store.id === list.store_id).color}`}>
           <span className="list-name font-semibold">
             <Link to={`/lists/edit/${list.id}`}>
               {list.name}

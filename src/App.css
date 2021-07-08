@@ -126,3 +126,31 @@ button:focus {
     transform: translateY(1);
   }
 }
+
+.bg-0::before {
+  background-color: #1dab52;
+}
+
+.bg-1::before {
+  background-color: #1d8aab;
+}
+
+.bg-2::before {
+  background-color: #ab641d;
+}
+
+.bg-3::before {
+  background-color: #c3b832;
+}
+
+.bg-4::before {
+  background-color: #c33232;
+}
+
+.bg-5::before {
+  background-color: #c3328b;
+}
+
+.bg-6::before {
+  background-color: #4832c3;
+}

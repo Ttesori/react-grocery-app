@@ -10,7 +10,7 @@ p strong {
 }
 
 .rg-header {
-  @apply pt-8 pb-5 px-9 relative z-30 lg:pt-6;
+  @apply pt-8 pb-5 px-9 relative z-30;
   overflow: visible;
   background: radial-gradient(#0c597b, #0c4760);
 }
@@ -24,7 +24,7 @@ p strong {
 }
 
 .rg-nav {
-  @apply flex w-full justify-center lg:w-1/2 lg:justify-end;
+  @apply flex w-full justify-center lg:w-1/3;
 }
 
 .rg-decorations {
@@ -80,7 +80,7 @@ p strong {
 }
 
 .btn-signOut {
-  @apply mt-3 py-1 px-2 bg-transparent text-white text-sm font-normal border rounded hover:bg-neutral-dark lg:mt-0 lg:text-base lg:py-1.5 lg:px-4;
+  @apply m-0 mt-3 py-1 px-2 bg-transparent text-white text-sm font-normal border rounded hover:bg-neutral-dark lg:mt-0 lg:text-base lg:py-1.5 lg:px-4;
   border-color: rgba(255, 255, 255, 0.3);
 }
 

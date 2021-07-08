@@ -32,7 +32,7 @@ export default function Main({ children }) {
           {app.auth().currentUser ?
             <nav className="rg-nav">
               <>
-                <Button handleOnClick={() => app.auth().signOut()} icon='fas fa-power-off' className="ml-3 btn-signOut">Sign Out</Button>
+                <Button handleOnClick={() => app.auth().signOut()} icon='fas fa-power-off' className="btn-signOut">Sign Out</Button>
               </>
             </nav>
             : ''}

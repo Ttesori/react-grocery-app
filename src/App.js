@@ -21,6 +21,7 @@ function App() {
   const [lists, updateLists] = useState(null);
   const [userId, setUserId] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const COLOR_CLASSES = 5;
   const pageTitle = ' | GroceryMapper';
 
   /* Stores */
@@ -31,7 +32,7 @@ function App() {
       updateStoresAlert({ type: 'loading', message: 'Saving store...' });
       let resp = await db.collection("stores").add(store);
       if (resp) {
-        updateStores([...stores, { id: resp.id, ...store }]);
+        updateStores([...stores, { id: resp.id, color: stores.length, ...store }]);
         updateStoresAlert({ type: 'success', message: 'Store added successfully!' });
         setTimeout(() => {
           updateStoresAlert(null);
@@ -192,9 +193,10 @@ function App() {
       try {
         let db_resp = await db.collection("stores").where("user_id", "==", userId).get();
         let stores = [];
-        db_resp.forEach(doc => {
+        db_resp.forEach((doc) => {
           const storeData = {
             id: doc.id,
+            color: stores.length,
             ...doc.data()
           }
           stores.push(storeData);

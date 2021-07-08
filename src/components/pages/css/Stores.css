@@ -1,5 +1,5 @@
 .rg-lists ~ .rg-stores {
-  @apply sm:bg-neutral text-white pt-8 pb-12 lg:bg-neutral-five lg:text-neutral-dark lg:py-12;
+  @apply bg-neutral text-white pt-8 pb-12 lg:bg-neutral-five lg:text-neutral-dark lg:py-12;
 }
 
 .rg-lists ~ .rg-stores h2 {
@@ -7,11 +7,30 @@
 }
 
 .rg-stores {
-  @apply py-3 px-8 bg-white lg:w-1/3;
+  @apply py-3 px-8 lg:w-1/3;
 }
 
-.rg-store-main li {
-  @apply bg-white bg-opacity-10 text-white py-2 px-3 rounded flex justify-between items-center lg:bg-neutral-five lg:text-neutral;
+.rg-stores div {
+  @apply relative max-w-screen-sm flex flex-col;
+}
+
+.rg-btn-create-store {
+  @apply lg:order-10 lg:border lg:border-secondary lg:bg-transparent normal-case lg:text-secondary font-bold hover:bg-secondary hover:text-white;
+}
+
+.rg-btn-create-store .fas {
+  @apply pr-2;
+}
+
+.rg-store-li {
+  @apply bg-white bg-opacity-10 text-white py-2 px-3 lg:pl-5 rounded flex justify-between items-center lg:bg-neutral-five lg:text-neutral relative;
+}
+
+.rg-store-li::before {
+  @apply hidden lg:block absolute top-0 left-0 bottom-0 w-2 rounded;
+  content: '';
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .rg-store-main .store-buttons button {

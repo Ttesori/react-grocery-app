@@ -32,11 +32,11 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
 
   return (
     <section className="rg-stores relative pb-10">
-      <div className="mx-auto max-w-screen-sm">
+      <div className="mx-auto">
         <h2 className="mb-1">🏪 &nbsp;Manage Stores</h2>
         <Button
           handleOnClick={() => history.push('/stores/new')}
-          className="btn-block mb-3" icon="fas fa-plus">
+          className="my-3 rg-btn-create-store" icon="fas fa-plus">
           Create New Store</Button>
 
         {alert && <Alert type={alert.type} message={alert.message} />}
@@ -45,7 +45,7 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
         }
         {!isLoading && stores?.length > 0 &&
           <ul className="rg-store-main">
-            {(stores.length > 0) && stores.map((store, i) => <ListItem key={i} className="mb-1.5">
+            {(stores.length > 0) && stores.map((store, i) => <ListItem key={i} className={`rg-store-li bg-${store.color} mb-1.5 lg:mb-2.5`}>
               <span className="store-name">{store.name}</span>
               <span className="store-buttons">
                 <Button label="edit" className="icon p-0 pr-3" icon="fas fa-cog" handleOnClick={() => handleUpdateStore(store.id)} />
