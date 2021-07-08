@@ -10,7 +10,7 @@
   @apply py-3 px-8 lg:w-1/3;
 }
 
-.rg-stores div {
+.rg-stores > div {
   @apply relative max-w-screen-sm flex flex-col;
 }
 

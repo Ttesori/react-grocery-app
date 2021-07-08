@@ -21,7 +21,6 @@ function App() {
   const [lists, updateLists] = useState(null);
   const [userId, setUserId] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const COLOR_CLASSES = 5;
   const pageTitle = ' | GroceryMapper';
 
   /* Stores */
