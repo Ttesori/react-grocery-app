@@ -4,6 +4,7 @@
 }
 
 .page-home #root {
+  min-height: auto;
 }
 
 .page-home .rg-logo a {
@@ -23,7 +24,7 @@
 }
 
 .page-home .rg-footer {
-  @apply border-0 mt-3 py-1 relative bg-transparent;
+  @apply w-full border-0 mx-auto mt-3 py-1 relative bg-transparent;
 }
 
 .page-home .rg-footer a {
@@ -35,7 +36,7 @@
 }
 
 .page-home .rg-main {
-  @apply flex flex-col mb-2 mx-8;
+  @apply flex flex-col mb-2;
 }
 
 .page-home .rg-signin,
