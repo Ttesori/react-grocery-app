@@ -9,9 +9,9 @@
   font-size: 10px;
   position: relative;
   text-indent: -9999em;
-  border-top: 1.1em solid var(--color-neutral-lt);
-  border-right: 1.1em solid var(--color-neutral-lt);
-  border-bottom: 1.1em solid var(--color-neutral-lt);
+  border-top: 1.1em solid rgba(0, 0, 0, 0.1);
+  border-right: 1.1em solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1.1em solid rgba(0, 0, 0, 0.1);
   border-left: 1.1em solid var(--color-primary);
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);

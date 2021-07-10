@@ -10,7 +10,7 @@ p strong {
 }
 
 .rg-header {
-  @apply pt-8 pb-5 px-9 relative z-30;
+  @apply pt-0 pb-5 px-9 relative z-30;
   overflow: visible;
   background: radial-gradient(#0c597b, #0c4760);
 }
@@ -20,7 +20,7 @@ p strong {
 }
 
 .rg-logo {
-  @apply lg:mb-3;
+  @apply lg:mb-3 pt-8;
 }
 
 .rg-nav {

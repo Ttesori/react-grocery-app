@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { auth, db } from './firebase';
 import Main from './components/layouts/Main';
 import Home from './components/pages/Home';
+import Landing from './components/pages/Landing';
 import Loading from './components/pages/Loading';
 import Stores from './components/pages/stores/Stores';
 import StoresAdd from './components/pages/stores/StoresAdd';
@@ -235,9 +236,9 @@ function App() {
           <Switch>
             <Route path="/" exact={true}>
               {userId && <Redirect to="/dashboard" />}
-              <Home title={`Home ${pageTitle}`} />
+              <Landing title={`Level Up Grocery Shopping ${pageTitle}`} />
             </Route>
-            <Route path="/reset-password" exact={true}>
+            <Route path="/login" exact={true}>
               {userId && <Redirect to="/dashboard" />}
               <Home title={`Home ${pageTitle}`} />
             </Route>

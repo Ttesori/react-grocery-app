@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import app from '../../firebase';
 import Button from '../common/Button';
 import logo from '../../img/logo-stacked.svg';
@@ -8,7 +8,9 @@ import logo2 from '../../img/logo-horiz.svg';
 import './css/Main.css';
 
 export default function Main({ children }) {
-  const isHome = useLocation().pathname === '/';
+  const history = useHistory();
+  const isLogin = ['/login', '/signup'].includes(useLocation().pathname);
+  const isHome = history.location.pathname === '/'
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const screenSize = () => {
@@ -24,16 +26,19 @@ export default function Main({ children }) {
         <div className="container">
           <h1 className="rg-logo">
             <Link to="/">
-              {(screenWidth < 1023 || isHome) ? <img src={logo} alt="GroceryMapper logo" /> : <img src={logo2} alt="GroceryMapper logo" />}
+              {(screenWidth < 1023 || isLogin) ? <img src={logo} alt="GroceryMapper logo" /> : <img src={logo2} alt="GroceryMapper logo" />}
             </Link>
           </h1>
-          {app.auth().currentUser ?
-            <nav className="rg-nav">
-              <>
-                <Button handleOnClick={() => app.auth().signOut()} icon='fas fa-power-off' className="btn-signOut">Sign Out</Button>
-              </>
-            </nav>
-            : ''}
+
+          <nav className="rg-nav">
+            {app.auth().currentUser ?
+              <Button handleOnClick={() => app.auth().signOut()} icon='fas fa-power-off' className="btn-signOut">Sign Out</Button>
+              : ''}
+            {isHome &&
+              <Button handleOnClick={() => history.push('/login')} icon='fas fa-power-off' className="btn-signOut">Sign In</Button>
+            }
+          </nav>
+
         </div>
 
         <span className="rg-decorations"><span className="inner-dec"></span></span>

@@ -80,7 +80,7 @@ export default function ListsShow({ title, handleUpdateList }) {
 
   if (isLoading) return <Loader />
   return (
-    <section className="mx-auto p-5 my-5 max-w-screen-sm relative">
+    <section className="p-5 mx-auto w-full max-w-screen-sm my-5">
       <h2>{list?.name}</h2>
       <h3 className="pb-3 border-b-2">{listStore.name}</h3>
       <ShowList items={list.items} store={listStore} handleCheck={(id) => handleCheck(id)} />
