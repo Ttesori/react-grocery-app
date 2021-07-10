@@ -26,7 +26,7 @@ export default function Main({ children }) {
         <div className="container">
           <h1 className="rg-logo">
             <Link to="/">
-              {(screenWidth < 1023 || isLogin) ? <img src={logo} alt="GroceryMapper logo" /> : <img src={logo2} alt="GroceryMapper logo" />}
+              {((!isHome && screenWidth < 1023) || isLogin) ? <img src={logo} alt="GroceryMapper logo" /> : <img src={logo2} alt="GroceryMapper logo" />}
             </Link>
           </h1>
 

@@ -28,16 +28,21 @@ export default function Landing({ title }) {
           <h2><span>How It Works</span></h2>
           <ul className="rg-ul-cols">
             <li>
-              <h3>1. Create A Store</h3>
-              <p>Everyone shops differently, so add, edit, and drag-and-drop the sections of your local stores to match your own personal shopping order.</p>
+              <h3><i className="fas fa-store text-primary pr-2"></i> Create A Store</h3>
+              <img src="/img/how-1.png" alt="How to Process Step 1" />
+
+
+              <p><strong>Everyone shops differently</strong>, so add, edit, and drag-and-drop the sections of your local stores to match your own personal shopping order.</p>
             </li>
             <li>
-              <h3>2. Write Your List</h3>
-              <p>When you're ready to shop, add items to your list. GroceryMapper automatically puts them in the correct order for the store you've selected.</p>
+              <h3><i className="fas fa-list text-primary pr-2"></i> Write Your List</h3>
+              <img src="/img/how-2.png" alt="How to Process Step 2" />
+              <p><strong>When you're ready to shop,</strong> add items to your list. GroceryMapper automatically puts them in the correct order for the store you've selected.</p>
             </li>
             <li>
-              <h3>3. Shop Speedily</h3>
-              <p>Bring GroceryMapper along to the store and follow your personalized grocery map - check items off as you go and you won't forget a thing!</p>
+              <h3><i className="fas fa-shopping-cart text-primary pr-2"></i> Shop Speedily</h3>
+              <img src="/img/how-3.png" alt="How to Process Step 3" />
+              <p><strong>Bring GroceryMapper along</strong> to the store and follow your personalized grocery map - check items off as you go and you won't forget a thing!</p>
             </li>
 
           </ul>
