@@ -11,7 +11,7 @@
 }
 
 .page-landing .btn-signOut {
-  @apply m-0 md:mr-12;
+  @apply m-0 md:mr-12 lg:-mt-3;
 }
 
 .page-landing .rg-logo {
@@ -67,7 +67,7 @@
 }
 
 .rg-illustration {
-  @apply hidden md:block absolute md:right-3 md:top-10 lg:top-3.5 md:bottom-3.5 overflow-visible z-30 max-h-full md:z-auto;
+  @apply hidden md:block absolute md:right-3 md:top-10 lg:top-0 md:bottom-3.5 overflow-visible z-30 max-h-full md:z-auto;
   max-height: 95%;
 }
 

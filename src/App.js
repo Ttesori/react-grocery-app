@@ -70,6 +70,7 @@ function App() {
     const otherStores = stores.filter(store => store.id !== storeId)
     const updateStore = {
       id: storeId,
+      color: stores.find(store => store.id === storeId).color,
       ...storeData
     }
     updateStoresAlert({ type: 'loading', message: 'Updating store...' });
@@ -180,6 +181,7 @@ function App() {
       if (user) {
         const uid = user.uid;
         setUserId(uid);
+        setIsLoading(true);
       } else {
         setUserId('');
         setIsLoading(false);
@@ -213,6 +215,7 @@ function App() {
           lists.push(listData);
         });
         updateLists(lists);
+        setIsLoading(false);
       } catch (error) {
         console.error(error)
       }
@@ -236,7 +239,7 @@ function App() {
           <Switch>
             <Route path="/" exact={true}>
               {userId && <Redirect to="/dashboard" />}
-              <Landing title={`Level Up Grocery Shopping ${pageTitle}`} />
+              <Landing title={`Level Up Your Grocery Shopping ${pageTitle}`} />
             </Route>
             <Route path="/login" exact={true}>
               {userId && <Redirect to="/dashboard" />}

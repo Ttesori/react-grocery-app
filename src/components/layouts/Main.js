@@ -55,6 +55,13 @@ export default function Main({ children }) {
             <a href="https://storyset.com/" className="font-italic">Illustrations provided by Storyset</a>
           </>
         }
+        {
+          !isHome && !isLogin &&
+          <>
+            <br />
+            <a href="https://tonitesori.dev" className="pt-3 hover:text-white">Written by Toni</a>
+          </>
+        }
       </footer>
     </>
   )

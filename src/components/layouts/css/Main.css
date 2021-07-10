@@ -80,7 +80,7 @@ p strong {
 }
 
 .btn-signOut {
-  @apply m-0 mt-3 py-1 px-2 bg-transparent text-white text-sm font-normal border rounded hover:bg-neutral-dark hover:border-neutral-fifty lg:mt-0 md:text-base md:py-1.5 md:px-4;
+  @apply m-0 mt-3 py-1 px-2 bg-transparent text-white text-sm font-normal border rounded hover:bg-neutral-dark hover:border-neutral-fifty lg:mt-4 md:text-base md:py-1.5 md:px-4;
   border-color: rgba(255, 255, 255, 0.3);
 }
 

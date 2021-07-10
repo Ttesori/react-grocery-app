@@ -16,12 +16,12 @@
 }
 
 .page-home .rg-header {
-  @apply border-0 py-1 my-2 relative lg:flex-none;
+  @apply border-0 py-1 my-2 relative mt-9;
   background: none;
 }
 
-.page-home .rg-header {
-  @apply mt-9;
+.page-home .rg-header .container {
+  @apply lg:flex-col;
 }
 .page-home .rg-decorations {
   @apply hidden;
