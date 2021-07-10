@@ -51,7 +51,7 @@
 
 .rg-hero p,
 .rg-hero h2 {
-  @apply text-center text-white sm:text-left md:max-w-md max-w-lg;
+  @apply text-center text-white sm:text-left md:max-w-md max-w-lg lg:max-w-xl;
 }
 
 .rg-hero p {
@@ -115,7 +115,7 @@
   @apply bg-secondary absolute transform rotate-1 scale-105 inset-0;
 }
 .rg-ul-cols {
-  @apply pt-6 flex flex-col lg:flex-row gap-6 justify-center items-center md:justify-between mx-auto w-full lg:items-start;
+  @apply pt-6 flex flex-col lg:flex-row gap-6 justify-center items-center md:justify-between mx-auto w-full lg:items-stretch lg:justify-start;
 }
 .rg-ul-cols li {
   @apply w-full flex flex-row flex-wrap md:justify-around lg:w-1/3 bg-neutral-light p-5 rounded shadow-sm relative lg:pt-10 sm:pt-5 pt-10;
