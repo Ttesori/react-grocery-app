@@ -49,6 +49,12 @@ export default function Main({ children }) {
       </main>
       <footer className="rg-footer">
         <a href="https://github.com/Ttesori"><i className="fab fa-github text-3xl"></i></a>
+        {isHome &&
+          <>
+            <br />
+            <a href="https://storyset.com/" className="font-italic">Illustrations provided by Storyset</a>
+          </>
+        }
       </footer>
     </>
   )
