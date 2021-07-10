@@ -7,12 +7,16 @@
   min-height: auto;
 }
 
+.page-home .rg-logo {
+  @apply m-0 pt-0;
+}
+
 .page-home .rg-logo a {
   @apply flex place-content-center transform scale-105;
 }
 
 .page-home .rg-header {
-  @apply border-0 py-1 my-2 relative;
+  @apply border-0 py-1 my-2 relative lg:flex-none;
   background: none;
 }
 
