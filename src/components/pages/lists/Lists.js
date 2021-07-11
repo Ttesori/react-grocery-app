@@ -31,7 +31,7 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
 
     <section className="mx-auto rg-lists mb-8 mt-4">
       <div className="rg-lists-header">
-        <h2 className="mb-1">📝 &nbsp;Manage Lists </h2>
+        <h2 className="mb-1">📝 &nbsp;My Lists </h2>
         <Button handleOnClick={() => history.push('/lists/new')}
           className="btn-block mb-3" icon="fas fa-plus">
           Add New List</Button>

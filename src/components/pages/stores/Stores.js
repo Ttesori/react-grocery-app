@@ -33,7 +33,7 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
   return (
     <section className="rg-stores relative pb-10">
       <div className="mx-auto">
-        <h2 className="mb-1 lg:mb-3">🏪 &nbsp;Manage Stores</h2>
+        <h2 className="mb-1 lg:mb-3">🏪 &nbsp;My Stores</h2>
         <Button
           handleOnClick={() => history.push('/stores/new')}
           className="my-3 rg-btn-create-store" icon="fas fa-plus">
