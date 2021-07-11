@@ -30,22 +30,26 @@ export default function Landing({ title }) {
             <li>
               <span className="num">1</span>
               <h3><i className="fas fa-store text-secondary pr-2"></i> Create A Store</h3>
-              <img src="/img/how-1.png" alt="How to Process Step 1" />
-
-
-              <p><strong>Everyone shops differently</strong>, so add, edit, and drag-and-drop the sections of your local stores to match your own personal shopping order.</p>
+              <picture className="rg-img-scroll">
+                <img src="/img/how-1-scroll.png" alt="How to Process Step 1" />
+              </picture>
+              <p><strong>Everyone shops differently</strong>, so add, edit, and reorder the sections of your local stores to match your personal shopping order.</p>
             </li>
             <li>
               <span className="num">2</span>
               <h3><i className="fas fa-list text-secondary pr-2"></i> Write Your List</h3>
-              <img src="/img/how-2.png" alt="How to Process Step 2" />
-              <p><strong>When you're ready to shop,</strong> add items to your list. GroceryMapper automatically puts them in the correct order for the store you've selected.</p>
+              <picture className="rg-img-scroll">
+                <img src="/img/how-2-scroll.png" alt="How to Process Step 2" />
+              </picture>
+              <p><strong>When you're ready to shop,</strong> add items to your list. GroceryMapper automatically puts them in order for the store you've selected.</p>
             </li>
             <li>
               <span className="num">3</span>
-              <h3><i className="fas fa-shopping-cart text-secondary pr-2"></i> Shop Speedily</h3>
-              <img src="/img/how-3.png" alt="How to Process Step 3" />
-              <p><strong>Bring GroceryMapper along</strong> to the store and follow your personalized grocery map - check items off as you go and you won't forget a thing!</p>
+              <h3><i className="fas fa-shopping-cart text-secondary pr-2" ></i> Shop Speedily</h3>
+              <picture className="rg-img-scroll">
+                <img src="/img/how-3-scroll.png" alt="How to Process Step 3" />
+              </picture>
+              <p><strong>Bring GroceryMapper</strong> to the store and follow your custom grocery map &ndash; check items off as you go and you won't forget a thing!</p>
             </li>
 
           </ul>

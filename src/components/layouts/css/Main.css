@@ -63,13 +63,10 @@ p strong {
 }
 
 .rg-footer a {
-  @apply text-opacity-50 text-white;
+  @apply text-opacity-50 text-white hover:text-opacity-80 hover:text-white transition-all;
   text-decoration-line: underline;
   text-decoration-style: dotted;
   text-decoration-color: rgba(255, 255, 255, 0.2);
-}
-.rg-footer a:hover {
-  color: var(--color-primary);
 }
 
 .rg-footer::before {

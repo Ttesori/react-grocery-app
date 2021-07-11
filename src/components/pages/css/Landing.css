@@ -15,11 +15,11 @@
 }
 
 .page-landing .rg-logo {
-  @apply mx-5 p-0 sm:max-w-sm md:m-0 md:ml-2 md:w-2/3;
+  @apply px-3 sm:px-5 p-0 w-full max-w-md md:max-w-sm md:m-0 md:ml-2 md:w-2/3;
 }
 
 .page-landing .rg-logo img {
-  @apply h-24 w-full max-w-sm;
+  @apply h-24 w-full max-w-md;
 }
 
 .page-landing .rg-header .container {
@@ -118,7 +118,7 @@
   @apply pt-3 flex flex-col lg:flex-row gap-6 justify-center items-center md:justify-between mx-auto w-full lg:items-stretch lg:justify-start;
 }
 .rg-ul-cols li {
-  @apply w-full flex flex-row flex-wrap md:justify-around lg:w-1/3 bg-neutral-light p-5 rounded shadow-sm relative lg:pt-10 sm:pt-5 pt-10 mb-3;
+  @apply w-full flex flex-row flex-wrap md:justify-around lg:w-1/3 bg-neutral-light p-5 rounded shadow-sm relative lg:pt-10 sm:pt-5 pt-10 mb-3 lg:justify-start;
 }
 
 .rg-ul-cols h3 {
@@ -129,8 +129,22 @@
   @apply sm:w-3/5 lg:w-full leading-relaxed self-center sm:pl-6 lg:p-0;
 }
 
-.page-landing .rg-how img {
-  @apply mx-auto w-full max-w-xs border-4 border-white shadow-md rounded-sm mt-3 mb-2 lg:mx-auto lg:mb-4 sm:w-2/5 lg:w-auto lg:max-w-full object-contain;
+.page-landing .rg-how > img {
+  @apply w-full max-w-xs border-4 border-white shadow-md rounded-sm mx-auto mt-3 mb-2 lg:mx-auto lg:mb-4 sm:w-2/5 lg:w-auto lg:max-w-full self-start;
+}
+
+.rg-img-scroll {
+  @apply w-full max-w-xs border-4 border-white shadow-md rounded-sm mx-auto mt-3 mb-2 lg:mx-auto lg:mb-4 sm:w-2/5 lg:w-full lg:max-w-full self-start relative overflow-hidden h-48 sm:h-40 md:h-44;
+}
+
+.rg-img-scroll img {
+  @apply absolute w-full object-cover;
+  top: 0;
+  transition: all 1.5s;
+}
+
+.rg-img-scroll:hover img {
+  top: -40%;
 }
 
 .rg-how .num {

@@ -16,6 +16,10 @@ export default function Main({ children }) {
   const screenSize = () => {
     setScreenWidth(window.innerWidth);
   }
+  const handleSignOut = () => {
+    app.auth().signOut();
+    history.push('/');
+  }
   useEffect(() => {
     window.addEventListener('resize', screenSize);
   }, [])
@@ -32,7 +36,7 @@ export default function Main({ children }) {
 
           <nav className="rg-nav">
             {app.auth().currentUser ?
-              <Button handleOnClick={() => app.auth().signOut()} icon='fas fa-power-off' className="btn-signOut">Sign Out</Button>
+              <Button handleOnClick={handleSignOut} icon='fas fa-power-off' className="btn-signOut">Sign Out</Button>
               : ''}
             {isHome &&
               <Button handleOnClick={() => history.push('/login')} icon='fas fa-power-off' className="btn-signOut">Sign In</Button>
@@ -48,7 +52,7 @@ export default function Main({ children }) {
         {children}
       </main>
       <footer className="rg-footer">
-        <a href="https://github.com/Ttesori"><i className="fab fa-github text-3xl"></i></a>
+        <a href="https://github.com/Ttesori" title="Written by Toni"><i className="fab fa-github text-3xl"></i></a>
         {isHome &&
           <>
             <br />
@@ -59,7 +63,7 @@ export default function Main({ children }) {
           !isHome && !isLogin &&
           <>
             <br />
-            <a href="https://tonitesori.dev" className="pt-3 hover:text-white">Written by Toni</a>
+            <a href="https://tonitesori.dev" className="pt-3 hover:text-white">Design and Development by Toni</a>
           </>
         }
       </footer>
