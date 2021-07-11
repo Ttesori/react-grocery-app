@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# GroceryMapper: Smarter Grocery Shopping
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![screenshot of GroceryMapper home page](https://grocerymap.app/img/gm-screenshot.png)
 
-## Available Scripts
+GroceryMapper is a web application which allows users to streamline their grocery shopping by putting their list in the order they shop. Users create a 'map' of their local stores, putting the sections of the store in the order that they shop, and then each time they make a list it is put in order so they don't forget anything!
 
-In the project directory, you can run:
+**Link to project:** https://grocerymap.app
 
-### `npm start`
+## How It's Made:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**Tech used:** React, Firebase, HTML, CSS, Tailwind
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This application was built with a React front-end, implementing a design created in Adobe xD. The styles were created with Tailwind, utilizing a strategy of primarily using @apply to apply the desired classes from within an external stylesheet.
 
-### `npm test`
+The user authentication and database systems are provided by Firebase. User authentication options include local, Twitter login and Google login.The Firestore database allows persistence of the stores and lists the user creates.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Features:
 
-### `npm run build`
+- Users can create, edit and delete stores
+- Stores can only be deleted if they have no lists
+- Users can create, edit and delete lists
+- Users can email lists to a friend and view them on any device without being logged in
+- Items on the list can be checked off while the user shops and, if they are logged in, this persists to the database
+- Users can change the store a list belongs to if they decide to shop elsewhere, and the list is reordered automatically
+- Local, Twitter, and Google user authentication
+- Reset Password capability
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Lessons Learned:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- How to work with drag-and-drop lists using react-beautiful-dnd
+- How to manage both local and production databases with Firebase, including setting the proper security rules for Firestore in production
+- How to implement non-local authentication providers (Twitter and Google in this case)
+- How and when to implement a loading state
+- Implementing and managing alerts
+- Implementing modals
+- The importance of using a \_redirects file so Netlify can properly utilize react-router-dom
+- My preference for keeping pages and components separate
+- The challenges of using props to pass down application-level state
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Additional Feature/Optimization Ideas:
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- State is currently passed down through props. I would like to refactor this to use the useContext/useReducer hooks instead.
+- I would like to add additional details to the desktop design, including a preview of the list items.
+- Implementing automated tests throughout the application
