@@ -1,4 +1,5 @@
 import Button from "../../common/Button";
+import Modal from "../../common/Modal";
 import { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import ListItem from "../../common/ListItem";
@@ -9,8 +10,18 @@ import '../css/Lists.css';
 export default function Lists({ title, stores, lists, alert, handleRemoveList }) {
   const history = useHistory();
   const [isLoading, updateIsLoading] = useState(false);
-  const handleRemove = (e, id) => {
-    handleRemoveList(e, id);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [itemToRemove, setItemToRemove] = useState();
+
+  const handleRemove = (e) => {
+    handleRemoveList(e, itemToRemove);
+    setModalIsOpen(false);
+    setItemToRemove(undefined);
+  }
+
+  const handleCancelRemove = () => {
+    setModalIsOpen(false);
+    setItemToRemove(undefined);
   }
 
   const handleUpdateList = (id) => {
@@ -18,6 +29,11 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
   }
   const handleViewList = (id) => {
     history.push(`/lists/view/${id}`)
+  }
+
+  const handleRemoveClick = (id) => {
+    setModalIsOpen(true);
+    setItemToRemove(id);
   }
 
   useEffect(() => {
@@ -56,7 +72,7 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
           <span className="list-buttons">
             <Button label="show" className="btn-icon" icon="fas fa-share" handleOnClick={() => handleViewList(list.id)} />
             <Button label="edit" className="btn-icon ml-2" icon="fas fa-cog" handleOnClick={() => handleUpdateList(list.id)} />
-            <Button label="remove" className="btn-icon ml-2 pr-0" icon="fas fa-times" handleOnClick={(e) => handleRemove(e, list.id)} id={list.id} />
+            <Button label="remove" className="btn-icon ml-2 pr-0" icon="fas fa-times" handleOnClick={() => handleRemoveClick(list.id)} id={list.id} />
           </span>
           <span className="list-store">
             {stores.find(store => store.id === list.store_id).name}</span>
@@ -65,6 +81,11 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
           </span>
         </ListItem>)}
       </ul>}
+      <Modal isOpen={modalIsOpen} handleClose={handleCancelRemove}>
+        <p>Are you sure you'd like to <strong>remove this list?</strong></p>
+        <Button handleOnClick={(e) => handleRemove(e)}>Yes, Remove List</Button>
+        <Button className="w-full btn-link text-sm error" icon="fas fa-times" handleOnClick={handleCancelRemove}>Cancel</Button>
+      </Modal>
     </section>
   )
 }
