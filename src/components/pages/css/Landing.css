@@ -115,10 +115,10 @@
   @apply bg-secondary absolute transform rotate-1 scale-105 inset-0;
 }
 .rg-ul-cols {
-  @apply pt-6 flex flex-col lg:flex-row gap-6 justify-center items-center md:justify-between mx-auto w-full lg:items-stretch lg:justify-start;
+  @apply pt-3 flex flex-col lg:flex-row gap-6 justify-center items-center md:justify-between mx-auto w-full lg:items-stretch lg:justify-start;
 }
 .rg-ul-cols li {
-  @apply w-full flex flex-row flex-wrap md:justify-around lg:w-1/3 bg-neutral-light p-5 rounded shadow-sm relative lg:pt-10 sm:pt-5 pt-10;
+  @apply w-full flex flex-row flex-wrap md:justify-around lg:w-1/3 bg-neutral-light p-5 rounded shadow-sm relative lg:pt-10 sm:pt-5 pt-10 mb-3;
 }
 
 .rg-ul-cols h3 {
@@ -129,8 +129,8 @@
   @apply sm:w-3/5 lg:w-full leading-relaxed self-center sm:pl-6 lg:p-0;
 }
 
-.rg-how img {
-  @apply mx-auto w-full h-auto max-w-xs border-4 border-white shadow-md rounded-sm mt-3 mb-2 lg:mx-auto lg:mb-4 sm:w-2/5 lg:w-auto lg:max-w-full;
+.page-landing .rg-how img {
+  @apply mx-auto w-full max-w-xs border-4 border-white shadow-md rounded-sm mt-3 mb-2 lg:mx-auto lg:mb-4 sm:w-2/5 lg:w-auto lg:max-w-full object-contain;
 }
 
 .rg-how .num {
