@@ -15,7 +15,7 @@ export default function Landing({ title }) {
       <section className="rg-hero">
         <div className="container">
           <h2>Spend Less Time Grocery Shopping!</h2>
-          <p><strong>Hate how long it takes to shop?</strong> Tired of forgetting items? Use GroceryMapper to shop faster and get back to more exciting activities!</p>
+          <p><strong>Hate how long it takes to shop?</strong> Tired of forgetting items? Use GroceryMapper to shop faster so you can get back to what you'd rather be doing!</p>
           <Button className="btn-block" title="Get Started!"
             handleOnClick={() => history.push('/login')}>Get Started <i className="fas fa-arrow-right"></i></Button>
           <picture className="rg-illustration">

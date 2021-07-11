@@ -46,7 +46,7 @@
 }
 
 .btn-link {
-  @apply m-0 p-0 underline mt-3 bg-transparent normal-case;
+  @apply m-0 p-0 underline mt-3 bg-transparent normal-case hover:bg-transparent text-sm font-normal;
   text-decoration-thickness: 0.125rem;
   text-underline-offset: 1.5px;
   transition: all 0.2s;

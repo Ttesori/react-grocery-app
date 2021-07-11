@@ -1,5 +1,5 @@
 .alert {
-  @apply p-3 my-3 mx-auto bg-gray-50 transition-all border border-gray-200 rounded text-neutral text-sm absolute top-1 left-4 right-4 shadow-md text-center max-w-screen-sm;
+  @apply p-3 my-3 mx-auto bg-gray-50 transition-all border border-gray-200 rounded text-neutral text-sm absolute top-1 left-4 right-4 shadow-md text-center max-w-screen-sm z-50 h-0;
   animation-duration: 1.5s;
   animation-name: fadeInAlert;
   animation-fill-mode: both;
@@ -9,15 +9,18 @@
 
 @keyframes fadeInAlert {
   from {
+    height: 0;
     opacity: 0;
     transform: translateY(0);
   }
 
   10% {
+    height: auto;
     opacity: 1;
     transform: translateY(1);
   }
   100% {
+    height: auto;
     opacity: 1;
     transform: translateY(1);
   }

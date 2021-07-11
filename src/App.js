@@ -14,6 +14,7 @@ import ListsAdd from './components/pages/lists/ListsAdd';
 import Lists from './components/pages/lists/Lists';
 import NewUserMessage from './components/common/NewUserMessage';
 import './App.css';
+import Reset from './components/pages/Reset';
 
 function App() {
   const [stores, updateStores] = useState(null);
@@ -243,7 +244,11 @@ function App() {
             </Route>
             <Route path="/login" exact={true}>
               {userId && <Redirect to="/dashboard" />}
-              <Home title={`Home ${pageTitle}`} />
+              <Home title={`Login ${pageTitle}`} />
+            </Route>
+            <Route path="/reset" exact={true}>
+              {userId && <Redirect to="/dashboard" />}
+              <Reset title={`Reset Password ${pageTitle}`} />
             </Route>
             <Route path="/lists/view/:id">
               <ListsShow title={`View List ${pageTitle}`} handleUpdateList={handleUpdateListShow} />

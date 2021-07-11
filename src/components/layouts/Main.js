@@ -9,8 +9,8 @@ import './css/Main.css';
 
 export default function Main({ children }) {
   const history = useHistory();
-  const isLogin = ['/login', '/signup'].includes(useLocation().pathname);
-  const isHome = history.location.pathname === '/'
+  const isLogin = ['/login', '/signup', '/reset'].includes(useLocation().pathname);
+  const isHome = ['/'].includes(useLocation().pathname);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const screenSize = () => {
@@ -56,7 +56,7 @@ export default function Main({ children }) {
         {isHome &&
           <>
             <br />
-            <a href="https://storyset.com/" className="font-italic">Illustrations provided by Storyset</a>
+            <a href="https://storyset.com/" className="font-italic">Illustration provided by Storyset</a>
           </>
         }
         {

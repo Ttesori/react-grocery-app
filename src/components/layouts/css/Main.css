@@ -77,12 +77,20 @@ p strong {
 }
 
 .btn-signOut {
-  @apply m-0 mt-3 bg-transparent text-white font-normal border rounded hover:bg-neutral-dark hover:border-neutral-fifty lg:mt-4 py-1.5 px-4;
+  @apply m-0 mt-3 bg-transparent text-white border rounded hover:bg-primary hover:text-neutral-dark lg:mt-4 py-1.5 px-4 hover:shadow-md font-normal;
   border-color: rgba(255, 255, 255, 0.3);
 }
 
+.btn-signOut:hover {
+  @apply font-bold;
+}
+
 .btn-signOut .fas {
-  @apply text-primary pr-2;
+  @apply text-primary pr-2 transition-all;
+}
+
+.btn-signOut:hover .fas {
+  @apply text-neutral;
 }
 
 .rg-main h2 {

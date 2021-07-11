@@ -28,7 +28,7 @@
 }
 
 .page-home .rg-footer {
-  @apply w-full border-0 mx-auto mt-3 py-1 relative bg-transparent;
+  @apply w-full border-0 mx-auto mt-1 py-1 relative bg-transparent;
 }
 
 .page-home .rg-footer a {
@@ -40,12 +40,16 @@
 }
 
 .page-home .rg-main {
-  @apply flex flex-col mb-2;
+  @apply flex flex-col mb-1 relative;
 }
 
 .page-home .rg-signin,
 .page-home .rg-signin fieldset {
-  @apply flex flex-col;
+  @apply flex flex-col relative;
+}
+
+.page-home .rg-main p {
+  @apply text-white;
 }
 
 .page-home .rg-main h3 {
