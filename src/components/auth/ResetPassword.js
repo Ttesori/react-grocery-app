@@ -23,7 +23,6 @@ export default function ResetPassword() {
         url: `${process.env.REACT_APP_BASEURL}/login`,
         handleCodeInApp: false
       });
-      console.log(resp);
       setMessage('Password reset email sent successfully!');
       updateEmailSent(true);
       updateEmail('');
