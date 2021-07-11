@@ -36,7 +36,7 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
         <h2 className="mb-1 lg:mb-3">🏪 &nbsp;My Stores</h2>
         <Button
           handleOnClick={() => history.push('/stores/new')}
-          className="my-3 rg-btn-create-store" icon="fas fa-plus">
+          className="my-3 btn-block rg-btn-create-store" icon="fas fa-plus">
           Create New Store</Button>
 
         {alert && <Alert type={alert.type} message={alert.message} />}

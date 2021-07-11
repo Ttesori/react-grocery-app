@@ -1,4 +1,4 @@
-import '../css/StoresEdit.css';
+
 import EditStore from "../../stores/EditStore";
 import { useEffect } from "react";
 

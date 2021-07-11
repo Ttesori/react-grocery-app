@@ -134,7 +134,7 @@
 }
 
 .rg-img-scroll {
-  @apply w-full max-w-xs border-4 border-white shadow-md rounded-sm mx-auto mt-3 mb-2 lg:mx-auto lg:mb-4 sm:w-2/5 lg:w-full lg:max-w-full self-start relative overflow-hidden h-48 sm:h-40 md:h-44;
+  @apply w-full max-w-xs border-4 border-white shadow-md rounded-sm mx-auto mt-3 mb-2 lg:mx-auto lg:mb-4 sm:w-2/5 lg:w-full lg:max-w-full self-start relative overflow-hidden h-36 md:h-44 lg:h-40;
 }
 
 .rg-img-scroll img {
@@ -144,7 +144,7 @@
 }
 
 .rg-img-scroll:hover img {
-  top: -40%;
+  top: -50%;
 }
 
 .rg-how .num {
