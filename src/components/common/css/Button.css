@@ -56,9 +56,11 @@
   @apply transform hover:scale-105;
   color: rgba(255, 255, 255, 0.8);
   text-decoration-color: rgba(255, 255, 255, 0.2);
+  box-shadow: none;
 }
-.btn-link.light:hover {
-  color: white;
+.btn-link.light:hover,
+.btn-link.light:focus {
+  @apply text-white font-bold;
   text-decoration-color: rgba(255, 255, 255, 0.8);
 }
 
@@ -67,12 +69,17 @@
   text-decoration-color: #fca5a5;
 }
 
+.btn-link.error:focus {
+  @apply bg-transparent text-red-600 font-bold;
+  box-shadow: none;
+}
+
 .btn-quantity {
   @apply bg-transparent rounded-full border text-xs py-1 px-2 m-0;
   border-color: var(--color-neutral-50);
 }
 
 .btn-icon {
-  @apply p-0 bg-transparent text-lg hover:bg-transparent hover:text-neutral;
+  @apply p-0 bg-transparent text-xl hover:bg-transparent hover:text-neutral;
   color: var(--color-neutral-50);
 }

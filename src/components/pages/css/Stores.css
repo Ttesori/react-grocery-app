@@ -15,7 +15,7 @@
 }
 
 .rg-btn-create-store {
-  @apply lg:order-10 lg:border lg:border-secondary lg:bg-transparent normal-case lg:text-secondary font-bold hover:bg-secondary hover:text-white;
+  @apply lg:order-10 lg:border lg:border-secondary lg:bg-transparent normal-case lg:text-secondary font-bold lg:hover:bg-secondary lg:hover:text-white;
 }
 
 .rg-btn-create-store .fas {
