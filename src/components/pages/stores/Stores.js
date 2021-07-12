@@ -2,20 +2,36 @@
 import { useEffect, useState } from 'react';
 import ListItem from '../../common/ListItem';
 import { useHistory } from 'react-router-dom';
+import Modal from '../../common/Modal';
 import Button from '../../common/Button';
 import Alert from '../../common/Alert';
 import '../css/Stores.css';
 import EmptyList from '../../common/EmptyList';
 
-export default function Stores({ title, lists, stores, handleUpdateStore, handleRemoveStore, alert }) {
+export default function Stores({ title, lists, stores, handleRemoveStore, alert }) {
   const history = useHistory();
   const [isLoading, updateIsLoading] = useState(false);
-  const handleRemove = (e, id) => {
-    handleRemoveStore(e, id);
+  const [removeIsOpen, setRemoveIsOpen] = useState(false);
+  const [storeIdToDelete, setStoreIdToDelete] = useState();
+
+  const handleRemove = (id) => {
+    setRemoveIsOpen(true);
+    setStoreIdToDelete(id);
   }
 
-  handleUpdateStore = (id) => {
+  const handleUpdateClick = (id) => {
     history.push(`/stores/${id}`)
+  }
+
+  const handleCancelRemove = () => {
+    setRemoveIsOpen(false);
+    setStoreIdToDelete(undefined);
+  }
+
+  const handleConfirmRemove = (e) => {
+    handleRemoveStore(e, storeIdToDelete);
+    setRemoveIsOpen(false);
+    setStoreIdToDelete(undefined);
   }
 
   useEffect(() => {
@@ -32,7 +48,7 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
 
   return (
     <section className="rg-stores relative pb-10">
-      <div className="mx-auto">
+      <div className="mx-auto rg-stores-container">
         <h2 className="mb-1 lg:mb-3">🏪 &nbsp;My Stores</h2>
         <Button
           handleOnClick={() => history.push('/stores/new')}
@@ -48,8 +64,8 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
             {(stores.length > 0) && stores.map((store, i) => <ListItem key={i} className={`rg-store-li bg-${store.color} mb-1.5 lg:mb-2.5`}>
               <span className="store-name">{store.name}</span>
               <span className="store-buttons">
-                <Button label="edit" className="icon p-0 pr-3" icon="fas fa-cog" handleOnClick={() => handleUpdateStore(store.id)} />
-                {lists && lists.filter(list => list.store_id === store.id).length === 0 && <Button label="remove" className="icon p-0" icon="fas fa-times" handleOnClick={handleRemove} id={store.id} />}
+                <Button label="edit" className="icon p-0 pr-3" icon="fas fa-cog" handleOnClick={() => handleUpdateClick(store.id)} />
+                {lists && lists.filter(list => list.store_id === store.id).length === 0 && <Button label="remove" className="icon p-0" icon="fas fa-times" handleOnClick={() => handleRemove(store.id)} id={store.id} />}
               </span>
             </ListItem>)}
           </ul>
@@ -60,7 +76,12 @@ export default function Stores({ title, lists, stores, handleUpdateStore, handle
           </EmptyList>
         }
       </div>
-
+      {removeIsOpen &&
+        <Modal isOpen={removeIsOpen} handleClose={handleCancelRemove}>
+          <p>Are you sure you'd like to <strong>remove this store?</strong></p>
+          <Button handleOnClick={(e) => handleConfirmRemove(e)}>Yes, Remove Store</Button>
+          <Button className="w-full btn-link text-sm error" icon="fas fa-times" handleOnClick={handleCancelRemove}>Cancel</Button>
+        </Modal>}
     </section>
   )
 }

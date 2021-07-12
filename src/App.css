@@ -14,7 +14,7 @@
   --color-neutral: rgb(11, 79, 108);
   --color-neutral-lt: #e6edf0;
   --color-neutral-50: rgba(11, 79, 108, 0.5);
-  --color-neutral-05: rgba(11, 79, 108, 0.05);
+  --color-neutral-05: rgba(11, 79, 108, 0.07);
 }
 
 body {

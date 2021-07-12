@@ -10,7 +10,7 @@
   @apply py-3 px-8 lg:w-1/3 lg:py-14;
 }
 
-.rg-stores > div {
+.rg-stores .rg-stores-container {
   @apply relative max-w-screen-sm flex flex-col;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .rg-store-main .store-buttons button {
-  @apply text-white text-opacity-50 hover:text-neutral hover:text-opacity-100 transition-all lg:text-neutral-fifty lg:text-opacity-100;
+  @apply text-white text-opacity-50 hover:text-primary lg:hover:text-neutral hover:text-opacity-100 transition-all lg:text-neutral-fifty lg:text-opacity-100;
 }
 .rg-store-main .store-buttons button:last-child {
   padding-right: 0 !important;

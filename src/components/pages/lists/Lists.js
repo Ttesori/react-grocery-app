@@ -81,11 +81,12 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
           </span>
         </ListItem>)}
       </ul>}
-      <Modal isOpen={modalIsOpen} handleClose={handleCancelRemove}>
-        <p>Are you sure you'd like to <strong>remove this list?</strong></p>
-        <Button handleOnClick={(e) => handleRemove(e)}>Yes, Remove List</Button>
-        <Button className="w-full btn-link text-sm error" icon="fas fa-times" handleOnClick={handleCancelRemove}>Cancel</Button>
-      </Modal>
+      {modalIsOpen &&
+        <Modal isOpen={modalIsOpen} handleClose={handleCancelRemove}>
+          <p>Are you sure you'd like to <strong>remove this list?</strong></p>
+          <Button handleOnClick={(e) => handleRemove(e)}>Yes, Remove List</Button>
+          <Button className="w-full btn-link text-sm error" icon="fas fa-times" handleOnClick={handleCancelRemove}>Cancel</Button>
+        </Modal>}
     </section>
   )
 }
