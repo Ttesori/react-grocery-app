@@ -70,9 +70,18 @@ export default function Lists({ title, stores, lists, alert, handleRemoveList })
             </Link>
           </span>
           <span className="list-buttons">
-            <Button label="show" className="btn-icon" icon="fas fa-share" handleOnClick={() => handleViewList(list.id)} />
-            <Button label="edit" className="btn-icon ml-2" icon="fas fa-cog" handleOnClick={() => handleUpdateList(list.id)} />
-            <Button label="remove" className="btn-icon ml-2 pr-0" icon="fas fa-times" handleOnClick={() => handleRemoveClick(list.id)} id={list.id} />
+            <Button label="show" className="btn-icon"
+              icon="fas fa-share"
+              sr_content='View/Share List'
+              handleOnClick={() => handleViewList(list.id)} />
+            <Button label="edit" className="btn-icon ml-2"
+              icon="fas fa-cog"
+              sr_content='Edit List'
+              handleOnClick={() => handleUpdateList(list.id)} />
+            <Button label="remove" className="btn-icon ml-2 pr-0"
+              icon="fas fa-times"
+              sr_content='Remove List'
+              handleOnClick={() => handleRemoveClick(list.id)} id={list.id} />
           </span>
           <span className="list-store">
             {stores.find(store => store.id === list.store_id).name}</span>

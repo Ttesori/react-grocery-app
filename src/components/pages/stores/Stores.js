@@ -64,8 +64,11 @@ export default function Stores({ title, lists, stores, handleRemoveStore, alert 
             {(stores.length > 0) && stores.map((store, i) => <ListItem key={i} className={`rg-store-li bg-${store.color} mb-1.5 lg:mb-2.5`}>
               <span className="store-name">{store.name}</span>
               <span className="store-buttons">
-                <Button label="edit" className="icon p-0 pr-3" icon="fas fa-cog" handleOnClick={() => handleUpdateClick(store.id)} />
-                {lists && lists.filter(list => list.store_id === store.id).length === 0 && <Button label="remove" className="icon p-0" icon="fas fa-times" handleOnClick={() => handleRemove(store.id)} id={store.id} />}
+                <Button label="edit" className="icon p-0 pr-3"
+                  icon="fas fa-cog"
+                  sr_content='Edit Store'
+                  handleOnClick={() => handleUpdateClick(store.id)} />
+                {lists && lists.filter(list => list.store_id === store.id).length === 0 && <Button label="remove" className="icon p-0" icon="fas fa-times" handleOnClick={() => handleRemove(store.id)} id={store.id} sr_content='Delete Store' />}
               </span>
             </ListItem>)}
           </ul>

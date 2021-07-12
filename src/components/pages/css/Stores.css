@@ -1,5 +1,5 @@
 .rg-lists ~ .rg-stores {
-  @apply bg-neutral text-white pt-8 pb-12 lg:bg-neutral-five lg:text-neutral-dark;
+  @apply bg-neutral text-white pt-8 pb-12 lg:bg-neutral-five lg:text-neutral-dark lg:pt-14;
 }
 
 .rg-lists ~ .rg-stores h2 {
